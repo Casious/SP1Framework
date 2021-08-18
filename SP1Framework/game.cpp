@@ -13,7 +13,10 @@ SKeyEvent g_skKeyEvent[K_COUNT];
 SMouseEvent g_mouseEvent;
 
 // Game specific variables here
+
+//game character (Reagan)
 SGameChar   g_sChar;
+
 EGAMESTATES g_eGameState = S_SPLASHSCREEN; // initial state
 SGameMap    g_sMap;
 // Console object
@@ -34,8 +37,8 @@ void init( void )
     // sets the initial state for the game
     g_eGameState = S_SPLASHSCREEN;
 
-    g_sChar.m_cLocation.X = 0;
-    g_sChar.m_cLocation.Y =0;
+    g_sChar.m_cLocation.X = 1;
+    g_sChar.m_cLocation.Y = 1;
     g_sChar.m_bActive = true;
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
@@ -334,34 +337,35 @@ void renderMap()
     }
 }
 
+//collision and movement (Reagan)
 void moveCharacter()
 {    
-    //// Updating the location of the character based on the key release
-    //// providing a beep sound whenver we shift the character
-    //if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > c.Y)
-    //{
-    //    //Beep(1440, 30);
-    //    g_sChar.m_cLocation.Y--;       
-    //}
-    //if (g_skKeyEvent[K_LEFT].keyReleased && g_sChar.m_cLocation.X > c.X)
-    //{
-    //    //Beep(1440, 30);
-    //    g_sChar.m_cLocation.X--;        
-    //}
-    //if (g_skKeyEvent[K_DOWN].keyReleased && g_sChar.m_cLocation.Y < c.Y - 1)
-    //{
-    //    //Beep(1440, 30);
-    //    g_sChar.m_cLocation.Y++;        
-    //}
-    //if (g_skKeyEvent[K_RIGHT].keyReleased && g_sChar.m_cLocation.X < c.X - 1)
-    //{
-    //    //Beep(1440, 30);
-    //    g_sChar.m_cLocation.X++;        
-    //}
-    //if (g_skKeyEvent[K_SPACE].keyReleased)
-    //{
-    //    g_sChar.m_bActive = !g_sChar.m_bActive;        
-    //}
+    // Updating the location of the character based on the key release
+    // providing a beep sound whenver we shift the character
+    if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > 1)
+    {
+        //Beep(1440, 30);
+        g_sChar.m_cLocation.Y--;       
+    }
+    if (g_skKeyEvent[K_LEFT].keyReleased && g_sChar.m_cLocation.X > 1)
+    {
+        //Beep(1440, 30);
+        g_sChar.m_cLocation.X--;        
+    }
+    if (g_skKeyEvent[K_DOWN].keyReleased && g_sChar.m_cLocation.Y < 23)
+    {
+        //Beep(1440, 30);
+        g_sChar.m_cLocation.Y++;        
+    }
+    if (g_skKeyEvent[K_RIGHT].keyReleased && g_sChar.m_cLocation.X < 49)
+    {
+        //Beep(1440, 30);
+        g_sChar.m_cLocation.X++;        
+    }
+    if (g_skKeyEvent[K_SPACE].keyReleased)
+    {
+        g_sChar.m_bActive = !g_sChar.m_bActive;        
+    }
 
    
 }

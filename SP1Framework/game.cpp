@@ -340,6 +340,7 @@ void renderMap()
 //collision and movement (Reagan)
 void moveCharacter()
 {    
+    //124
     // Updating the location of the character based on the key release
     // providing a beep sound whenver we shift the character
     if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > 1)

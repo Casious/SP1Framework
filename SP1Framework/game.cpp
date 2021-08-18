@@ -22,8 +22,6 @@ SGameMap    g_sMap;
 // Console object
 Console g_Console(80, 25, "SP1 Framework");
 
-//hllo shaun here
-
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -344,38 +342,22 @@ void moveCharacter()
 {    
     // Updating the location of the character based on the key release
     // providing a beep sound whenver we shift the character
-<<<<<<< HEAD
     if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > 1)
-=======
-    if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > c.Y)
->>>>>>> 3f7c1508254da750cc6c998aa836ba039fe78e58
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.Y--;       
     }
-<<<<<<< HEAD
     if (g_skKeyEvent[K_LEFT].keyReleased && g_sChar.m_cLocation.X > 1)
-=======
-    if (g_skKeyEvent[K_LEFT].keyReleased && g_sChar.m_cLocation.X > c.X)
->>>>>>> 3f7c1508254da750cc6c998aa836ba039fe78e58
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.X--;        
     }
-<<<<<<< HEAD
     if (g_skKeyEvent[K_DOWN].keyReleased && g_sChar.m_cLocation.Y < 23)
-=======
-    if (g_skKeyEvent[K_DOWN].keyReleased && g_sChar.m_cLocation.Y < c.Y - 1)
->>>>>>> 3f7c1508254da750cc6c998aa836ba039fe78e58
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.Y++;        
     }
-<<<<<<< HEAD
     if (g_skKeyEvent[K_RIGHT].keyReleased && g_sChar.m_cLocation.X < 49)
-=======
-    if (g_skKeyEvent[K_RIGHT].keyReleased && g_sChar.m_cLocation.X < c.X - 1)
->>>>>>> 3f7c1508254da750cc6c998aa836ba039fe78e58
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.X++;        

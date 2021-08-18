@@ -17,6 +17,8 @@ SMouseEvent g_mouseEvent;
 //game character (Reagan)
 SGameChar   g_sChar;
 
+SGameWeapon g_sWeapon;
+
 EGAMESTATES g_eGameState = S_SPLASHSCREEN; // initial state
 SGameMap    g_sMap;
 // Console object
@@ -40,6 +42,11 @@ void init( void )
     g_sChar.m_cLocation.X = 1;
     g_sChar.m_cLocation.Y = 1;
     g_sChar.m_bActive = true;
+
+    g_sWeapon.m_cLocation.X = 5; // Jun Ying WIP
+    g_sWeapon.m_cLocation.X = 5;
+    g_sWeapon.m_bActive = true;
+
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
 
@@ -380,6 +387,15 @@ void renderCharacter()
     }
     g_Console.writeToBuffer(g_sChar.m_cLocation, (char)1, charColor);
 }
+
+void renderWeapon() // Jun Ying WIP
+{
+    // Draw the location of the weapon
+    WORD weaponColor = 10;
+    g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)1, weaponColor);
+}
+
+
 
 void renderFramerate()
 {

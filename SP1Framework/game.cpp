@@ -6,7 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-
+using namespace std;
 double  g_dElapsedTime;
 double  g_dDeltaTime;
 SKeyEvent g_skKeyEvent[K_COUNT];
@@ -15,7 +15,7 @@ SMouseEvent g_mouseEvent;
 // Game specific variables here
 SGameChar   g_sChar;
 EGAMESTATES g_eGameState = S_SPLASHSCREEN; // initial state
-
+SGameMap    g_sMap;
 // Console object
 Console g_Console(80, 25, "SP1 Framework");
 
@@ -34,8 +34,8 @@ void init( void )
     // sets the initial state for the game
     g_eGameState = S_SPLASHSCREEN;
 
-    g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2;
-    g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2;
+    g_sChar.m_cLocation.X = 0;
+    g_sChar.m_cLocation.Y =0;
     g_sChar.m_bActive = true;
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
@@ -227,37 +227,7 @@ void updateGame()       // gameplay logic
                         // sound can be played here too.
 }
 
-void moveCharacter()
-{    
-    // Updating the location of the character based on the key release
-    // providing a beep sound whenver we shift the character
-    if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > 0)
-    {
-        //Beep(1440, 30);
-        g_sChar.m_cLocation.Y--;       
-    }
-    if (g_skKeyEvent[K_LEFT].keyReleased && g_sChar.m_cLocation.X > 0)
-    {
-        //Beep(1440, 30);
-        g_sChar.m_cLocation.X--;        
-    }
-    if (g_skKeyEvent[K_DOWN].keyReleased && g_sChar.m_cLocation.Y < g_Console.getConsoleSize().Y - 1)
-    {
-        //Beep(1440, 30);
-        g_sChar.m_cLocation.Y++;        
-    }
-    if (g_skKeyEvent[K_RIGHT].keyReleased && g_sChar.m_cLocation.X < g_Console.getConsoleSize().X - 1)
-    {
-        //Beep(1440, 30);
-        g_sChar.m_cLocation.X++;        
-    }
-    if (g_skKeyEvent[K_SPACE].keyReleased)
-    {
-        g_sChar.m_bActive = !g_sChar.m_bActive;        
-    }
 
-   
-}
 void processUserInput()
 {
     // quits the game if player hits the escape key
@@ -291,7 +261,7 @@ void render()
 void clearScreen()
 {
     // Clears the buffer with this colour attribute
-    g_Console.clearBuffer(0x1F);
+    g_Console.clearBuffer(160);
 }
 
 void renderToScreen()
@@ -322,6 +292,7 @@ void renderGame()
 
 void renderMap()
 {
+
     // Set up sample colours, and output shadings
     const WORD colors[] = {
         0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
@@ -334,10 +305,66 @@ void renderMap()
         c.X = 5 * i;
         c.Y = i + 1;
         colour(colors[i]);
-        g_Console.writeToBuffer(c, " °±²Û", colors[i]);
+        g_Console.writeToBuffer(c, " ", colors[i]);       
+    }
+    WORD Map = 0;
+    for (int i = 0; i < 24; i++)
+    {
+        for (int j = 0; i < 50; i++) {
+
+
+            c.X = i;
+            c.Y = j+24;
+            g_Console.writeToBuffer(c, "#", Map);
+            c.X = i;
+            c.Y = j;
+            g_Console.writeToBuffer(c, "#", Map);
+
+            c.X = j;
+            c.Y = i;
+            g_Console.writeToBuffer(c, "#", Map);
+            c.X = j+50;
+            c.Y = i;
+            g_Console.writeToBuffer(c, "#", Map);
+        }
+       
+    }
+    if (g_sMap.m_bActive) {
+        Map = 0x0c;
     }
 }
 
+void moveCharacter()
+{    
+    //// Updating the location of the character based on the key release
+    //// providing a beep sound whenver we shift the character
+    //if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > c.Y)
+    //{
+    //    //Beep(1440, 30);
+    //    g_sChar.m_cLocation.Y--;       
+    //}
+    //if (g_skKeyEvent[K_LEFT].keyReleased && g_sChar.m_cLocation.X > c.X)
+    //{
+    //    //Beep(1440, 30);
+    //    g_sChar.m_cLocation.X--;        
+    //}
+    //if (g_skKeyEvent[K_DOWN].keyReleased && g_sChar.m_cLocation.Y < c.Y - 1)
+    //{
+    //    //Beep(1440, 30);
+    //    g_sChar.m_cLocation.Y++;        
+    //}
+    //if (g_skKeyEvent[K_RIGHT].keyReleased && g_sChar.m_cLocation.X < c.X - 1)
+    //{
+    //    //Beep(1440, 30);
+    //    g_sChar.m_cLocation.X++;        
+    //}
+    //if (g_skKeyEvent[K_SPACE].keyReleased)
+    //{
+    //    g_sChar.m_bActive = !g_sChar.m_bActive;        
+    //}
+
+   
+}
 void renderCharacter()
 {
     // Draw the location of the character
@@ -400,7 +427,7 @@ void renderInputEvents()
             ss << key << " not pressed";
 
         COORD c = { startPos.X, startPos.Y + i };
-        g_Console.writeToBuffer(c, ss.str(), 0x17);
+        //g_Console.writeToBuffer(c, ss.str(), 0x17);
     }
 
     // mouse events    

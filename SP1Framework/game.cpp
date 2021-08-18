@@ -19,6 +19,8 @@ SGameMap    g_sMap;
 // Console object
 Console g_Console(80, 25, "SP1 Framework");
 
+//hllo shaun here
+
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -336,32 +338,32 @@ void renderMap()
 
 void moveCharacter()
 {    
-    //// Updating the location of the character based on the key release
-    //// providing a beep sound whenver we shift the character
-    //if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > c.Y)
-    //{
-    //    //Beep(1440, 30);
-    //    g_sChar.m_cLocation.Y--;       
-    //}
-    //if (g_skKeyEvent[K_LEFT].keyReleased && g_sChar.m_cLocation.X > c.X)
-    //{
-    //    //Beep(1440, 30);
-    //    g_sChar.m_cLocation.X--;        
-    //}
-    //if (g_skKeyEvent[K_DOWN].keyReleased && g_sChar.m_cLocation.Y < c.Y - 1)
-    //{
-    //    //Beep(1440, 30);
-    //    g_sChar.m_cLocation.Y++;        
-    //}
-    //if (g_skKeyEvent[K_RIGHT].keyReleased && g_sChar.m_cLocation.X < c.X - 1)
-    //{
-    //    //Beep(1440, 30);
-    //    g_sChar.m_cLocation.X++;        
-    //}
-    //if (g_skKeyEvent[K_SPACE].keyReleased)
-    //{
-    //    g_sChar.m_bActive = !g_sChar.m_bActive;        
-    //}
+    // Updating the location of the character based on the key release
+    // providing a beep sound whenver we shift the character
+    if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > c.Y)
+    {
+        //Beep(1440, 30);
+        g_sChar.m_cLocation.Y--;       
+    }
+    if (g_skKeyEvent[K_LEFT].keyReleased && g_sChar.m_cLocation.X > c.X)
+    {
+        //Beep(1440, 30);
+        g_sChar.m_cLocation.X--;        
+    }
+    if (g_skKeyEvent[K_DOWN].keyReleased && g_sChar.m_cLocation.Y < c.Y - 1)
+    {
+        //Beep(1440, 30);
+        g_sChar.m_cLocation.Y++;        
+    }
+    if (g_skKeyEvent[K_RIGHT].keyReleased && g_sChar.m_cLocation.X < c.X - 1)
+    {
+        //Beep(1440, 30);
+        g_sChar.m_cLocation.X++;        
+    }
+    if (g_skKeyEvent[K_SPACE].keyReleased)
+    {
+        g_sChar.m_bActive = !g_sChar.m_bActive;        
+    }
 
    
 }

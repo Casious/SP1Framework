@@ -47,6 +47,8 @@ Console g_Console(80, 25, "SP1 Framework");
 
     //boolean for mob existing
     bool mob_exists = true;
+    //bool for char existing
+    bool char_exists = true;
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -320,6 +322,7 @@ void updateGame()       // gameplay logic
 
     pickedWeapon(); //when player picks up weapon
     Mapdesign();
+    mobcollide();
 }
 
 
@@ -388,6 +391,7 @@ void renderGame()
     renderWeapon(); // render weapon
     updateattackpositions();
     renderWeaponAttack();
+    renderWText();
 
 }
 
@@ -472,8 +476,10 @@ void renderCharacter()
     {
         charColor = 0x0A;
     }
-    g_Console.writeToBuffer(g_sChar.m_cLocation, (char)1, charColor);
-
+    if (char_exists == true)
+    {
+        g_Console.writeToBuffer(g_sChar.m_cLocation, (char)1, charColor);
+    }
 }
 
 void renderMobs()
@@ -504,6 +510,8 @@ void renderWeapon() // Jun Ying WIP
     {
         g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)206, weaponColor);
     }
+
+   
 }
 
 void renderWeaponAttack()
@@ -543,6 +551,35 @@ void renderWeaponAttack()
 
 
 }
+void mobcollide()
+{
+    if (g_sMob.m_cLocation.X == g_sChar.m_cLocation.X 
+        && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y 
+        )
+    {
+        char_exists == false;
+        shutdown();
+    }
+
+}
+
+void endgame()
+{
+    if (char_exists == false)
+
+    {
+        COORD c;
+        std::ostringstream ss;
+        ss << "You Lose!" << endl;
+        c.X = 25;
+        c.Y = 15;
+        g_Console.writeToBuffer(c, ss.str());
+        
+    }
+
+
+}
+
 
 void pickedWeapon()
 {
@@ -570,7 +607,19 @@ void Mapdesign() {
     }
     Mapfile.close();
 }
+void renderWText()
+{
 
+    if (hasweapon == true)
+    {
+        COORD c;
+        std::ostringstream ss;
+        ss << "You picked up weapon" << endl;
+        c.X = 54;
+        c.Y = 23;
+        g_Console.writeToBuffer(c, ss.str());
+    }
+}
 
 void renderFramerate()
 {
@@ -589,6 +638,8 @@ void renderFramerate()
     c.X = 68;
     c.Y = 1;
     g_Console.writeToBuffer(c, ss.str());
+
+    
 }
 
 // this is an example of how you would use the input events

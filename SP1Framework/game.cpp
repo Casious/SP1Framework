@@ -510,7 +510,7 @@ void renderWeaponAttack()
 
         if (hasweapon == true && weaponExist == false && g_skKeyEvent[K_SPACE].keyReleased)
         {
-            
+            // the 360 aoe attack if player obtains the epic weapon
             g_Console.writeToBuffer(g_sSmash.m_cLocation, (char)179, attackColor);
             g_Console.writeToBuffer(g_sSmash2.m_cLocation, (char)254, attackColor);
             g_Console.writeToBuffer(g_sSmash3.m_cLocation, (char)254, attackColor);
@@ -520,7 +520,7 @@ void renderWeaponAttack()
             g_Console.writeToBuffer(g_sSmash7.m_cLocation, (char)254, attackColor);
             g_Console.writeToBuffer(g_sSmash8.m_cLocation, (char)254, attackColor);
 
-            //if there are mobs within range
+            //if there are mobs within range of ultimate shockwave super attack!1!11!!
             if (g_sChar.m_cLocation.X + 2 == g_sMob.m_cLocation.X ||
                 g_sChar.m_cLocation.X - 2 == g_sMob.m_cLocation.X ||
                 g_sChar.m_cLocation.Y + 2 == g_sMob.m_cLocation.Y ||

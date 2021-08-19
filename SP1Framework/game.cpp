@@ -8,13 +8,6 @@
 #include <sstream>
 #include <fstream>
 #include <string>
-#ifdef _WIN32
-#include <Windows.h>
-#else
-#include <unistd.h>
-#endif
-#include <iostream>
-#include <cstdlib>
 
 
 using namespace std;

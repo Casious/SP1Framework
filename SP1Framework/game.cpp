@@ -307,6 +307,7 @@ void renderGame()
     renderMap();        // renders the map to the buffer first
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
+    renderWeapon();
 
 }
 
@@ -431,7 +432,7 @@ void renderWeapon() // Jun Ying WIP
 
     }
 
-    g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)1, weaponColor);
+    g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)5, weaponColor);
 }
 
 

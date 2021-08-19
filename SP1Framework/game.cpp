@@ -39,6 +39,7 @@ Console g_Console(80, 25, "SP1 Framework");
     bool weaponExist = true;
 //boolean to show whether player picked up weapon or not
     bool hasweapon = false;
+    bool isattack = false;
 
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
@@ -101,6 +102,33 @@ void init( void )
     // remember to set your keyboard handler, so that your functions can be notified of input events
     g_Console.setKeyboardHandler(keyboardHandler);
     g_Console.setMouseHandler(mouseHandler);
+}
+
+void updateattackpositions()
+{
+    g_sSmash.m_cLocation.X = g_sChar.m_cLocation.X + 1; // right
+    g_sSmash.m_cLocation.Y = g_sChar.m_cLocation.Y;
+
+    g_sSmash2.m_cLocation.X = g_sChar.m_cLocation.X + 1; // bottom right
+    g_sSmash2.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
+
+    g_sSmash3.m_cLocation.X = g_sChar.m_cLocation.X; // bottom
+    g_sSmash3.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
+
+    g_sSmash4.m_cLocation.X = g_sChar.m_cLocation.X - 1; // bottom left
+    g_sSmash4.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
+
+    g_sSmash5.m_cLocation.X = g_sChar.m_cLocation.X - 1; // left
+    g_sSmash5.m_cLocation.Y = g_sChar.m_cLocation.Y;
+
+    g_sSmash6.m_cLocation.X = g_sChar.m_cLocation.X - 1; // top left
+    g_sSmash6.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
+
+    g_sSmash7.m_cLocation.X = g_sChar.m_cLocation.X; // top
+    g_sSmash7.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
+
+    g_sSmash8.m_cLocation.X = g_sChar.m_cLocation.X + 1; // top right
+    g_sSmash8.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
 }
 
 //--------------------------------------------------------------
@@ -351,6 +379,8 @@ void renderGame()
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
     renderWeapon(); // render weapon
+    updateattackpositions();
+    renderWeaponAttack();
 
 }
 
@@ -427,9 +457,10 @@ void moveCharacter()
     }
 
     
-    if (g_skKeyEvent[K_SPACE].keyReleased)
+    if (g_skKeyEvent[K_SPACE].keyReleased && hasweapon == true)
     {
-        g_sChar.m_bActive = !g_sChar.m_bActive;        
+    
+        renderWeaponAttack();
     }
 
    
@@ -475,20 +506,30 @@ void renderWeapon() // Jun Ying WIP
 
 void renderWeaponAttack()
 {
-    WORD attackColor = 255;
-
-    if (hasweapon == true && weaponExist == false)
+    WORD attackColor = 0;
+    if (isattack == false)
     {
-        g_Console.writeToBuffer(g_sSmash.m_cLocation, (char)254, attackColor);
-        g_Console.writeToBuffer(g_sSmash2.m_cLocation, (char)254, attackColor);
-        g_Console.writeToBuffer(g_sSmash3.m_cLocation, (char)254, attackColor);
-        g_Console.writeToBuffer(g_sSmash4.m_cLocation, (char)254, attackColor);
-        g_Console.writeToBuffer(g_sSmash5.m_cLocation, (char)254, attackColor);
-        g_Console.writeToBuffer(g_sSmash6.m_cLocation, (char)254, attackColor);
-        g_Console.writeToBuffer(g_sSmash7.m_cLocation, (char)254, attackColor);
-        g_Console.writeToBuffer(g_sSmash8.m_cLocation, (char)254, attackColor);
+        isattack = true;
 
+        if (hasweapon == true && weaponExist == false)
+        {
+            g_sChar.m_bActive = !g_sChar.m_bActive;
+            g_Console.writeToBuffer(g_sSmash.m_cLocation, (char)179, attackColor);
+            g_Console.writeToBuffer(g_sSmash2.m_cLocation, (char)254, attackColor);
+            g_Console.writeToBuffer(g_sSmash3.m_cLocation, (char)254, attackColor);
+            g_Console.writeToBuffer(g_sSmash4.m_cLocation, (char)254, attackColor);
+            g_Console.writeToBuffer(g_sSmash5.m_cLocation, (char)254, attackColor);
+            g_Console.writeToBuffer(g_sSmash6.m_cLocation, (char)254, attackColor);
+            g_Console.writeToBuffer(g_sSmash7.m_cLocation, (char)254, attackColor);
+            g_Console.writeToBuffer(g_sSmash8.m_cLocation, (char)254, attackColor);
+
+        }
+
+
+        isattack = false;
+        
     }
+
 
 }
 

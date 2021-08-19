@@ -563,7 +563,7 @@ void Mapdesign() {
     Mapfile.open("MapDesign");
     if (Mapfile.is_open())
     {
-        while (std::getline(Mapfile, temp)) { // while enf of file is false
+        while (std::getline(Mapfile, temp)) {
             std::cout << temp << std::endl;
      
         }

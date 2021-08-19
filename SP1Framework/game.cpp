@@ -17,6 +17,7 @@ SMouseEvent g_mouseEvent;
 //game character (Reagan)
 SGameChar   g_sChar;
 
+//weapon variable (commented by Reagan)
 SGameWeapon g_sWeapon;
 
 EGAMESTATES g_eGameState = S_SPLASHSCREEN; // initial state
@@ -43,8 +44,10 @@ void init( void )
     g_sChar.m_cLocation.Y = 1;
     g_sChar.m_bActive = true;
 
+
+    //location for weapon(commented by reagan)
     g_sWeapon.m_cLocation.X = 5; // Jun Ying WIP
-    g_sWeapon.m_cLocation.X = 5;
+    g_sWeapon.m_cLocation.Y = 5;
     g_sWeapon.m_bActive = true;
 
     // sets the width, height and the font name to use in the console
@@ -388,10 +391,24 @@ void renderCharacter()
     g_Console.writeToBuffer(g_sChar.m_cLocation, (char)1, charColor);
 }
 
+
 void renderWeapon() // Jun Ying WIP
 {
     // Draw the location of the weapon
-    WORD weaponColor = 10;
+    WORD weaponColor = 0x0C;
+
+    if (g_sWeapon.m_bActive)
+    {
+        weaponColor = 0x0A;
+    }
+
+    //conditional statement when character and weapon are in the same coordinates (Reagan)
+    if (g_sWeapon.m_cLocation.X == g_sChar.m_cLocation.X &&
+        g_sWeapon.m_cLocation.Y == g_sChar.m_cLocation.Y)
+    {
+
+    }
+
     g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)1, weaponColor);
 }
 

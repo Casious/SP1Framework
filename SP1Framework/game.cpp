@@ -16,6 +16,7 @@ SMouseEvent g_mouseEvent;
 
 //game character (Reagan)
 SGameChar   g_sChar;
+SGameMob g_sMob;
 
 //weapon variable (commented by Reagan)
 SGameWeapon g_sWeapon;
@@ -43,6 +44,9 @@ void init( void )
     g_sChar.m_cLocation.X = 1;
     g_sChar.m_cLocation.Y = 1;
     g_sChar.m_bActive = true;
+    g_sMob.m_cLocation.X = 10;
+    g_sMob.m_cLocation.Y = 10;
+    g_sMob.m_bActive = true;
 
 
     //location for weapon(commented by reagan)
@@ -268,7 +272,8 @@ void render()
     }
     renderFramerate();      // renders debug information, frame rate, elapsed time, etc
     renderInputEvents();    // renders status of input events
-    renderToScreen();       // dump the contents of the buffer to the screen, one frame worth of game
+    renderToScreen();    // dump the contents of the buffer to the screen, one frame worth of game
+    
 }
 
 void clearScreen()
@@ -300,8 +305,11 @@ void renderSplashScreen()  // renders the splash screen
 void renderGame()
 {
     renderMap();        // renders the map to the buffer first
-    renderCharacter();  // renders the character into the buffer
+    renderCharacter(); // renders the character into the buffer
+    renderMobs(); //renders mob
+
 }
+
 
 void renderMap()
 {
@@ -389,7 +397,21 @@ void renderCharacter()
         charColor = 0x0A;
     }
     g_Console.writeToBuffer(g_sChar.m_cLocation, (char)1, charColor);
+
 }
+
+void renderMobs()
+{
+    WORD mobColor = 256;
+    if (g_sMob.m_bActive)
+    {
+        mobColor = 0x0C;
+    }
+    g_Console.writeToBuffer(g_sMob.m_cLocation, (char)1, mobColor);
+}
+
+
+
 
 
 void renderWeapon() // Jun Ying WIP

@@ -50,6 +50,11 @@ struct SGameChar
     COORD m_cLocation;
     bool  m_bActive;
 };
+struct SGameMob
+{
+    COORD m_cLocation;
+    bool m_bActive;
+};
 
 // struct for the game weapon (Jun Ying WIP)
 struct SGameWeapon
@@ -75,8 +80,8 @@ void processUserInput();    // checks if you should change states or do somethin
 void clearScreen();         // clears the current screen and draw from scratch 
 void renderSplashScreen();  // renders the splash screen
 void renderGame();          // renders the game stuff
-void renderMap();           // renders the map to the buffer first
-
+void renderMap();       // renders the map to the buffer first
+void renderMobs();
 void renderCharacter();     // renders the character into the buffer
 void renderWeapon(); // renders the weapon (Jun Ying WIP)
 void renderFramerate();     // renders debug information, frame rate, elapsed time, etc

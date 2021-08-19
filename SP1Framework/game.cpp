@@ -6,6 +6,10 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <fstream>
+#include <string>
+
+
 using namespace std;
 double  g_dElapsedTime;
 double  g_dDeltaTime;
@@ -315,6 +319,7 @@ void updateGame()       // gameplay logic
                         // sound can be played here too.
 
     pickedWeapon(); //when player picks up weapon
+    Mapdesign();
 }
 
 
@@ -549,10 +554,22 @@ void pickedWeapon()
         hasweapon = true;
         
     }
-
+    
 
 }
-
+void Mapdesign() {
+    std::ifstream Mapfile;
+    std::string temp;
+    Mapfile.open("MapDesign");
+    if (Mapfile.is_open())
+    {
+        while (std::getline(Mapfile, temp)) { // while enf of file is false
+            std::cout << temp << std::endl;
+     
+        }
+    }
+    Mapfile.close();
+}
 
 
 void renderFramerate()

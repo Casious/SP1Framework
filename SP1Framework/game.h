@@ -91,6 +91,7 @@ void renderMobs();
 void renderCharacter();     // renders the character into the buffer
 void renderWeapon(); // renders the weapon (Jun Ying WIP)
 void renderWeaponAttack(); // renders the weapon attack
+void Mapdesign(); // walls etc
 
 void pickedWeapon(); //when player picks up weapon (Reagan)
 void renderFramerate();     // renders debug information, frame rate, elapsed time, etc

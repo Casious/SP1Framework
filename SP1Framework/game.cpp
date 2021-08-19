@@ -18,8 +18,16 @@ SMouseEvent g_mouseEvent;
 SGameChar   g_sChar;
 SGameMob g_sMob;
 
-//weapon variable (commented by Reagan)
+//weapon struct (Jun Ying)
 SGameWeapon g_sWeapon;
+SGameSmash g_sSmash;
+SGameSmash g_sSmash2;
+SGameSmash g_sSmash3;
+SGameSmash g_sSmash4;
+SGameSmash g_sSmash5;
+SGameSmash g_sSmash6;
+SGameSmash g_sSmash7;
+SGameSmash g_sSmash8;
 
 EGAMESTATES g_eGameState = S_SPLASHSCREEN; // initial state
 SGameMap    g_sMap;
@@ -59,9 +67,33 @@ void init( void )
     g_sMob.m_bActive = true;
 
 
-    //location for weapon(commented by reagan)
-    g_sWeapon.m_cLocation.X = 5; // Jun Ying WIP
+    //location for weapon
+    g_sWeapon.m_cLocation.X = 5; // Jun Ying WIP (5 for now)
     g_sWeapon.m_cLocation.Y = 5;
+
+    g_sSmash.m_cLocation.X = g_sChar.m_cLocation.X + 1; // right
+    g_sSmash.m_cLocation.Y = g_sChar.m_cLocation.Y;
+
+    g_sSmash2.m_cLocation.X = g_sChar.m_cLocation.X + 1; // bottom right
+    g_sSmash2.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
+
+    g_sSmash3.m_cLocation.X = g_sChar.m_cLocation.X; // bottom
+    g_sSmash3.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
+
+    g_sSmash4.m_cLocation.X = g_sChar.m_cLocation.X - 1; // bottom left
+    g_sSmash4.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
+
+    g_sSmash5.m_cLocation.X = g_sChar.m_cLocation.X - 1; // left
+    g_sSmash5.m_cLocation.Y = g_sChar.m_cLocation.Y;
+
+    g_sSmash6.m_cLocation.X = g_sChar.m_cLocation.X - 1; // top left
+    g_sSmash6.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
+
+    g_sSmash7.m_cLocation.X = g_sChar.m_cLocation.X; // top
+    g_sSmash7.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
+
+    g_sSmash8.m_cLocation.X = g_sChar.m_cLocation.X + 1; // top right
+    g_sSmash8.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
 
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
@@ -319,6 +351,7 @@ void renderGame()
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
     renderWeapon(); // render weapon
+
 }
 
 
@@ -430,7 +463,7 @@ void renderMobs()
 
 void renderWeapon() // Jun Ying WIP
 {
-    // Draw the location of the weapon
+    // Colour for the weapon symbol
     WORD weaponColor = 240;
 
     
@@ -440,7 +473,24 @@ void renderWeapon() // Jun Ying WIP
     }
 }
 
+void renderWeaponAttack()
+{
+    WORD attackColor = 255;
 
+    if (hasweapon == true && weaponExist == false)
+    {
+        g_Console.writeToBuffer(g_sSmash.m_cLocation, (char)254, attackColor);
+        g_Console.writeToBuffer(g_sSmash2.m_cLocation, (char)254, attackColor);
+        g_Console.writeToBuffer(g_sSmash3.m_cLocation, (char)254, attackColor);
+        g_Console.writeToBuffer(g_sSmash4.m_cLocation, (char)254, attackColor);
+        g_Console.writeToBuffer(g_sSmash5.m_cLocation, (char)254, attackColor);
+        g_Console.writeToBuffer(g_sSmash6.m_cLocation, (char)254, attackColor);
+        g_Console.writeToBuffer(g_sSmash7.m_cLocation, (char)254, attackColor);
+        g_Console.writeToBuffer(g_sSmash8.m_cLocation, (char)254, attackColor);
+
+    }
+
+}
 
 void pickedWeapon()
 {
@@ -452,6 +502,7 @@ void pickedWeapon()
         hasweapon = true;
         
     }
+
 
 }
 

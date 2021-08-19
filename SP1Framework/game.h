@@ -62,6 +62,11 @@ struct SGameWeapon
     COORD m_cLocation;
 };
 
+struct SGameSmash
+{
+    COORD m_cLocation;
+};
+
 struct SGameMap {
     COORD m_cLocation;
     bool m_bActive;
@@ -85,7 +90,7 @@ void renderMap();       // renders the map to the buffer first
 void renderMobs();
 void renderCharacter();     // renders the character into the buffer
 void renderWeapon(); // renders the weapon (Jun Ying WIP)
-
+void renderWeaponAttack(); // renders the weapon attack
 
 void pickedWeapon(); //when player picks up weapon (Reagan)
 void renderFramerate();     // renders debug information, frame rate, elapsed time, etc

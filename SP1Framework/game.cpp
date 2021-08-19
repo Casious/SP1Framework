@@ -54,6 +54,7 @@ Console g_Console(80, 25, "SP1 Framework");
 
     //boolean for mob existing
     bool mob_exists = true;
+    bool char_exists = true;
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -398,7 +399,7 @@ void renderGame()
     renderWeaponAttack();
     renderWText();
     mobcollide();
-    endgame();
+   
 
 }
 
@@ -577,9 +578,6 @@ void mobcollide()//david WIP dection works tho
 
 }
 
-void endgame()
-{
-    if (char_exists == false)
 
 void pickedWeapon()
 {
@@ -607,7 +605,8 @@ void Mapdesign() {
     }
     Mapfile.close();
 }
-
+void renderWText()
+{
     if (hasweapon == true)
     {
         COORD c;

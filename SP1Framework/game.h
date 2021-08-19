@@ -60,7 +60,6 @@ struct SGameMob
 struct SGameWeapon
 {
     COORD m_cLocation;
-    bool  m_bActive;
 };
 
 struct SGameMap {

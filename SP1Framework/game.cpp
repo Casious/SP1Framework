@@ -29,6 +29,8 @@ Console g_Console(80, 25, "SP1 Framework");
 
 //boolean to show weapon (Reagan)
     bool weaponExist = true;
+//boolean to show whether player picked up weapon or not
+    bool hasweapon = false;
 
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
@@ -60,7 +62,6 @@ void init( void )
     //location for weapon(commented by reagan)
     g_sWeapon.m_cLocation.X = 5; // Jun Ying WIP
     g_sWeapon.m_cLocation.Y = 5;
-    g_sWeapon.m_bActive = true;
 
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
@@ -393,10 +394,10 @@ void moveCharacter()
     }
 
     
-    /*if (g_skKeyEvent[K_SPACE].keyReleased)
+    if (g_skKeyEvent[K_SPACE].keyReleased)
     {
         g_sChar.m_bActive = !g_sChar.m_bActive;        
-    }*/
+    }
 
    
 }
@@ -432,10 +433,6 @@ void renderWeapon() // Jun Ying WIP
     // Draw the location of the weapon
     WORD weaponColor = 0x0C;
 
-    if (g_sWeapon.m_bActive)
-    {
-        weaponColor = 0x0A;
-    }
     
     if (weaponExist == true)
     {
@@ -452,12 +449,10 @@ void pickedWeapon()
         g_sWeapon.m_cLocation.Y == g_sChar.m_cLocation.Y)
     {
         weaponExist = false;
+        hasweapon = true;
+        
     }
 
-    if (weaponExist == false)
-    {
-        g_sChar.m_bActive = !g_sChar.m_bActive;
-    }
 }
 
 

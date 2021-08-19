@@ -307,7 +307,6 @@ void renderGame()
     renderMap();        // renders the map to the buffer first
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
-    renderWeapon();
 
 }
 
@@ -359,7 +358,7 @@ void renderMap()
 //collision and movement (Reagan)
 void moveCharacter()
 {    
-    //124
+
     // Updating the location of the character based on the key release
     // providing a beep sound whenver we shift the character
     if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > 1)
@@ -432,7 +431,7 @@ void renderWeapon() // Jun Ying WIP
 
     }
 
-    g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)5, weaponColor);
+    g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)1, weaponColor);
 }
 
 

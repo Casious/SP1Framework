@@ -431,12 +431,12 @@ void renderMobs()
 void renderWeapon() // Jun Ying WIP
 {
     // Draw the location of the weapon
-    WORD weaponColor = 0x0C;
+    WORD weaponColor = 240;
 
     
     if (weaponExist == true)
     {
-        g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)5, weaponColor);
+        g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)206, weaponColor);
     }
 }
 

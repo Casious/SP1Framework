@@ -16,7 +16,16 @@ SMouseEvent g_mouseEvent;
 
 //game character (Reagan)
 SGameChar   g_sChar;
+
 SGameMob g_sMob;
+SGameMob g_sMob1;
+SGameMob g_sMob2;
+SGameMob g_sMob3;
+SGameMob g_sMob4;
+
+
+
+
 
 //weapon struct (Jun Ying)
 SGameWeapon g_sWeapon;
@@ -43,6 +52,18 @@ Console g_Console(80, 25, "SP1 Framework");
 
     //boolean for mob existing
     bool mob_exists = true;
+
+    bool mob1_exists = false;
+
+    bool mob2_exists = false;
+
+    bool mob3_exists = false;
+
+    bool mob4_exists = false;
+
+    
+
+
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -65,9 +86,26 @@ void init( void )
     g_sChar.m_cLocation.X = 1;
     g_sChar.m_cLocation.Y = 1;
     g_sChar.m_bActive = true;
+
+    g_sMob2.m_cLocation.X = 30;
+    g_sMob2.m_cLocation.Y = 30;
+    g_sMob2.m_bActive = true;
+
+    g_sMob1.m_cLocation.X = 20;
+    g_sMob1.m_cLocation.Y = 20;
+    g_sMob1.m_bActive = true;
+
     g_sMob.m_cLocation.X = 10;
     g_sMob.m_cLocation.Y = 10;
     g_sMob.m_bActive = true;
+
+    g_sMob3.m_cLocation.X = 40;
+    g_sMob3.m_cLocation.Y = 40;
+    g_sMob3.m_bActive = true;
+
+    g_sMob4.m_cLocation.X = 50;
+    g_sMob4.m_cLocation.Y = 50;
+    g_sMob4.m_bActive = true;
 
 
     //location for weapon
@@ -482,6 +520,26 @@ void renderMobs()
     if (mob_exists == true)
     {
         g_Console.writeToBuffer(g_sMob.m_cLocation, (char)1, mobColor);
+    }
+
+    if (mob1_exists == true)
+    {
+        g_Console.writeToBuffer(g_sMob1.m_cLocation, (char)1, mobColor);
+    }
+
+    if (mob2_exists == true)
+    {
+        g_Console.writeToBuffer(g_sMob2.m_cLocation, (char)1, mobColor);
+    }
+
+    if (mob3_exists == true)
+    {
+        g_Console.writeToBuffer(g_sMob3.m_cLocation, (char)1, mobColor);
+    }
+
+    if (mob4_exists == true)
+    {
+        g_Console.writeToBuffer(g_sMob4.m_cLocation, (char)1, mobColor);
     }
 }
 

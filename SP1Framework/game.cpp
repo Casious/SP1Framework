@@ -463,14 +463,14 @@ void renderFramerate()
     // displays the framerate
     std::ostringstream ss;
     ss << std::fixed << std::setprecision(3);
-    ss << 1.0 / g_dDeltaTime << "fps";
+    ss <<"FPS:"<< 1.0 / g_dDeltaTime;
     c.X = g_Console.getConsoleSize().X - 12;
     c.Y = 0;
     g_Console.writeToBuffer(c, ss.str());
 
     // displays the elapsed time
     ss.str("");
-    ss << g_dElapsedTime << "secs";
+    ss <<"Time:" <<g_dElapsedTime;
     c.X = 68;
     c.Y = 1;
     g_Console.writeToBuffer(c, ss.str());

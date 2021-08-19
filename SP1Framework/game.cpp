@@ -305,8 +305,8 @@ void renderSplashScreen()  // renders the splash screen
 void renderGame()
 {
     renderMap();        // renders the map to the buffer first
-    renderCharacter(); // renders the character into the buffer
-    renderMobs(); //renders mob
+    renderCharacter();  // renders the character into the buffer
+    renderMobs();      //renders mob
 
 }
 
@@ -358,7 +358,7 @@ void renderMap()
 //collision and movement (Reagan)
 void moveCharacter()
 {    
-
+    //124
     // Updating the location of the character based on the key release
     // providing a beep sound whenver we shift the character
     if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > 1)
@@ -388,6 +388,7 @@ void moveCharacter()
 
    
 }
+
 void renderCharacter()
 {
     // Draw the location of the character
@@ -431,7 +432,7 @@ void renderWeapon() // Jun Ying WIP
 
     }
 
-    g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)5, weaponColor);
+    g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)1, weaponColor);
 }
 
 
@@ -450,9 +451,9 @@ void renderFramerate()
     // displays the elapsed time
     ss.str("");
     ss << g_dElapsedTime << "secs";
-    c.X = 0;
-    c.Y = 0;
-    g_Console.writeToBuffer(c, ss.str(), 0x59);
+    c.X = 71;
+    c.Y = 1;
+    g_Console.writeToBuffer(c, ss.str());
 }
 
 // this is an example of how you would use the input events

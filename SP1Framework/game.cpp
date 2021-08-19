@@ -431,7 +431,7 @@ void renderWeapon() // Jun Ying WIP
 
     }
 
-    g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)1, weaponColor);
+    g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)5, weaponColor);
 }
 
 

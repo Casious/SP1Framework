@@ -26,6 +26,10 @@ SGameMap    g_sMap;
 // Console object
 Console g_Console(80, 25, "SP1 Framework");
 
+
+//boolean to show weapon (Reagan)
+    bool weaponExist = true;
+
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -35,6 +39,10 @@ Console g_Console(80, 25, "SP1 Framework");
 //--------------------------------------------------------------
 void init( void )
 {
+
+ 
+
+
     // Set precision for floating point output
     g_dElapsedTime = 0.0;    
 
@@ -242,6 +250,8 @@ void updateGame()       // gameplay logic
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     moveCharacter();    // moves the character, collision detection, physics, etc
                         // sound can be played here too.
+
+    pickedWeapon(); //when player picks up weapon
 }
 
 
@@ -305,9 +315,9 @@ void renderSplashScreen()  // renders the splash screen
 void renderGame()
 {
     renderMap();        // renders the map to the buffer first
-    renderCharacter();  // renders the character into the buffer
-    renderMobs();      //renders mob
-
+    renderCharacter(); // renders the character into the buffer
+    renderMobs(); //renders mob
+    renderWeapon(); // render weapon
 }
 
 
@@ -315,19 +325,19 @@ void renderMap()
 {
 
     // Set up sample colours, and output shadings
-    const WORD colors[] = {
+    /*const WORD colors[] = {
         0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
         0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-    };
+    };*/
 
     COORD c;
-    for (int i = 0; i < 12; ++i)
+    /*for (int i = 0; i < 12; ++i)
     {
         c.X = 5 * i;
         c.Y = i + 1;
         colour(colors[i]);
         g_Console.writeToBuffer(c, " ", colors[i]);       
-    }
+    }*/
     WORD Map = 0;
     for (int i = 0; i < 24; i++)
     {
@@ -381,10 +391,12 @@ void moveCharacter()
         //Beep(1440, 30);
         g_sChar.m_cLocation.X++;        
     }
-    if (g_skKeyEvent[K_SPACE].keyReleased)
+
+    
+    /*if (g_skKeyEvent[K_SPACE].keyReleased)
     {
         g_sChar.m_bActive = !g_sChar.m_bActive;        
-    }
+    }*/
 
    
 }
@@ -424,15 +436,28 @@ void renderWeapon() // Jun Ying WIP
     {
         weaponColor = 0x0A;
     }
+    
+    if (weaponExist == true)
+    {
+        g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)5, weaponColor);
+    }
+}
 
+
+
+void pickedWeapon()
+{
     //conditional statement when character and weapon are in the same coordinates (Reagan)
     if (g_sWeapon.m_cLocation.X == g_sChar.m_cLocation.X &&
         g_sWeapon.m_cLocation.Y == g_sChar.m_cLocation.Y)
     {
-
+        weaponExist = false;
     }
 
-    g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)1, weaponColor);
+    if (weaponExist == false)
+    {
+        g_sChar.m_bActive = !g_sChar.m_bActive;
+    }
 }
 
 

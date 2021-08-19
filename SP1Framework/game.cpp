@@ -521,10 +521,10 @@ void renderWeaponAttack()
             g_Console.writeToBuffer(g_sSmash8.m_cLocation, (char)254, attackColor);
 
             //if there are mobs within range of ultimate shockwave super attack!1!11!!
-            if (g_sChar.m_cLocation.X + 2 == g_sMob.m_cLocation.X ||
-                g_sChar.m_cLocation.X - 2 == g_sMob.m_cLocation.X ||
-                g_sChar.m_cLocation.Y + 2 == g_sMob.m_cLocation.Y ||
-                g_sChar.m_cLocation.Y - 2 == g_sMob.m_cLocation.Y)
+            if (g_sChar.m_cLocation.X + 1 == g_sMob.m_cLocation.X ||
+                g_sChar.m_cLocation.X - 1 == g_sMob.m_cLocation.X ||
+                g_sChar.m_cLocation.Y + 1 == g_sMob.m_cLocation.Y ||
+                g_sChar.m_cLocation.Y - 1 == g_sMob.m_cLocation.Y)
             {
                 mob_exists = false;
             }

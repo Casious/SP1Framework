@@ -21,19 +21,6 @@ void mainLoop( void );
 // You should not be modifying this unless you know what you are doing
 int main( void )
 {
-    std::ifstream gamemap;
-    gamemap.open("level1.txt");
-    if (gamemap.is_open())
-    {
-        std::string temp;
-        while (std::getline(gamemap, temp))
-        {
-            std::cout << temp << std::endl;
-        }
-        gamemap.close();
-    }
-
-
     init();      // initialize your variables
     mainLoop();  // main loop
     shutdown();  // do clean up, if any. free memory.

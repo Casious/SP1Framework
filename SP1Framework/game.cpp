@@ -41,6 +41,8 @@ Console g_Console(80, 25, "SP1 Framework");
     bool hasweapon = false;
     bool isattack = false;
 
+    //boolean for mob existing
+    bool mob_exists = true;
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -455,15 +457,6 @@ void moveCharacter()
         //Beep(1440, 30);
         g_sChar.m_cLocation.X++;        
     }
-
-    
-    if (g_skKeyEvent[K_SPACE].keyReleased && hasweapon == true)
-    {
-    
-        renderWeaponAttack();
-    }
-
-   
 }
 
 void renderCharacter()
@@ -485,7 +478,11 @@ void renderMobs()
     {
         mobColor = 0x0C;
     }
-    g_Console.writeToBuffer(g_sMob.m_cLocation, (char)1, mobColor);
+
+    if (mob_exists == true)
+    {
+        g_Console.writeToBuffer(g_sMob.m_cLocation, (char)1, mobColor);
+    }
 }
 
 
@@ -511,9 +508,9 @@ void renderWeaponAttack()
     {
         isattack = true;
 
-        if (hasweapon == true && weaponExist == false)
+        if (hasweapon == true && weaponExist == false && g_skKeyEvent[K_SPACE].keyReleased)
         {
-            g_sChar.m_bActive = !g_sChar.m_bActive;
+            
             g_Console.writeToBuffer(g_sSmash.m_cLocation, (char)179, attackColor);
             g_Console.writeToBuffer(g_sSmash2.m_cLocation, (char)254, attackColor);
             g_Console.writeToBuffer(g_sSmash3.m_cLocation, (char)254, attackColor);
@@ -523,8 +520,17 @@ void renderWeaponAttack()
             g_Console.writeToBuffer(g_sSmash7.m_cLocation, (char)254, attackColor);
             g_Console.writeToBuffer(g_sSmash8.m_cLocation, (char)254, attackColor);
 
+            //if there are mobs within range
+            if (g_sChar.m_cLocation.X + 2 == g_sMob.m_cLocation.X ||
+                g_sChar.m_cLocation.X - 2 == g_sMob.m_cLocation.X ||
+                g_sChar.m_cLocation.Y + 2 == g_sMob.m_cLocation.Y ||
+                g_sChar.m_cLocation.Y - 2 == g_sMob.m_cLocation.Y)
+            {
+                mob_exists = false;
+            }
         }
 
+  
 
         isattack = false;
         

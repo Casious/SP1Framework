@@ -33,14 +33,18 @@ SGameMob g_sMob4;
 
 //weapon struct (Jun Ying)
 SGameWeapon g_sWeapon;
-SGameSmash g_sSmash;
-SGameSmash g_sSmash2;
-SGameSmash g_sSmash3;
-SGameSmash g_sSmash4;
-SGameSmash g_sSmash5;
-SGameSmash g_sSmash6;
-SGameSmash g_sSmash7;
-SGameSmash g_sSmash8;
+SGameWeapon g_sWeapon2;
+
+SGameAttack g_sSmash; // g_sWeapon attack
+SGameAttack g_sSmash2;
+SGameAttack g_sSmash3;
+SGameAttack g_sSmash4;
+SGameAttack g_sSmash5;
+SGameAttack g_sSmash6;
+SGameAttack g_sSmash7;
+SGameAttack g_sSmash8;
+
+SGameAttack g_sSlash;
 
 EGAMESTATES g_eGameState = S_SPLASHSCREEN; // initial state
 SGameMap    g_sMap;
@@ -50,8 +54,10 @@ Console g_Console(80, 25, "SP1 Framework");
 
 //boolean to show weapon (Reagan)
     bool weaponExist = true;
+    bool weapon2Exist = true;
 //boolean to show whether player picked up weapon or not
     bool hasweapon = false;
+    bool hasweapon2 = false;
     bool isattack = false;
 
     //boolean for mob existing
@@ -109,6 +115,10 @@ void init( void )
     g_sWeapon.m_cLocation.X = 5; // Jun Ying WIP (5 for now)
     g_sWeapon.m_cLocation.Y = 5;
 
+    g_sWeapon2.m_cLocation.X = 15; // Jun Ying WIP (25 for now)
+    g_sWeapon2.m_cLocation.Y = 15;
+
+    // g_sWeapon's attack position init 
     g_sSmash.m_cLocation.X = g_sChar.m_cLocation.X + 1; // right
     g_sSmash.m_cLocation.Y = g_sChar.m_cLocation.Y;
 
@@ -132,6 +142,10 @@ void init( void )
 
     g_sSmash8.m_cLocation.X = g_sChar.m_cLocation.X + 1; // top right
     g_sSmash8.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
+
+    //g_sWeapon's attack position init
+    g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
+    g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
 
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
@@ -553,11 +567,15 @@ void renderWeapon() // Jun Ying WIP
 {
     // Colour for the weapon symbol
     WORD weaponColor = 240;
-
+    WORD weapon2Color = 239;
     
     if (weaponExist == true)
     {
         g_Console.writeToBuffer(g_sWeapon.m_cLocation, (char)206, weaponColor);
+    }
+    if (weapon2Exist == true)
+    {
+        g_Console.writeToBuffer(g_sWeapon2.m_cLocation, (char)237, weapon2Color);
     }
 }
 
@@ -580,11 +598,24 @@ void renderWeaponAttack()
             g_Console.writeToBuffer(g_sSmash7.m_cLocation, (char)254, attackColor);
             g_Console.writeToBuffer(g_sSmash8.m_cLocation, (char)254, attackColor);
 
-            //if there are mobs within range of ultimate shockwave super attack!1!11!!
-            if (g_sChar.m_cLocation.X + 1 == g_sMob.m_cLocation.X ||
-                g_sChar.m_cLocation.X - 1 == g_sMob.m_cLocation.X ||
-                g_sChar.m_cLocation.Y + 1 == g_sMob.m_cLocation.Y ||
-                g_sChar.m_cLocation.Y - 1 == g_sMob.m_cLocation.Y)
+            //if there are mobs within range of weapon attack
+            if (g_sSmash.m_cLocation.X == g_sMob.m_cLocation.X &&
+                g_sSmash.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+                g_sSmash2.m_cLocation.X == g_sMob.m_cLocation.X &&
+                g_sSmash2.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+                g_sSmash3.m_cLocation.X == g_sMob.m_cLocation.X &&
+                g_sSmash3.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+                g_sSmash4.m_cLocation.X == g_sMob.m_cLocation.X &&
+                g_sSmash4.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+                g_sSmash5.m_cLocation.X == g_sMob.m_cLocation.X &&
+                g_sSmash5.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+                g_sSmash6.m_cLocation.X == g_sMob.m_cLocation.X &&
+                g_sSmash6.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+                g_sSmash7.m_cLocation.X == g_sMob.m_cLocation.X &&
+                g_sSmash7.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+                g_sSmash8.m_cLocation.X == g_sMob.m_cLocation.X &&
+                g_sSmash8.m_cLocation.Y == g_sMob.m_cLocation.Y
+                )
             {
                 mob_exists = false;
             }
@@ -630,13 +661,20 @@ void pickedWeapon()
 {
     //conditional statement when character and weapon are in the same coordinates (Reagan)
     if (g_sWeapon.m_cLocation.X == g_sChar.m_cLocation.X &&
-        g_sWeapon.m_cLocation.Y == g_sChar.m_cLocation.Y)
+        g_sWeapon.m_cLocation.Y == g_sChar.m_cLocation.Y && g_skKeyEvent[K_SPACE].keyReleased)
     {
         weaponExist = false;
         hasweapon = true;
         
     }
-    
+    if (g_sWeapon2.m_cLocation.X == g_sChar.m_cLocation.X &&
+        g_sWeapon2.m_cLocation.Y == g_sChar.m_cLocation.Y)
+    {
+        weapon2Exist = false;
+        hasweapon2 = true;
+
+    }
+
 
 }
 void Mapdesign() {
@@ -658,9 +696,18 @@ void renderWText()
     {
         COORD c;
         std::ostringstream ss;
-        ss << "You picked up weapon";
+        ss << "You picked up the cross!";
         c.X = 55;
         c.Y = 23;
+        g_Console.writeToBuffer(c, ss.str());
+    }
+    if (hasweapon2 == true)
+    {
+        COORD c;
+        std::ostringstream ss;
+        ss << "You picked up the sword!";
+        c.X = 55;
+        c.Y = 20;
         g_Console.writeToBuffer(c, ss.str());
     }
 }

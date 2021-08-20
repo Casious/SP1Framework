@@ -62,7 +62,7 @@ struct SGameWeapon
     COORD m_cLocation;
 };
 
-struct SGameSmash
+struct SGameAttack
 {
     COORD m_cLocation;
 };

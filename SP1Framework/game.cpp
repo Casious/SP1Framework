@@ -6,6 +6,10 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <fstream>
+#include <string>
+
+
 using namespace std;
 double  g_dElapsedTime;
 double  g_dDeltaTime;
@@ -52,18 +56,7 @@ Console g_Console(80, 25, "SP1 Framework");
 
     //boolean for mob existing
     bool mob_exists = true;
-
-    bool mob1_exists = false;
-
-    bool mob2_exists = false;
-
-    bool mob3_exists = false;
-
-    bool mob4_exists = false;
-
-    
-
-
+    bool char_exists = true;
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -342,7 +335,7 @@ void update(double dt)
 
 void splashScreenWait()    // waits for time to pass in splash screen
 {
-    if (g_dElapsedTime > 3.0) // wait for 3 seconds to switch to game mode, else do nothing
+    if (g_dElapsedTime > 3) // wait for 3 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
 
@@ -353,6 +346,7 @@ void updateGame()       // gameplay logic
                         // sound can be played here too.
 
     pickedWeapon(); //when player picks up weapon
+    Mapdesign();
 }
 
 
@@ -403,15 +397,16 @@ void renderSplashScreen()  // renders the splash screen
 {
     COORD c = g_Console.getConsoleSize();
     c.Y /= 3;
-    c.X = c.X / 2 - 9;
-    g_Console.writeToBuffer(c, "A game in 3 seconds", 0x03);
+    c.X = c.X / 2 - 10;
+    g_Console.writeToBuffer(c, "WELCOME TO THE MAZE!", 0x03);
     c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 20;
-    g_Console.writeToBuffer(c, "Press <Space> to change character colour", 0x09);
+    c.X = g_Console.getConsoleSize().X / 2 - 8;
+    g_Console.writeToBuffer(c, "WILL YOU SURVIVE?", 0x09);
     c.Y += 1;
     c.X = g_Console.getConsoleSize().X / 2 - 9;
     g_Console.writeToBuffer(c, "Press 'Esc' to quit", 0x09);
-}
+    
+    }
 
 void renderGame()
 {
@@ -421,6 +416,9 @@ void renderGame()
     renderWeapon(); // render weapon
     updateattackpositions();
     renderWeaponAttack();
+    renderWText();
+    mobcollide();
+   
 
 }
 
@@ -568,7 +566,7 @@ void renderWeaponAttack()
 
         if (hasweapon == true && weaponExist == false && g_skKeyEvent[K_SPACE].keyReleased)
         {
-            
+            // the 360 aoe attack if player obtains the epic weapon
             g_Console.writeToBuffer(g_sSmash.m_cLocation, (char)179, attackColor);
             g_Console.writeToBuffer(g_sSmash2.m_cLocation, (char)254, attackColor);
             g_Console.writeToBuffer(g_sSmash3.m_cLocation, (char)254, attackColor);
@@ -578,11 +576,11 @@ void renderWeaponAttack()
             g_Console.writeToBuffer(g_sSmash7.m_cLocation, (char)254, attackColor);
             g_Console.writeToBuffer(g_sSmash8.m_cLocation, (char)254, attackColor);
 
-            //if there are mobs within range
-            if (g_sChar.m_cLocation.X + 2 == g_sMob.m_cLocation.X ||
-                g_sChar.m_cLocation.X - 2 == g_sMob.m_cLocation.X ||
-                g_sChar.m_cLocation.Y + 2 == g_sMob.m_cLocation.Y ||
-                g_sChar.m_cLocation.Y - 2 == g_sMob.m_cLocation.Y)
+            //if there are mobs within range of ultimate shockwave super attack!1!11!!
+            if (g_sChar.m_cLocation.X + 1 == g_sMob.m_cLocation.X ||
+                g_sChar.m_cLocation.X - 1 == g_sMob.m_cLocation.X ||
+                g_sChar.m_cLocation.Y + 1 == g_sMob.m_cLocation.Y ||
+                g_sChar.m_cLocation.Y - 1 == g_sMob.m_cLocation.Y)
             {
                 mob_exists = false;
             }
@@ -596,6 +594,29 @@ void renderWeaponAttack()
 
 
 }
+void mobcollide()//david WIP dection works tho
+{
+    if (g_sMob.m_cLocation.X == g_sChar.m_cLocation.X 
+        && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y 
+        )
+    {
+        char_exists == false;
+       
+       
+            COORD c;
+            std::ostringstream ss;
+            ss << "You Lose!";
+            c.X = 25;
+            c.Y = 15;
+            g_Console.writeToBuffer(c, ss.str());
+           // adding end game and restart func
+
+      
+       
+    }
+
+}
+
 
 void pickedWeapon()
 {
@@ -607,11 +628,34 @@ void pickedWeapon()
         hasweapon = true;
         
     }
-
+    
 
 }
-
-
+void Mapdesign() {
+    std::ifstream Mapfile;
+    std::string temp;
+    Mapfile.open("MapDesign");
+    if (Mapfile.is_open())
+    {
+        while (std::getline(Mapfile, temp)) { 
+         
+     
+        }
+    }
+    Mapfile.close();
+}
+void renderWText()
+{
+    if (hasweapon == true)
+    {
+        COORD c;
+        std::ostringstream ss;
+        ss << "You picked up weapon";
+        c.X = 55;
+        c.Y = 23;
+        g_Console.writeToBuffer(c, ss.str());
+    }
+}
 
 void renderFramerate()
 {

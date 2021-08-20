@@ -600,27 +600,29 @@ void renderWeaponAttack()
 }
 void mobcollide()//david WIP dection works tho
 {
-    if (g_sMob.m_cLocation.X == g_sChar.m_cLocation.X 
-        && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y 
-        )
+    if (mob_exists == true)
     {
-        char_exists == false;
-       
-       
+        if (g_sMob.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y
+            )
+        {
+            char_exists == false;
+
+
             COORD c;
             std::ostringstream ss;
             ss << "You Lose!";
             c.X = 25;
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
-           // adding end game and restart func
-            //g_bQuitGame = true; // ends game
+            // adding end game and restart func
+             //g_bQuitGame = true; // ends game
 
 
-      
-       
+
+
+        }
     }
-
 }
 
 

@@ -518,12 +518,12 @@ void renderMobs()
     {
         mobColor = 0x0C;
     }
-
+    
     if (mob_exists == true)
     {
         g_Console.writeToBuffer(g_sMob.m_cLocation, (char)1, mobColor);
     }
-
+    /*
     if (mob1_exists == true)
     {
         g_Console.writeToBuffer(g_sMob1.m_cLocation, (char)1, mobColor);
@@ -542,7 +542,7 @@ void renderMobs()
     if (mob4_exists == true)
     {
         g_Console.writeToBuffer(g_sMob4.m_cLocation, (char)1, mobColor);
-    }
+    }*/
 }
 
 
@@ -643,8 +643,8 @@ void Mapdesign() {
     Mapfile.open("MapDesign");
     if (Mapfile.is_open())
     {
-        while (std::getline(Mapfile, temp)) { 
-         
+        while (std::getline(Mapfile, temp)) { // while enf of file is false
+            std::cout << temp << std::endl;
      
         }
     }

@@ -610,6 +610,9 @@ void mobcollide()//david WIP dection works tho
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
            // adding end game and restart func
+            splashScreenWait();
+            g_bQuitGame = true; // ends game
+
 
       
        

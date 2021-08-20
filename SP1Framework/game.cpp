@@ -55,7 +55,7 @@ Console g_Console(80, 25, "SP1 Framework");
     bool isattack = false;
 
     //boolean for mob existing
-    bool mob_exists = true;
+    bool mob_exists = true; // dummy mob will remove later
     bool mob1_exists = false;
     bool mob2_exists = false;
     bool mob3_exists = false;
@@ -523,7 +523,7 @@ void renderMobs()
     {
         g_Console.writeToBuffer(g_sMob.m_cLocation, (char)1, mobColor);
     }
-    /*
+    
     if (mob1_exists == true)
     {
         g_Console.writeToBuffer(g_sMob1.m_cLocation, (char)1, mobColor);
@@ -542,7 +542,7 @@ void renderMobs()
     if (mob4_exists == true)
     {
         g_Console.writeToBuffer(g_sMob4.m_cLocation, (char)1, mobColor);
-    }*/
+    }
 }
 
 
@@ -616,7 +616,7 @@ void mobcollide()//david WIP dection works tho
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
             // adding end game and restart func
-             //g_bQuitGame = true; // ends game
+            //g_bQuitGame = true; // ends game
 
 
 
@@ -718,6 +718,40 @@ void renderInputEvents()
         COORD c = { startPos.X, startPos.Y + i };
         //g_Console.writeToBuffer(c, ss.str(), 0x17);
     }
+    void mobspawn();
+    { if (g_dElapsedTime > 10)
+        {
+        mob1_exists = true;
+        }
+    if (g_dElapsedTime > 30)
+    {
+        mob1_exists = true;
+    }
+    if (g_dElapsedTime > 50)
+    {
+        mob1_exists = true;
+    }
+    if (g_dElapsedTime > 70)
+    {
+        mob1_exists = true;
+    }
+
+
+
+
+
+
+    }
+    void setdifficulty();
+    {
+       
+
+
+
+
+    }
+
+
 
     // mouse events    
     ss.str("");

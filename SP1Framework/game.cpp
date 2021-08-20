@@ -20,7 +20,16 @@ SMouseEvent g_mouseEvent;
 
 //game character (Reagan)
 SGameChar   g_sChar;
+
 SGameMob g_sMob;
+SGameMob g_sMob1;
+SGameMob g_sMob2;
+SGameMob g_sMob3;
+SGameMob g_sMob4;
+
+
+
+
 
 //weapon struct (Jun Ying)
 SGameWeapon g_sWeapon;
@@ -47,6 +56,7 @@ Console g_Console(80, 25, "SP1 Framework");
 
     //boolean for mob existing
     bool mob_exists = true;
+    bool char_exists = true;
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -69,9 +79,26 @@ void init( void )
     g_sChar.m_cLocation.X = 1;
     g_sChar.m_cLocation.Y = 1;
     g_sChar.m_bActive = true;
+
+    g_sMob2.m_cLocation.X = 30;
+    g_sMob2.m_cLocation.Y = 30;
+    g_sMob2.m_bActive = true;
+
+    g_sMob1.m_cLocation.X = 20;
+    g_sMob1.m_cLocation.Y = 20;
+    g_sMob1.m_bActive = true;
+
     g_sMob.m_cLocation.X = 10;
     g_sMob.m_cLocation.Y = 10;
     g_sMob.m_bActive = true;
+
+    g_sMob3.m_cLocation.X = 40;
+    g_sMob3.m_cLocation.Y = 40;
+    g_sMob3.m_bActive = true;
+
+    g_sMob4.m_cLocation.X = 50;
+    g_sMob4.m_cLocation.Y = 50;
+    g_sMob4.m_bActive = true;
 
 
     //location for weapon
@@ -308,7 +335,7 @@ void update(double dt)
 
 void splashScreenWait()    // waits for time to pass in splash screen
 {
-    if (g_dElapsedTime > 3.0) // wait for 3 seconds to switch to game mode, else do nothing
+    if (g_dElapsedTime > 3) // wait for 3 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
 
@@ -370,15 +397,16 @@ void renderSplashScreen()  // renders the splash screen
 {
     COORD c = g_Console.getConsoleSize();
     c.Y /= 3;
-    c.X = c.X / 2 - 9;
-    g_Console.writeToBuffer(c, "A game in 3 seconds", 0x03);
+    c.X = c.X / 2 - 10;
+    g_Console.writeToBuffer(c, "WELCOME TO THE MAZE!", 0x03);
     c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 20;
-    g_Console.writeToBuffer(c, "Press <Space> to change character colour", 0x09);
+    c.X = g_Console.getConsoleSize().X / 2 - 8;
+    g_Console.writeToBuffer(c, "WILL YOU SURVIVE?", 0x09);
     c.Y += 1;
     c.X = g_Console.getConsoleSize().X / 2 - 9;
     g_Console.writeToBuffer(c, "Press 'Esc' to quit", 0x09);
-}
+    
+    }
 
 void renderGame()
 {
@@ -388,6 +416,9 @@ void renderGame()
     renderWeapon(); // render weapon
     updateattackpositions();
     renderWeaponAttack();
+    renderWText();
+    mobcollide();
+   
 
 }
 
@@ -488,6 +519,26 @@ void renderMobs()
     {
         g_Console.writeToBuffer(g_sMob.m_cLocation, (char)1, mobColor);
     }
+
+    if (mob1_exists == true)
+    {
+        g_Console.writeToBuffer(g_sMob1.m_cLocation, (char)1, mobColor);
+    }
+
+    if (mob2_exists == true)
+    {
+        g_Console.writeToBuffer(g_sMob2.m_cLocation, (char)1, mobColor);
+    }
+
+    if (mob3_exists == true)
+    {
+        g_Console.writeToBuffer(g_sMob3.m_cLocation, (char)1, mobColor);
+    }
+
+    if (mob4_exists == true)
+    {
+        g_Console.writeToBuffer(g_sMob4.m_cLocation, (char)1, mobColor);
+    }
 }
 
 
@@ -543,6 +594,29 @@ void renderWeaponAttack()
 
 
 }
+void mobcollide()//david WIP dection works tho
+{
+    if (g_sMob.m_cLocation.X == g_sChar.m_cLocation.X 
+        && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y 
+        )
+    {
+        char_exists == false;
+       
+       
+            COORD c;
+            std::ostringstream ss;
+            ss << "You Lose!";
+            c.X = 25;
+            c.Y = 15;
+            g_Console.writeToBuffer(c, ss.str());
+           // adding end game and restart func
+
+      
+       
+    }
+
+}
+
 
 void pickedWeapon()
 {
@@ -563,14 +637,25 @@ void Mapdesign() {
     Mapfile.open("MapDesign");
     if (Mapfile.is_open())
     {
-        while (std::getline(Mapfile, temp)) {
+        while (std::getline(Mapfile, temp)) { // while enf of file is false
             std::cout << temp << std::endl;
      
         }
     }
     Mapfile.close();
 }
-
+void renderWText()
+{
+    if (hasweapon == true)
+    {
+        COORD c;
+        std::ostringstream ss;
+        ss << "You picked up weapon";
+        c.X = 55;
+        c.Y = 23;
+        g_Console.writeToBuffer(c, ss.str());
+    }
+}
 
 void renderFramerate()
 {

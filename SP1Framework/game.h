@@ -92,12 +92,15 @@ void renderCharacter();     // renders the character into the buffer
 void renderWeapon(); // renders the weapon (Jun Ying WIP)
 void renderWeaponAttack(); // renders the weapon attack
 void Mapdesign(); // walls etc
-
+void mobcollide();          //mob contact with enemy
 void pickedWeapon(); //when player picks up weapon (Reagan)
 void renderFramerate();     // renders debug information, frame rate, elapsed time, etc
 void renderToScreen();      // dump the contents of the buffer to the screen, one frame worth of game
 void renderInputEvents();   // renders the status of input events
 void teleChar();
+void renderWText();
+void endgame();                   // ends the game
+
 // keyboard and mouse input event managers
 void keyboardHandler(const KEY_EVENT_RECORD& keyboardEvent);  // define this function for the console to call when there are keyboard events
 void mouseHandler(const MOUSE_EVENT_RECORD& mouseEvent);      // define this function for the console to call when there are mouse events

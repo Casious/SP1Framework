@@ -100,6 +100,10 @@ void renderInputEvents();   // renders the status of input events
 void teleChar();
 void renderWText();
 void endgame();                   // ends the game
+void mobspawn();
+void setdifficulty();       // allows user to set difficulty
+
+
 
 // keyboard and mouse input event managers
 void keyboardHandler(const KEY_EVENT_RECORD& keyboardEvent);  // define this function for the console to call when there are keyboard events

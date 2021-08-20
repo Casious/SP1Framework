@@ -489,7 +489,7 @@ void renderMap()
     WORD Colour= 3;
     for (int j = 0; j < mapHeight; j++) {
         for (int i = 0; i < mapWidth; i++)
-    {
+        {
             c.X = i;
             c.Y = j;
             g_Console.writeToBuffer(c, mapArray[j * mapWidth + i], Colour);
@@ -502,27 +502,30 @@ void renderMap()
 }
 
 
+
 void moveCharacter()
 {    
+    char find_string = '#';
     //124
     // Updating the location of the character based on the key release
     // providing a beep sound whenver we shift the character
-    if (g_skKeyEvent[K_UP].keyReleased && g_sChar.m_cLocation.Y > 1)
+
+    if (g_skKeyEvent[K_UP].keyReleased && mapArray[(g_sChar.m_cLocation.Y - 1)* mapWidth + g_sChar.m_cLocation.X] != '#' )
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.Y--;       
     }
-    if (g_skKeyEvent[K_LEFT].keyReleased && g_sChar.m_cLocation.X > 1)
+    if (g_skKeyEvent[K_LEFT].keyReleased && mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 1)] != '#')
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.X--;        
     }
-    if (g_skKeyEvent[K_DOWN].keyReleased && g_sChar.m_cLocation.Y < 23)
+    if (g_skKeyEvent[K_DOWN].keyReleased && mapArray[(g_sChar.m_cLocation.Y + 1) * mapWidth + g_sChar.m_cLocation.X] != '#')
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.Y++;        
     }
-    if (g_skKeyEvent[K_RIGHT].keyReleased && g_sChar.m_cLocation.X < 49)
+    if (g_skKeyEvent[K_RIGHT].keyReleased && mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 1)] != '#')
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.X++;        

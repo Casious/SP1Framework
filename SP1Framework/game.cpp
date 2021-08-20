@@ -514,12 +514,12 @@ void renderMobs()
     {
         mobColor = 0x0C;
     }
-
+    
     if (mob_exists == true)
     {
         g_Console.writeToBuffer(g_sMob.m_cLocation, (char)1, mobColor);
     }
-
+    /*
     if (mob1_exists == true)
     {
         g_Console.writeToBuffer(g_sMob1.m_cLocation, (char)1, mobColor);
@@ -538,7 +538,7 @@ void renderMobs()
     if (mob4_exists == true)
     {
         g_Console.writeToBuffer(g_sMob4.m_cLocation, (char)1, mobColor);
-    }
+    }*/
 }
 
 

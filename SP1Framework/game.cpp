@@ -368,7 +368,7 @@ void updateGame()       // gameplay logic
     moveMob();
 
     pickedWeapon(); //when player picks up weapon
-    Mapdesign();
+
 }
 
 
@@ -400,7 +400,6 @@ void render()
     renderFramerate();      // renders debug information, frame rate, elapsed time, etc
     renderInputEvents();    // renders status of input events
     renderToScreen();    // dump the contents of the buffer to the screen, one frame worth of game
-    
 }
 
 void clearScreen()
@@ -440,6 +439,8 @@ void renderGame()
     renderWeapon2Attack();
     renderWText();
     mobcollide();
+ // void Mapdesign(string filename);
+ // int Mapinterior(string filename, string * *databuffer);
    
 
 }
@@ -480,8 +481,8 @@ void renderMap()
     /*const WORD colors[] = {
         0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
         0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-    };*/
-
+    };
+    */
     COORD c;
     /*for (int i = 0; i < 12; ++i)
     {
@@ -490,6 +491,7 @@ void renderMap()
         colour(colors[i]);
         g_Console.writeToBuffer(c, " ", colors[i]);       
     }*/
+    
     WORD Colour= 3;
     for (int j = 0; j < mapHeight; j++) {
         for (int i = 0; i < mapWidth; i++)
@@ -503,7 +505,9 @@ void renderMap()
     //if (g_sMap.m_bActive) {
     //    Map = 0x0c;
     //}
-}
+
+    
+} 
 
 
 
@@ -897,18 +901,34 @@ void pickedWeapon()
 
 
 }
-void Mapdesign() {
+int Mapinterior(string filename, string** databuffer) {
     std::ifstream Mapfile;
+    int row = 0, maxrow = 0;
     std::string temp;
-    Mapfile.open("MapDesign");
-    if (Mapfile.is_open())
+    Mapfile.open(filename, ios::in); // ios::in allows input from streams
+    while (!Mapfile.eof())//while the end of file is false
     {
-        while (std::getline(Mapfile, temp)) {
-            std::cout << temp << std::endl;
-     
-        }
+        std::getline(Mapfile, temp);
+        maxrow++;
     }
-    Mapfile.close();
+    if (maxrow > 0)//incase file empty
+    {
+        *databuffer = new string[maxrow];//allocate databuffer array
+        Mapfile.seekg(std::ios_base::beg);//seekg() is a function in the iostream library that allows us to seek an arbitrary position in a file.//
+        //ios_base is a multipurpose class that serves as the base class for all I/O stream classes. It maintains several kinds of data.//goes backk to start of file n read line by line
+        while (!Mapfile.eof())
+        {
+            std::getline(Mapfile, *databuffer[row++]);
+        }
+        Mapfile.close();
+    }
+    return maxrow;
+}
+std::string* setDesign;
+void Mapdesign(string filename) { // to avoid hardcoding, i pass in the file name
+    int width=0, height=0;
+    width = setDesign[0].size();
+    height = setDesign[0].size();
 }
 void renderWText()
 {

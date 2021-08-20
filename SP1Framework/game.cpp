@@ -959,7 +959,7 @@ std::string* setDesign;
 void Mapdesign(string filename) { // to avoid hardcoding, i pass in the file name
     int width=0, height=0;
     width = setDesign[0].size();
-    height = setDesign[0].size();
+    height = Mapinterior(filename, &setDesign);
 }
 void renderWText()
 {

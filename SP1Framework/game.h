@@ -80,6 +80,7 @@ void shutdown    ( void );      // do clean up, free memory
 void splashScreenWait();    // waits for time to pass in splash screen
 void updateGame();          // gameplay logic
 void moveCharacter();       // moves the character, collision detection, physics, etc
+void moveMob();
 void setCharlocation();     //sets character location
 void getCharlocation();     //get character location
 void processUserInput();    // checks if you should change states or do something else with the game, e.g. pause, exit

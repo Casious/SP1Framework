@@ -44,6 +44,8 @@ SGameAttack g_sSmash7;
 SGameAttack g_sSmash8;
 
 SGameAttack g_sSlash;
+SGameAttack g_sSlash2;
+SGameAttack g_sSlash3;
 
 EGAMESTATES g_eGameState = S_SPLASHSCREEN; // initial state
 SGameMap    g_sMap;
@@ -148,6 +150,10 @@ void init( void )
     //g_sWeapon's attack position init
     g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
     g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
+    g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
+    g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y;
+    g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X;
+    g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y;
 
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
@@ -780,6 +786,12 @@ void weapon2attacksystem()
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
             g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)223, attackColor);
+            g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
+            g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y - 2;
+            g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
+            g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X;
+            g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y - 3;
+            g_Console.writeToBuffer(g_sSlash3.m_cLocation, (char)219, attackColor);
 
         }
         else if (recentmoveinput == "LEFT")//left
@@ -787,18 +799,37 @@ void weapon2attacksystem()
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X - 1;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
             g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)221, attackColor);
+            g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X - 2;
+            g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y;
+            g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
+            g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X - 3;
+            g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y;
+            g_Console.writeToBuffer(g_sSlash3.m_cLocation, (char)219, attackColor);
         }
         else if (recentmoveinput == "RIGHT")//right
         {
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X + 1;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
             g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)222, attackColor);
+            g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X + 2;
+            g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y;
+            g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
+            g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X + 3;
+            g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y;
+            g_Console.writeToBuffer(g_sSlash3.m_cLocation, (char)219, attackColor);
+
         }
         else if (recentmoveinput == "DOWN")//down
         {
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
             g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)220, attackColor);
+            g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
+            g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y + 2;
+            g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
+            g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X;
+            g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y + 3;
+            g_Console.writeToBuffer(g_sSlash3.m_cLocation, (char)219, attackColor);
         }
 
         //if there are mobs within range of weapon attack
@@ -951,6 +982,27 @@ void renderFramerate()
     g_Console.writeToBuffer(c, ss.str());
 }
 
+    void mobspawn()
+    { if (g_dElapsedTime > 10)
+        {
+        mob1_exists = true;
+        }
+    if (g_dElapsedTime > 30)
+    {
+       // mob1_exists = true;
+    }
+    if (g_dElapsedTime > 50)
+    {
+       // mob1_exists = true;
+    }
+    if (g_dElapsedTime > 70)
+    {
+      // mob1_exists = true;
+    }
+
+    }
+
+
 // this is an example of how you would use the input events
 void renderInputEvents()
 {
@@ -990,38 +1042,6 @@ void renderInputEvents()
 
         COORD c = { startPos.X, startPos.Y + i };
        // g_Console.writeToBuffer(c, ss.str(), 0x17);
-    }
-    void mobspawn();
-    { if (g_dElapsedTime > 10)
-        {
-        mob1_exists = true;
-        }
-    if (g_dElapsedTime > 30)
-    {
-       // mob1_exists = true;
-    }
-    if (g_dElapsedTime > 50)
-    {
-       // mob1_exists = true;
-    }
-    if (g_dElapsedTime > 70)
-    {
-      // mob1_exists = true;
-    }
-
-
-
-
-
-
-    }
-    void setdifficulty();
-    {
-       
-
-
-
-
     }
 
 

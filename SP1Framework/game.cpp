@@ -56,6 +56,10 @@ Console g_Console(80, 25, "SP1 Framework");
 
     //boolean for mob existing
     bool mob_exists = true;
+    bool mob1_exists = false;
+    bool mob2_exists = false;
+    bool mob3_exists = false;
+    bool mob4_exists = false;
     bool char_exists = true;
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
@@ -610,8 +614,7 @@ void mobcollide()//david WIP dection works tho
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
            // adding end game and restart func
-            splashScreenWait();
-            g_bQuitGame = true; // ends game
+            //g_bQuitGame = true; // ends game
 
 
       

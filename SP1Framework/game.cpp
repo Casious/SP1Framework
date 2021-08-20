@@ -789,7 +789,7 @@ void weapon2attacksystem()
 
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
-            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)223, attackColor);
+            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
             g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
             g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y - 2;
             g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
@@ -802,7 +802,7 @@ void weapon2attacksystem()
         {
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X - 1;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
-            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)221, attackColor);
+            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
             g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X - 2;
             g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y;
             g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
@@ -814,7 +814,7 @@ void weapon2attacksystem()
         {
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X + 1;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
-            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)222, attackColor);
+            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
             g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X + 2;
             g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y;
             g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
@@ -827,7 +827,7 @@ void weapon2attacksystem()
         {
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
-            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)220, attackColor);
+            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
             g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
             g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y + 2;
             g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);

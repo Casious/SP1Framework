@@ -95,8 +95,8 @@ void renderCharacter();     // renders the character into the buffer
 void renderWeapons(); // renders the weapon (Jun Ying WIP)
 void renderWeaponAttack(); // renders the weapon attack
 void renderWeapon2Attack();
-//void Mapdesign(string filename, string** databuffer);           // walls etc //databuffer is to hold address of array of string
-//int  Mapinterior(string filename);         // for array 1d 
+void Mapdesign(std::string filename, std::string** databuffer);           // walls etc //databuffer is to hold address of array of string
+int  Mapinterior(std::string filename);         // for array 1d 
 void mobcollide();          //mob contact with enemy
 void pickedWeapon(); //when player picks up weapon (Reagan)
 void renderFramerate();     // renders debug information, frame rate, elapsed time, etc

@@ -66,6 +66,9 @@ Console g_Console(80, 25, "SP1 Framework");
     bool mob3_exists = false;
     bool mob4_exists = false;
     bool char_exists = true;
+    
+    // check for most recent key input
+    std::string recentmoveinput;
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -111,10 +114,10 @@ void init( void )
 
 
     //location for weapon
-    g_sWeapon.m_cLocation.X = 5; // Jun Ying WIP (5 for now)
-    g_sWeapon.m_cLocation.Y = 5;
+    g_sWeapon.m_cLocation.X = 5; // Jun Ying WIP (for now)
+    g_sWeapon.m_cLocation.Y = 4;
 
-    g_sWeapon2.m_cLocation.X = 15; // Jun Ying WIP (25 for now)
+    g_sWeapon2.m_cLocation.X = 14; // Jun Ying WIP (for now)
     g_sWeapon2.m_cLocation.Y = 15;
 
     // g_sWeapon's attack position init 
@@ -154,7 +157,7 @@ void init( void )
     g_Console.setMouseHandler(mouseHandler);
 }
 
-void updateattackpositions()
+void updateweaponattackpositions()
 {
     g_sSmash.m_cLocation.X = g_sChar.m_cLocation.X + 1; // right
     g_sSmash.m_cLocation.Y = g_sChar.m_cLocation.Y;
@@ -289,6 +292,7 @@ void gameplayKBHandler(const KEY_EVENT_RECORD& keyboardEvent)
     case VK_RIGHT: key = K_RIGHT; break; 
     case VK_SPACE: key = K_SPACE; break;
     case VK_ESCAPE: key = K_ESCAPE; break; 
+    case 0x42: key = K_B; break;
     }
     // a key pressed event would be one with bKeyDown == true
     // a key released event would be one with bKeyDown == false
@@ -431,9 +435,9 @@ void renderGame()
     renderMap();        // renders the map to the buffer first
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
-    renderWeapon(); // render weapon
-    updateattackpositions();
+    renderWeapons(); // render weapon
     renderWeaponAttack();
+    renderWeapon2Attack();
     renderWText();
     mobcollide();
    
@@ -605,7 +609,7 @@ void renderMobs()
 
 
 
-void renderWeapon() // Jun Ying WIP
+void renderWeapons() // Jun Ying WIP
 {
     // Colour for the weapon symbol
     WORD weaponColor = 240;
@@ -621,52 +625,223 @@ void renderWeapon() // Jun Ying WIP
     }
 }
 
+void weaponattacksystem()
+{
+    WORD attackColor = 255;
+    g_Console.writeToBuffer(g_sSmash.m_cLocation, (char)254, attackColor);
+    g_Console.writeToBuffer(g_sSmash2.m_cLocation, (char)254, attackColor);
+    g_Console.writeToBuffer(g_sSmash3.m_cLocation, (char)254, attackColor);
+    g_Console.writeToBuffer(g_sSmash4.m_cLocation, (char)254, attackColor);
+    g_Console.writeToBuffer(g_sSmash5.m_cLocation, (char)254, attackColor);
+    g_Console.writeToBuffer(g_sSmash6.m_cLocation, (char)254, attackColor);
+    g_Console.writeToBuffer(g_sSmash7.m_cLocation, (char)254, attackColor);
+    g_Console.writeToBuffer(g_sSmash8.m_cLocation, (char)254, attackColor);
+
+    if (g_sSmash.m_cLocation.X == g_sMob.m_cLocation.X &&
+        g_sSmash.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+        g_sSmash2.m_cLocation.X == g_sMob.m_cLocation.X &&
+        g_sSmash2.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+        g_sSmash3.m_cLocation.X == g_sMob.m_cLocation.X &&
+        g_sSmash3.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+        g_sSmash4.m_cLocation.X == g_sMob.m_cLocation.X &&
+        g_sSmash4.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+        g_sSmash5.m_cLocation.X == g_sMob.m_cLocation.X &&
+        g_sSmash5.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+        g_sSmash6.m_cLocation.X == g_sMob.m_cLocation.X &&
+        g_sSmash6.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+        g_sSmash7.m_cLocation.X == g_sMob.m_cLocation.X &&
+        g_sSmash7.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+        g_sSmash8.m_cLocation.X == g_sMob.m_cLocation.X &&
+        g_sSmash8.m_cLocation.Y == g_sMob.m_cLocation.Y
+        )
+    {
+        mob_exists = false;
+    }
+
+    if (g_sSmash.m_cLocation.X == g_sMob1.m_cLocation.X &&
+        g_sSmash.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+        g_sSmash2.m_cLocation.X == g_sMob1.m_cLocation.X &&
+        g_sSmash2.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+        g_sSmash3.m_cLocation.X == g_sMob1.m_cLocation.X &&
+        g_sSmash3.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+        g_sSmash4.m_cLocation.X == g_sMob1.m_cLocation.X &&
+        g_sSmash4.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+        g_sSmash5.m_cLocation.X == g_sMob1.m_cLocation.X &&
+        g_sSmash5.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+        g_sSmash6.m_cLocation.X == g_sMob1.m_cLocation.X &&
+        g_sSmash6.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+        g_sSmash7.m_cLocation.X == g_sMob1.m_cLocation.X &&
+        g_sSmash7.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+        g_sSmash8.m_cLocation.X == g_sMob1.m_cLocation.X &&
+        g_sSmash8.m_cLocation.Y == g_sMob1.m_cLocation.Y
+        )
+    {
+        mob1_exists = false;
+    }
+
+    if (g_sSmash.m_cLocation.X == g_sMob2.m_cLocation.X &&
+        g_sSmash.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+        g_sSmash2.m_cLocation.X == g_sMob2.m_cLocation.X &&
+        g_sSmash2.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+        g_sSmash3.m_cLocation.X == g_sMob2.m_cLocation.X &&
+        g_sSmash3.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+        g_sSmash4.m_cLocation.X == g_sMob2.m_cLocation.X &&
+        g_sSmash4.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+        g_sSmash5.m_cLocation.X == g_sMob2.m_cLocation.X &&
+        g_sSmash5.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+        g_sSmash6.m_cLocation.X == g_sMob2.m_cLocation.X &&
+        g_sSmash6.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+        g_sSmash7.m_cLocation.X == g_sMob2.m_cLocation.X &&
+        g_sSmash7.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+        g_sSmash8.m_cLocation.X == g_sMob2.m_cLocation.X &&
+        g_sSmash8.m_cLocation.Y == g_sMob2.m_cLocation.Y
+        )
+    {
+        mob2_exists = false;
+    }
+
+    if (g_sSmash.m_cLocation.X == g_sMob3.m_cLocation.X &&
+        g_sSmash.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+        g_sSmash2.m_cLocation.X == g_sMob3.m_cLocation.X &&
+        g_sSmash2.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+        g_sSmash3.m_cLocation.X == g_sMob3.m_cLocation.X &&
+        g_sSmash3.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+        g_sSmash4.m_cLocation.X == g_sMob3.m_cLocation.X &&
+        g_sSmash4.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+        g_sSmash5.m_cLocation.X == g_sMob3.m_cLocation.X &&
+        g_sSmash5.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+        g_sSmash6.m_cLocation.X == g_sMob3.m_cLocation.X &&
+        g_sSmash6.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+        g_sSmash7.m_cLocation.X == g_sMob3.m_cLocation.X &&
+        g_sSmash7.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+        g_sSmash8.m_cLocation.X == g_sMob3.m_cLocation.X &&
+        g_sSmash8.m_cLocation.Y == g_sMob3.m_cLocation.Y
+        )
+    {
+        mob3_exists = false;
+    }
+
+    if (g_sSmash.m_cLocation.X == g_sMob4.m_cLocation.X &&
+        g_sSmash.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+        g_sSmash2.m_cLocation.X == g_sMob4.m_cLocation.X &&
+        g_sSmash2.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+        g_sSmash3.m_cLocation.X == g_sMob4.m_cLocation.X &&
+        g_sSmash3.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+        g_sSmash4.m_cLocation.X == g_sMob4.m_cLocation.X &&
+        g_sSmash4.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+        g_sSmash5.m_cLocation.X == g_sMob4.m_cLocation.X &&
+        g_sSmash5.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+        g_sSmash6.m_cLocation.X == g_sMob4.m_cLocation.X &&
+        g_sSmash6.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+        g_sSmash7.m_cLocation.X == g_sMob4.m_cLocation.X &&
+        g_sSmash7.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+        g_sSmash8.m_cLocation.X == g_sMob4.m_cLocation.X &&
+        g_sSmash8.m_cLocation.Y == g_sMob4.m_cLocation.Y
+        )
+    {
+        mob4_exists = false;
+    }
+}
+
 void renderWeaponAttack()
 {
-    WORD attackColor = 0;
+    updateweaponattackpositions();
     if (isattack == false)
     {
         isattack = true;
 
         if (hasweapon == true && weaponExist == false && g_skKeyEvent[K_SPACE].keyReleased)
         {
-            // the 360 aoe attack if player obtains the epic weapon
-            g_Console.writeToBuffer(g_sSmash.m_cLocation, (char)179, attackColor);
-            g_Console.writeToBuffer(g_sSmash2.m_cLocation, (char)254, attackColor);
-            g_Console.writeToBuffer(g_sSmash3.m_cLocation, (char)254, attackColor);
-            g_Console.writeToBuffer(g_sSmash4.m_cLocation, (char)254, attackColor);
-            g_Console.writeToBuffer(g_sSmash5.m_cLocation, (char)254, attackColor);
-            g_Console.writeToBuffer(g_sSmash6.m_cLocation, (char)254, attackColor);
-            g_Console.writeToBuffer(g_sSmash7.m_cLocation, (char)254, attackColor);
-            g_Console.writeToBuffer(g_sSmash8.m_cLocation, (char)254, attackColor);
+            // the 360 aoe attack if player obtains the epic weapon and checks if there are mobs within range of weapon attack
+            weaponattacksystem();
 
-            //if there are mobs within range of weapon attack
-            if (g_sSmash.m_cLocation.X == g_sMob.m_cLocation.X &&
-                g_sSmash.m_cLocation.Y == g_sMob.m_cLocation.Y ||
-                g_sSmash2.m_cLocation.X == g_sMob.m_cLocation.X &&
-                g_sSmash2.m_cLocation.Y == g_sMob.m_cLocation.Y ||
-                g_sSmash3.m_cLocation.X == g_sMob.m_cLocation.X &&
-                g_sSmash3.m_cLocation.Y == g_sMob.m_cLocation.Y ||
-                g_sSmash4.m_cLocation.X == g_sMob.m_cLocation.X &&
-                g_sSmash4.m_cLocation.Y == g_sMob.m_cLocation.Y ||
-                g_sSmash5.m_cLocation.X == g_sMob.m_cLocation.X &&
-                g_sSmash5.m_cLocation.Y == g_sMob.m_cLocation.Y ||
-                g_sSmash6.m_cLocation.X == g_sMob.m_cLocation.X &&
-                g_sSmash6.m_cLocation.Y == g_sMob.m_cLocation.Y ||
-                g_sSmash7.m_cLocation.X == g_sMob.m_cLocation.X &&
-                g_sSmash7.m_cLocation.Y == g_sMob.m_cLocation.Y ||
-                g_sSmash8.m_cLocation.X == g_sMob.m_cLocation.X &&
-                g_sSmash8.m_cLocation.Y == g_sMob.m_cLocation.Y
-                )
-            {
-                mob_exists = false;
-            }
         }
-
-  
 
         isattack = false;
         
+    }
+
+
+}
+
+
+void weapon2attacksystem()
+{
+    WORD attackColor = 10;
+    if (hasweapon2 == true && weapon2Exist == false && g_skKeyEvent[K_B].keyReleased)
+    {
+        // sword attack
+        if (recentmoveinput == "UP")// up
+        {
+
+            g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
+            g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
+            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)223, attackColor);
+
+        }
+        else if (recentmoveinput == "LEFT")//left
+        {
+            g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X - 1;
+            g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
+            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)221, attackColor);
+        }
+        else if (recentmoveinput == "RIGHT")//right
+        {
+            g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X + 1;
+            g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
+            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)222, attackColor);
+        }
+        else if (recentmoveinput == "DOWN")//down
+        {
+            g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
+            g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
+            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)220, attackColor);
+        }
+
+        //if there are mobs within range of weapon attack
+        if (g_sSlash.m_cLocation.X == g_sMob.m_cLocation.X &&
+            g_sSlash.m_cLocation.Y == g_sMob.m_cLocation.Y
+            )
+        {
+            mob_exists = false;
+        }
+        if (g_sSlash.m_cLocation.X == g_sMob1.m_cLocation.X &&
+            g_sSlash.m_cLocation.Y == g_sMob1.m_cLocation.Y
+            )
+        {
+            mob1_exists = false;
+        }
+        if (g_sSlash.m_cLocation.X == g_sMob2.m_cLocation.X &&
+            g_sSlash.m_cLocation.Y == g_sMob2.m_cLocation.Y
+            )
+        {
+            mob2_exists = false;
+        }
+        if (g_sSlash.m_cLocation.X == g_sMob3.m_cLocation.X &&
+            g_sSlash.m_cLocation.Y == g_sMob3.m_cLocation.Y
+            )
+        {
+            mob3_exists = false;
+        }
+        if (g_sSlash.m_cLocation.X == g_sMob4.m_cLocation.X &&
+            g_sSlash.m_cLocation.Y == g_sMob4.m_cLocation.Y
+            )
+        {
+            mob4_exists = false;
+        }
+    }
+}
+
+void renderWeapon2Attack()
+{
+    if (isattack == false)
+    {
+        isattack = true;
+
+        weapon2attacksystem();
+
+        isattack = false;
+
     }
 
 
@@ -703,7 +878,7 @@ void pickedWeapon()
 {
     //conditional statement when character and weapon are in the same coordinates (Reagan)
     if (g_sWeapon.m_cLocation.X == g_sChar.m_cLocation.X &&
-        g_sWeapon.m_cLocation.Y == g_sChar.m_cLocation.Y && g_skKeyEvent[K_SPACE].keyReleased)
+        g_sWeapon.m_cLocation.Y == g_sChar.m_cLocation.Y && g_skKeyEvent[K_SPACE].keyDown)
     {
         weaponExist = false;
         hasweapon = true;
@@ -795,17 +970,23 @@ void renderInputEvents()
             break;
         case K_SPACE: key = "SPACE";
             break;
+        case K_B: key = "B";
+            break;
         default: continue;
         }
         if (g_skKeyEvent[i].keyDown)
             ss << key << " pressed";
+            
         else if (g_skKeyEvent[i].keyReleased)
+        {
             ss << key << " released";
+            recentmoveinput = key;
+        }
         else
             ss << key << " not pressed";
 
         COORD c = { startPos.X, startPos.Y + i };
-        //g_Console.writeToBuffer(c, ss.str(), 0x17);
+       // g_Console.writeToBuffer(c, ss.str(), 0x17);
     }
     void mobspawn();
     { if (g_dElapsedTime > 10)

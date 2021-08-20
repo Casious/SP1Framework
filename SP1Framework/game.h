@@ -33,7 +33,8 @@ enum EKEYS
     K_RIGHT,
     K_ESCAPE,
     K_SPACE,
-    K_COUNT
+    K_B,
+    K_COUNT,
 };
 
 // Enumeration for the different screen states
@@ -90,8 +91,9 @@ void renderGame();          // renders the game stuff
 void renderMap();       // renders the map to the buffer first
 void renderMobs();
 void renderCharacter();     // renders the character into the buffer
-void renderWeapon(); // renders the weapon (Jun Ying WIP)
+void renderWeapons(); // renders the weapon (Jun Ying WIP)
 void renderWeaponAttack(); // renders the weapon attack
+void renderWeapon2Attack();
 void Mapdesign(); // walls etc
 void mobcollide();          //mob contact with enemy
 void pickedWeapon(); //when player picks up weapon (Reagan)

@@ -576,7 +576,7 @@ void renderCharacter()
 
 void renderMobs()
 {
-    WORD mobColor = 256;
+    WORD mobColor = 252;
     if (g_sMob.m_bActive)
     {
         mobColor = 0x0C;
@@ -888,7 +888,7 @@ void pickedWeapon()
         
     }
     if (g_sWeapon2.m_cLocation.X == g_sChar.m_cLocation.X &&
-        g_sWeapon2.m_cLocation.Y == g_sChar.m_cLocation.Y)
+        g_sWeapon2.m_cLocation.Y == g_sChar.m_cLocation.Y && g_skKeyEvent[K_SPACE].keyDown)
     {
         weapon2Exist = false;
         hasweapon2 = true;
@@ -998,15 +998,15 @@ void renderInputEvents()
         }
     if (g_dElapsedTime > 30)
     {
-        mob1_exists = true;
+       // mob1_exists = true;
     }
     if (g_dElapsedTime > 50)
     {
-        mob1_exists = true;
+       // mob1_exists = true;
     }
     if (g_dElapsedTime > 70)
     {
-        mob1_exists = true;
+      // mob1_exists = true;
     }
 
 

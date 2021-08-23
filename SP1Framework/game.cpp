@@ -371,6 +371,8 @@ void updateGame()       // gameplay logic
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     moveCharacter();    // moves the character, collision detection, physics, etc
                         // sound can be played here too.
+
+
     moveMob();
 
     pickedWeapon(); //when player picks up weapon
@@ -445,10 +447,8 @@ void renderGame()
     renderWeapon2Attack();
     renderWText();
     mobcollide();
- // void Mapdesign(string filename);
- // int Mapinterior(string filename, string * *databuffer);
-   
-
+//    Mapdesign(".Map/MapDesign.txt");
+    
 }
 
 
@@ -478,7 +478,7 @@ char mapArray[] = { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
 '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#',' ',' ','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ','#','#',
 '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#','#','#','#','#','#','#',' ','#',' ','#',' ','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#',
 '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'
-};
+}; 
 
 void renderMap()
 {
@@ -512,6 +512,7 @@ void renderMap()
     //    Map = 0x0c;
     //}
 
+    
     
 } 
 
@@ -551,25 +552,20 @@ void moveMob()
 {
     if (g_sChar.m_cLocation.Y >g_sMob.m_cLocation.Y )
     {
-  
-        g_sMob1.m_cLocation.Y+1;
+        g_sMob.m_cLocation.Y+1;
     }
     if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y)
     {
-
-        g_sMob1.m_cLocation.Y-1;
+        g_sMob.m_cLocation.Y-1;
     }
     if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X)
     {
-
-        g_sMob1.m_cLocation.X+1;
+        g_sMob.m_cLocation.X+1;
     }
     if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X)
     {
-
-        g_sMob1.m_cLocation.X-1;
+        g_sMob.m_cLocation.X-1; 
     }
-
 }
 
 void renderCharacter()
@@ -958,8 +954,9 @@ int Mapinterior(string filename, string** databuffer) {
 std::string* setDesign;
 void Mapdesign(string filename) { // to avoid hardcoding, i pass in the file name
     int width=0, height=0;
+    height = Mapinterior(".Map/MapDesign.txt", &setDesign);
     width = setDesign[0].size();
-    height = Mapinterior(filename, &setDesign);
+
 }
 void renderWText()
 {

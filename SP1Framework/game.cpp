@@ -365,11 +365,11 @@ void gameplayMouseHandler(const MOUSE_EVENT_RECORD& mouseEvent)
 void update(double dt)
 {
     setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
-    mobmovementspeedselector(0.01); // how many frames of the mob's movement speed here (Jun Ying)
+    mobmovementspeedselector(0.02); // how many frames of the mob's movement speed here (Jun Ying)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-    g_dHeartBeat = fmod(g_dElapsedTime, movetimer); //timer for mob movement (changed to movetimer so just use setmobmoveinterval instead)
+    g_dHeartBeat = fmod(g_dElapsedTime, 2.0); // 2 second timer for mob movement
     g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
     mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
     switch (g_eGameState)
@@ -548,9 +548,9 @@ void MapDesign()
         while (std::getline(rowStream, col, ',')) 
         {
             mapArray[offset++] = static_cast<char>(stoi(col));
-            //rowvector.push_back(col);
+           // rowvector.push_back(col);
         }
-        //mapvector.push_back(rowvector);
+      //  mapvector.push_back(rowvector);
     }
     maps.close();
 }
@@ -584,27 +584,27 @@ void renderMap()
 
 void moveCharacter()
 {    
-    
+    char find_string = '#';
     //124
     // Updating the location of the character based on the key release
     // providing a beep sound whenver we shift the character
 
-    if (g_skKeyEvent[K_UP].keyReleased && mapArray[(g_sChar.m_cLocation.Y - 1)* mapWidth + g_sChar.m_cLocation.X] != 1 )
+    if (g_skKeyEvent[K_UP].keyReleased && mapArray[(g_sChar.m_cLocation.Y - 1)* mapWidth + g_sChar.m_cLocation.X] != '#' )
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.Y--;       
     }
-    if (g_skKeyEvent[K_LEFT].keyReleased && mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 1)] != 1)
+    if (g_skKeyEvent[K_LEFT].keyReleased && mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 1)] != '#')
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.X--;        
     }
-    if (g_skKeyEvent[K_DOWN].keyReleased && mapArray[(g_sChar.m_cLocation.Y + 1) * mapWidth + g_sChar.m_cLocation.X] != 1)
+    if (g_skKeyEvent[K_DOWN].keyReleased && mapArray[(g_sChar.m_cLocation.Y + 1) * mapWidth + g_sChar.m_cLocation.X] != '#')
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.Y++;        
     }
-    if (g_skKeyEvent[K_RIGHT].keyReleased && mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 1)] != 1)
+    if (g_skKeyEvent[K_RIGHT].keyReleased && mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 1)] != '#')
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.X++;        
@@ -640,19 +640,19 @@ void moveMob()
     if (easy_mode == true)
     {
         hard_mode = false;
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != 1)//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != '#')//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != 1)
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != '#')
         {
             g_sMob.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != 1)
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != '#')
         {
             g_sMob.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != 1)
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != '#')
         {
             g_sMob.m_cLocation.X--;
         }

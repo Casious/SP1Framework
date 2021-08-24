@@ -1,5 +1,5 @@
 // This is the main file for the game logic and function
-//
+//im pushing this for shuan cuz he sucks and messed up 
 //
 #include "game.h"
 #include "Framework\console.h"
@@ -628,17 +628,17 @@ void moveMob()
             g_sMob.m_cLocation.Y++;
         }
         //move up
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y - 1 <= 50)
+        else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y - 1 <= 50)
         {
             g_sMob.m_cLocation.Y--;
         }
         //move right
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X + 1 <= 50)
+        else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X + 1 <= 50)
         {
             g_sMob.m_cLocation.X++;
         }
         //move left
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X - 1 <= 1)
+        else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X - 1 <= 1)
         {
             g_sMob.m_cLocation.X--;
         }

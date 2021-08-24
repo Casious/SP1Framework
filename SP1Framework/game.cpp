@@ -719,6 +719,8 @@ bool hardfiff = false;
 bool lunadiff = false;
 //to be changed with splash screen
 //easy, normal,hard, EXTREME
+void setdifficulty()
+{
     if (g_eGameState == S_SPLASHSCREEN)
     {
         if (g_mouseEvent.buttonState == FROM_LEFT_1ST_BUTTON_PRESSED &&

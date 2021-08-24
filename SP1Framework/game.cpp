@@ -9,12 +9,15 @@
 #include <fstream>
 #include <string>
 #include <vector>
-
+#include <cmath>
 
 
 using namespace std;
 double  g_dElapsedTime;
 double  g_dDeltaTime;
+double g_dOldTime;
+double g_dHeartBeat;
+float movepace;
 SKeyEvent g_skKeyEvent[K_COUNT];
 SMouseEvent g_mouseEvent;
 
@@ -163,6 +166,11 @@ void init( void )
     // remember to set your keyboard handler, so that your functions can be notified of input events
     g_Console.setKeyboardHandler(keyboardHandler);
     g_Console.setMouseHandler(mouseHandler);
+}
+
+void mobmovementspeedselector(int speeddifficulty)
+{
+    movepace = speeddifficulty;
 }
 
 void updateweaponattackpositions()
@@ -351,7 +359,9 @@ void update(double dt)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-
+    g_dOldTime = g_dElapsedTime;
+    g_dHeartBeat = fmod(g_dElapsedTime, 2.0);
+    mobmovementspeedselector(0.02);
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
@@ -408,6 +418,7 @@ void render()
         break;
     }
     renderFramerate();      // renders debug information, frame rate, elapsed time, etc
+    renderHeartbeat();
     renderInputEvents();    // renders status of input events
     renderToScreen();    // dump the contents of the buffer to the screen, one frame worth of game
 }
@@ -578,21 +589,22 @@ void moveCharacter()
     
 }
 
+
 void moveMob()
 {
-    if (g_sChar.m_cLocation.Y >g_sMob.m_cLocation.Y && (g_dElapsedTime) % 3==0)
+    if (g_sChar.m_cLocation.Y >g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)//0.02 hardcoded for now, change to difficulty
     {
         g_sMob.m_cLocation.Y++;
     }
-    if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && (g_dElapsedTime) % 3== 0)
+    if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)
     {
         g_sMob.m_cLocation.Y--;
     }
-    if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && (g_dElapsedTime )% 3 == 0)
+    if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
     {
         g_sMob.m_cLocation.X++;
     }
-    if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && (g_dElapsedTime) %3 == 0)
+    if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
     {
         g_sMob.m_cLocation.X--; 
     }
@@ -978,6 +990,18 @@ void renderWText()
         c.Y = 20;
         g_Console.writeToBuffer(c, ss.str());
     }
+}
+
+void renderHeartbeat()
+{
+    COORD c;
+    // displays the framerate
+    std::ostringstream ss;
+    ss << std::fixed << std::setprecision(3);
+    ss << "Heartbeat:" << g_dHeartBeat;
+    c.X = g_Console.getConsoleSize().X - 15;
+    c.Y = 2;
+    g_Console.writeToBuffer(c, ss.str());
 }
 
 void renderFramerate()

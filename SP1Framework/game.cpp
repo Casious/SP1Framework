@@ -18,7 +18,8 @@ double  g_dDeltaTime;
 double g_dOldTime;
 double g_dHeartBeat;
 double g_d30Timer;
-float movepace;
+float movepace; // how many frames of movement for the mob
+float movetimer; // how fast the mob moves each interval
 SKeyEvent g_skKeyEvent[K_COUNT];
 SMouseEvent g_mouseEvent;
 
@@ -169,6 +170,11 @@ void init( void )
     g_Console.setMouseHandler(mouseHandler);
 }
 
+void setmobmoveinterval(int interval)
+{
+    movetimer = interval;
+}
+
 void mobmovementspeedselector(int speeddifficulty)
 {
     movepace = speeddifficulty;
@@ -281,7 +287,7 @@ void mouseHandler(const MOUSE_EVENT_RECORD& mouseEvent)
 {    
     switch (g_eGameState)
     {
-    case S_SPLASHSCREEN: // don't handle anything for the splash screen
+    case S_SPLASHSCREEN: gameplayMouseHandler(mouseEvent);// don't handle anything for the splash screen
         break;
     case S_GAME: gameplayMouseHandler(mouseEvent); // handle gameplay mouse event
         break;
@@ -357,12 +363,14 @@ void gameplayMouseHandler(const MOUSE_EVENT_RECORD& mouseEvent)
 //--------------------------------------------------------------
 void update(double dt)
 {
+    setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
+    mobmovementspeedselector(0.02); // how many frames of the mob's movement speed here (Jun Ying)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-    g_dHeartBeat = fmod(g_dElapsedTime, 2.0); // 2 second timer for mob movement
-    g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
-    mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
+    g_dOldTime = g_dElapsedTime;
+    g_dHeartBeat = fmod(g_dElapsedTime, 2.0);
+    mobmovementspeedselector(0.04);
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
@@ -374,7 +382,7 @@ void update(double dt)
 
 
 void splashScreenWait()    // waits for time to pass in splash screen
-{
+{//if mode seleceted == true g_eGamestate
     if (g_dElapsedTime > 3) // wait for 3 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
@@ -436,19 +444,38 @@ void renderToScreen()
     g_Console.flushBufferToConsole();
 }
 
-void renderSplashScreen()  // renders the splash screen
+void renderSplashScreen()  // renders the splash screen difficulties UI for the player
 {
-    COORD c = g_Console.getConsoleSize();
-    c.Y /= 3;
-    c.X = c.X / 2 - 10;
-    g_Console.writeToBuffer(c, "WELCOME TO THE MAZE!", 0x03);
-    c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 8;
-    g_Console.writeToBuffer(c, "WILL YOU SURVIVE?", 0x09);
-    c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 9;
-    g_Console.writeToBuffer(c, "Press 'Esc' to quit", 0x09);
+    COORD c;
+    std::ostringstream ss;
+    ss << "Select Difficulty";
+    c.X = 18;
+    c.Y = 4;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << "Easy Mode";
+    c.X = 6;
+    c.Y = 7;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << "Normal Mode";
+    c.X = 8;
+    c.Y = 9;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << "Hard Mode";
+    c.X = 10;
+    c.Y = 11;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << "Extreme Mode";
+    c.X = 13;
+    c.Y = 13;
+    g_Console.writeToBuffer(c, ss.str());
     }
+//mouse clicker
+
+
 
 void renderGame()
 {
@@ -461,7 +488,7 @@ void renderGame()
     renderWeapon2Attack();
     renderWText();
     mobcollide();
-
+    setdifficulty();
     
 }
 
@@ -681,6 +708,11 @@ void renderMobs()
         g_Console.writeToBuffer(g_sMob4.m_cLocation, (char)1, mobColor);
     }
 }
+void setdifficulty()//to be changed with splash screen
+{//easy, normal,hard, EXTREME
+   
+    }
+
 
 
 
@@ -823,7 +855,7 @@ void weaponattacksystem()
 void renderWeaponAttack()
 {
     updateweaponattackpositions();
-    if (isattack == false)
+    if (isattack == false && recentmoveinput == "UP" || recentmoveinput == "LEFT" || recentmoveinput == "RIGHT" || recentmoveinput == "DOWN")
     {
         isattack = true;
 

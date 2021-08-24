@@ -123,10 +123,10 @@ void init( void )
 
 
     //location for weapon
-    g_sWeapon.m_cLocation.X = 5; // Jun Ying WIP (for now)
+    g_sWeapon.m_cLocation.X = 5; // Jun Ying spawning WIP (fixed position for now)
     g_sWeapon.m_cLocation.Y = 4;
 
-    g_sWeapon2.m_cLocation.X = 14; // Jun Ying WIP (for now)
+    g_sWeapon2.m_cLocation.X = 14; // Jun Ying spawning WIP (fixed position for now)
     g_sWeapon2.m_cLocation.Y = 15;
 
     // g_sWeapon's attack position init 
@@ -180,7 +180,7 @@ void mobmovementspeedselector(int speeddifficulty)
     movepace = speeddifficulty;
 }
 
-void updateweaponattackpositions()
+void updateweaponattackpositions() // function to constantly update 1st weapon's attack positions
 {
     g_sSmash.m_cLocation.X = g_sChar.m_cLocation.X + 1; // right
     g_sSmash.m_cLocation.Y = g_sChar.m_cLocation.Y;
@@ -437,7 +437,7 @@ void render()
 void clearScreen()
 {
     // Clears the buffer with this colour attribute
-    g_Console.clearBuffer(160);
+    g_Console.clearBuffer(120); // light grey
 }
 
 void renderToScreen()
@@ -566,7 +566,7 @@ void renderMap()
     */
     COORD c;
 
-    WORD Colour= 3;
+    WORD Colour= 0x0B;//0x0110 (cursed blue colour)
     for (int j = 0; j < mapHeight; j++) {
         for (int i = 0; i < mapWidth; i++)
         {
@@ -643,7 +643,7 @@ void moveMob()
             g_sMob.m_cLocation.X--;
         }
     }
-    if (easy_mode == true)
+    else if (easy_mode == true)
     {
         hard_mode = false;
 
@@ -757,7 +757,7 @@ void setdifficulty()
 
 
 
-void renderWeapons() // Jun Ying WIP
+void renderWeapons() // Jun Ying
 {
     // Colour for the weapon symbol
     WORD weaponColor = 240;
@@ -911,26 +911,51 @@ void renderWeaponAttack()
 
 
 }
-
+void weapon2init()
+{
+    g_sSlash.m_cLocation.X = 0;
+    g_sSlash.m_cLocation.Y = 0;
+    g_sSlash2.m_cLocation.X = 0;
+    g_sSlash2.m_cLocation.Y = 0;
+    g_sSlash3.m_cLocation.X = 0;
+    g_sSlash3.m_cLocation.Y = 0;
+}
 
 void weapon2attacksystem()
 {
+    weapon2init();
+    bool canbeam = false;
+    bool canbeam2 = false;
+    bool canbeam3 = false;
     WORD attackColor = 10;
     if (hasweapon2 == true && weapon2Exist == false && g_skKeyEvent[K_B].keyReleased)
     {
         // sword attack
         if (recentmoveinput == "UP")// up
         {
+            if (mapArray[(g_sChar.m_cLocation.Y - 1) * mapWidth + g_sChar.m_cLocation.X] != 1)
+            {
+                canbeam = true;
+                g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
+                g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
+                g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
+            }
 
-            g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
-            g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
-            g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
-            g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
-            g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y - 2;
-            g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
-            g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X;
-            g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y - 3;
-            g_Console.writeToBuffer(g_sSlash3.m_cLocation, (char)219, attackColor);
+            if (mapArray[(g_sChar.m_cLocation.Y - 2) * mapWidth + g_sChar.m_cLocation.X] != 1 && canbeam == true)
+            {
+                canbeam2 = true;
+                g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
+                g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y - 2;
+                g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
+            }
+
+            if (mapArray[(g_sChar.m_cLocation.Y - 3) * mapWidth + g_sChar.m_cLocation.X] != 1 && canbeam2 == true)
+            {
+                canbeam3 = true;
+                g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X;
+                g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y - 3;
+                g_Console.writeToBuffer(g_sSlash3.m_cLocation, (char)219, attackColor);
+            }
 
         }
         else if (recentmoveinput == "LEFT")//left
@@ -938,9 +963,13 @@ void weapon2attacksystem()
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X - 1;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
             g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
+
+
             g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X - 2;
             g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y;
             g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
+
+
             g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X - 3;
             g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y;
             g_Console.writeToBuffer(g_sSlash3.m_cLocation, (char)219, attackColor);
@@ -950,9 +979,13 @@ void weapon2attacksystem()
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X + 1;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
             g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
+
+
             g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X + 2;
             g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y;
             g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
+
+
             g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X + 3;
             g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y;
             g_Console.writeToBuffer(g_sSlash3.m_cLocation, (char)219, attackColor);
@@ -963,9 +996,13 @@ void weapon2attacksystem()
             g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
             g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
             g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
+
+
             g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
             g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y + 2;
             g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
+
+
             g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X;
             g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y + 3;
             g_Console.writeToBuffer(g_sSlash3.m_cLocation, (char)219, attackColor);

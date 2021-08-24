@@ -551,10 +551,6 @@ void MapDesign()
            // rowvector.push_back(col);
         }
       //  mapvector.push_back(rowvector);
-           // mapArray[offset++] = static_cast<char>(stoi(col));
-            rowvector.push_back(col);
-        }
-        mapvector.push_back(rowvector);
     }
     maps.close();
 }

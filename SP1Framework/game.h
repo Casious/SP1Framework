@@ -89,14 +89,13 @@ void processUserInput();    // checks if you should change states or do somethin
 void clearScreen();         // clears the current screen and draw from scratch 
 void renderSplashScreen();  // renders the splash screen
 void renderGame();          // renders the game stuff
+void MapDesign();
 void renderMap();       // renders the map to the buffer first
 void renderMobs();
 void renderCharacter();     // renders the character into the buffer
 void renderWeapons(); // renders the weapon (Jun Ying WIP)
 void renderWeaponAttack(); // renders the weapon attack
 void renderWeapon2Attack();
-void Mapdesign(std::string filename);           // walls etc //databuffer is to hold address of array of string
-int  Mapinterior(std::string filename,std::string** databuffer);         // for array 1d 
 void mobcollide();          //mob contact with enemy
 void pickedWeapon(); //when player picks up weapon (Reagan)
 void renderFramerate();     // renders debug information, frame rate, elapsed time, etc

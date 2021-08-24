@@ -8,6 +8,8 @@
 #include <sstream>
 #include <fstream>
 #include <string>
+#include <vector>
+
 
 
 using namespace std;
@@ -249,7 +251,7 @@ void keyboardHandler(const KEY_EVENT_RECORD& keyboardEvent)
         break;
     }
 }
-
+std::vector<std::vector<std::string>>mapvector;
 //--------------------------------------------------------------
 // Purpose  : This is the handler for the mouse input. Whenever there is a mouse event, this function will be called.
 //            Ideally, you should pass the key event to a specific function to handle the event.
@@ -434,11 +436,11 @@ void renderSplashScreen()  // renders the splash screen
     c.Y += 1;
     c.X = g_Console.getConsoleSize().X / 2 - 9;
     g_Console.writeToBuffer(c, "Press 'Esc' to quit", 0x09);
-    
     }
 
 void renderGame()
 {
+//    MapDesign();
     renderMap();        // renders the map to the buffer first
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
@@ -447,13 +449,13 @@ void renderGame()
     renderWeapon2Attack();
     renderWText();
     mobcollide();
-//    Mapdesign(".Map/MapDesign.txt");
+
     
 }
 
+int mapWidth = 50;
+int mapHeight = 24;
 
-const int mapWidth = 50;
-const int mapHeight = 24;
 char mapArray[] = { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
 '#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
 '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',
@@ -480,6 +482,33 @@ char mapArray[] = { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
 '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'
 }; 
 
+//void MapDesign()
+//{
+//    std::ifstream maps;
+//    int level=1;
+//    switch (level)
+//    {
+//    case 1: maps = std::ifstream("/Map/MapDesign1.txt");
+//        break;
+//
+//    }
+//    // Opening may fail, always check.
+//  //  if (!maps) {
+//    //    exit(1);
+//    //}
+//    std::string row;
+//    while (std::getline(maps, row))
+//    {
+//        std::stringstream rowStream(row);
+//        std::string(col);
+//        std::vector<std::string>rowvector;
+//        while (std::getline(rowStream, col, ',')) {
+//            rowvector.push_back(col);
+//        }
+//        mapvector.push_back(rowvector);
+//    }
+//    maps.close();
+//}
 void renderMap()
 {
 
@@ -490,14 +519,7 @@ void renderMap()
     };
     */
     COORD c;
-    /*for (int i = 0; i < 12; ++i)
-    {
-        c.X = 5 * i;
-        c.Y = i + 1;
-        colour(colors[i]);
-        g_Console.writeToBuffer(c, " ", colors[i]);       
-    }*/
-    
+
     WORD Colour= 3;
     for (int j = 0; j < mapHeight; j++) {
         for (int i = 0; i < mapWidth; i++)
@@ -508,12 +530,20 @@ void renderMap()
         }
        
     }
-    //if (g_sMap.m_bActive) {
-    //    Map = 0x0c;
-    //}
+    //for (unsigned y = 0; y < 24; y++)
+    //{
+    //    for (unsigned x = 0; x < 50; x++)
+    //    {
+    //        WORD color = 0x00;
+    //        switch (stoi(mapvector[y][x])) {
+    //        case 1:
+    //            color = 0x01;
+    //            break;
+    //        }
+    //        g_Console.writeToBuffer(x * 2, y, " ", color);
+    //    }
 
-    
-    
+    //}
 } 
 
 
@@ -545,26 +575,26 @@ void moveCharacter()
         //Beep(1440, 30);
         g_sChar.m_cLocation.X++;        
     }
-
+    
 }
 
 void moveMob()
 {
-    if (g_sChar.m_cLocation.Y >g_sMob.m_cLocation.Y )
+    if (g_sChar.m_cLocation.Y >g_sMob.m_cLocation.Y && (g_dElapsedTime) % 3==0)
     {
-        g_sMob.m_cLocation.Y+1;
+        g_sMob.m_cLocation.Y++;
     }
-    if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y)
+    if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && (g_dElapsedTime) % 3== 0)
     {
-        g_sMob.m_cLocation.Y-1;
+        g_sMob.m_cLocation.Y--;
     }
-    if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X)
+    if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && (g_dElapsedTime )% 3 == 0)
     {
-        g_sMob.m_cLocation.X+1;
+        g_sMob.m_cLocation.X++;
     }
-    if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X)
+    if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && (g_dElapsedTime) %3 == 0)
     {
-        g_sMob.m_cLocation.X-1; 
+        g_sMob.m_cLocation.X--; 
     }
 }
 
@@ -926,36 +956,6 @@ void pickedWeapon()
 
     }
 
-
-}
-int Mapinterior(string filename, string** databuffer) {
-    std::ifstream Mapfile;
-    int row = 0, maxrow = 0;
-    std::string temp;
-    Mapfile.open(filename, ios::in); // ios::in allows input from streams
-    while (!Mapfile.eof())//while the end of file is false
-    {
-        std::getline(Mapfile, temp);
-        maxrow++;
-    }
-    if (maxrow > 0)//incase file empty
-    {
-        *databuffer = new string[maxrow];//allocate databuffer array
-        Mapfile.seekg(std::ios_base::beg);//seekg() is a function in the iostream library that allows us to seek an arbitrary position in a file.//
-        //ios_base is a multipurpose class that serves as the base class for all I/O stream classes. It maintains several kinds of data.//goes backk to start of file n read line by line
-        while (!Mapfile.eof())
-        {
-            std::getline(Mapfile, *databuffer[row++]);
-        }
-        Mapfile.close();
-    }
-    return maxrow;
-}
-std::string* setDesign;
-void Mapdesign(string filename) { // to avoid hardcoding, i pass in the file name
-    int width=0, height=0;
-    height = Mapinterior(".Map/MapDesign.txt", &setDesign);
-    width = setDesign[0].size();
 
 }
 void renderWText()

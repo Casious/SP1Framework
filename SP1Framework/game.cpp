@@ -589,24 +589,54 @@ void moveCharacter()
     
 }
 
+bool easy_mode = true;
+bool hard_mode = false;
 
 void moveMob()
 {
-    if (g_sChar.m_cLocation.Y >g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)//0.02 hardcoded for now, change to difficulty
+    if (hard_mode == true)
     {
-        g_sMob.m_cLocation.Y++;
+        easy_mode = false;
+
+        if (g_sChar.m_cLocation.Y >g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
+        {
+            g_sMob.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y - 1 <= 50)
+        {
+            g_sMob.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X + 1 <= 50)
+        {
+            g_sMob.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X - 1 <= 1)
+        {
+            g_sMob.m_cLocation.X--;
+        }
     }
-    if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)
+
+    if (easy_mode == true)
     {
-        g_sMob.m_cLocation.Y--;
-    }
-    if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
-    {
-        g_sMob.m_cLocation.X++;
-    }
-    if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
-    {
-        g_sMob.m_cLocation.X--; 
+        hard_mode = false;
+
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != '#' )//0.02 hardcoded for now, change to difficulty
+        {
+            g_sMob.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != '#')
+        {
+            g_sMob.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != '#')
+        {
+            g_sMob.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != '#')
+        {
+            g_sMob.m_cLocation.X--;
+        }
+
     }
 }
 

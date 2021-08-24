@@ -615,6 +615,7 @@ void moveCharacter()
 bool easy_mode = true;
 bool hard_mode = false;
 
+//hi
 void moveMob()
 {
     if (hard_mode == true)

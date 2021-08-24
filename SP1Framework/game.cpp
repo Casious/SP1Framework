@@ -365,7 +365,7 @@ void gameplayMouseHandler(const MOUSE_EVENT_RECORD& mouseEvent)
 void update(double dt)
 {
     setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
-    mobmovementspeedselector(0.02); // how many frames of the mob's movement speed here (Jun Ying)
+    mobmovementspeedselector(0.01); // how many frames of the mob's movement speed here (Jun Ying)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;

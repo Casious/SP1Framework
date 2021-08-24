@@ -17,6 +17,7 @@ double  g_dElapsedTime;
 double  g_dDeltaTime;
 double g_dOldTime;
 double g_dHeartBeat;
+double g_d30Timer;
 float movepace;
 SKeyEvent g_skKeyEvent[K_COUNT];
 SMouseEvent g_mouseEvent;
@@ -359,9 +360,9 @@ void update(double dt)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-    g_dOldTime = g_dElapsedTime;
-    g_dHeartBeat = fmod(g_dElapsedTime, 2.0);
-    mobmovementspeedselector(0.02);
+    g_dHeartBeat = fmod(g_dElapsedTime, 2.0); // 2 second timer for mob movement
+    g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
+    mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
@@ -871,31 +872,51 @@ void weapon2attacksystem()
 
         //if there are mobs within range of weapon attack
         if (g_sSlash.m_cLocation.X == g_sMob.m_cLocation.X &&
-            g_sSlash.m_cLocation.Y == g_sMob.m_cLocation.Y
+            g_sSlash.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+            g_sSlash2.m_cLocation.X == g_sMob.m_cLocation.X &&
+            g_sSlash2.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+            g_sSlash3.m_cLocation.X == g_sMob.m_cLocation.X &&
+            g_sSlash3.m_cLocation.Y == g_sMob.m_cLocation.Y
             )
         {
             mob_exists = false;
         }
         if (g_sSlash.m_cLocation.X == g_sMob1.m_cLocation.X &&
-            g_sSlash.m_cLocation.Y == g_sMob1.m_cLocation.Y
+            g_sSlash.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+            g_sSlash2.m_cLocation.X == g_sMob1.m_cLocation.X &&
+            g_sSlash2.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+            g_sSlash3.m_cLocation.X == g_sMob1.m_cLocation.X &&
+            g_sSlash3.m_cLocation.Y == g_sMob1.m_cLocation.Y 
             )
         {
             mob1_exists = false;
         }
         if (g_sSlash.m_cLocation.X == g_sMob2.m_cLocation.X &&
-            g_sSlash.m_cLocation.Y == g_sMob2.m_cLocation.Y
+            g_sSlash.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+            g_sSlash2.m_cLocation.X == g_sMob2.m_cLocation.X &&
+            g_sSlash2.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+            g_sSlash3.m_cLocation.X == g_sMob2.m_cLocation.X &&
+            g_sSlash3.m_cLocation.Y == g_sMob2.m_cLocation.Y 
             )
         {
             mob2_exists = false;
         }
         if (g_sSlash.m_cLocation.X == g_sMob3.m_cLocation.X &&
-            g_sSlash.m_cLocation.Y == g_sMob3.m_cLocation.Y
+            g_sSlash.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+            g_sSlash2.m_cLocation.X == g_sMob3.m_cLocation.X &&
+            g_sSlash2.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+            g_sSlash3.m_cLocation.X == g_sMob3.m_cLocation.X &&
+            g_sSlash3.m_cLocation.Y == g_sMob3.m_cLocation.Y
             )
         {
             mob3_exists = false;
         }
         if (g_sSlash.m_cLocation.X == g_sMob4.m_cLocation.X &&
-            g_sSlash.m_cLocation.Y == g_sMob4.m_cLocation.Y
+            g_sSlash.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+            g_sSlash2.m_cLocation.X == g_sMob4.m_cLocation.X &&
+            g_sSlash2.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+            g_sSlash3.m_cLocation.X == g_sMob4.m_cLocation.X &&
+            g_sSlash3.m_cLocation.Y == g_sMob4.m_cLocation.Y
             )
         {
             mob4_exists = false;

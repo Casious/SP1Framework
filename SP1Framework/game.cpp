@@ -18,7 +18,8 @@ double  g_dDeltaTime;
 double g_dOldTime;
 double g_dHeartBeat;
 double g_d30Timer;
-float movepace;
+float movepace; // how many frames of movement for the mob
+float movetimer; // how fast the mob moves each interval
 SKeyEvent g_skKeyEvent[K_COUNT];
 SMouseEvent g_mouseEvent;
 
@@ -167,6 +168,11 @@ void init( void )
     // remember to set your keyboard handler, so that your functions can be notified of input events
     g_Console.setKeyboardHandler(keyboardHandler);
     g_Console.setMouseHandler(mouseHandler);
+}
+
+void setmobmoveinterval(int interval)
+{
+    movetimer = interval;
 }
 
 void mobmovementspeedselector(int speeddifficulty)
@@ -357,12 +363,13 @@ void gameplayMouseHandler(const MOUSE_EVENT_RECORD& mouseEvent)
 //--------------------------------------------------------------
 void update(double dt)
 {
+    setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
+    mobmovementspeedselector(0.02); // how many frames of the mob's movement speed here (Jun Ying)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-    g_dHeartBeat = fmod(g_dElapsedTime, 2.0); // 2 second timer for mob movement
+    g_dHeartBeat = fmod(g_dElapsedTime, movetimer); // 2 second timer for mob movement
     g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
-    mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
@@ -798,7 +805,7 @@ void weaponattacksystem()
 void renderWeaponAttack()
 {
     updateweaponattackpositions();
-    if (isattack == false)
+    if (isattack == false && recentmoveinput == "UP" || recentmoveinput == "LEFT" || recentmoveinput == "RIGHT" || recentmoveinput == "DOWN")
     {
         isattack = true;
 

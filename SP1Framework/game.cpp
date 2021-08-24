@@ -385,7 +385,7 @@ void update(double dt)
 bool modeselected = false;
 void splashScreenWait()    // waits for time to pass in splash screen
 {//if mode seleceted == true g_eGamestate
-    if (modeselected == true) // wait for 3 seconds to switch to game mode, else do nothing
+    if (g_dElapsedTime > 3 ) // wait for 3 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
 

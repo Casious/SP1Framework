@@ -451,7 +451,7 @@ void renderSplashScreen()  // renders the splash screen
 
 void renderGame()
 {
-//    MapDesign();
+    MapDesign();
     renderMap();        // renders the map to the buffer first
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
@@ -466,6 +466,8 @@ void renderGame()
 
 int mapWidth = 50;
 int mapHeight = 24;
+
+//std::vector<char> mapArray;
 
 char mapArray[] = { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
 '#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
@@ -493,33 +495,37 @@ char mapArray[] = { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
 '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'
 }; 
 
-//void MapDesign()
-//{
-//    std::ifstream maps;
-//    int level=1;
-//    switch (level)
-//    {
-//    case 1: maps = std::ifstream("/Map/MapDesign1.txt");
-//        break;
-//
-//    }
-//    // Opening may fail, always check.
-//  //  if (!maps) {
-//    //    exit(1);
-//    //}
-//    std::string row;
-//    while (std::getline(maps, row))
-//    {
-//        std::stringstream rowStream(row);
-//        std::string(col);
-//        std::vector<std::string>rowvector;
-//        while (std::getline(rowStream, col, ',')) {
-//            rowvector.push_back(col);
-//        }
-//        mapvector.push_back(rowvector);
-//    }
-//    maps.close();
-//}
+void MapDesign()
+{
+    std::ifstream maps;
+    maps.open("MapDesign1.txt", std::ifstream::in);
+    //int level=1;
+    //switch (level)
+    //{
+    //case 1: maps = std::ifstream("MapDesign1.txt");
+    //    break;
+
+    //}
+    // Opening may fail, always check.
+  //  if (!maps) {
+    //    exit(1);
+    //}
+    int offset = 0;
+    std::string row;
+    while (std::getline(maps, row))
+    {
+        std::stringstream rowStream(row);
+        std::string(col);
+        std::vector<std::string>rowvector;
+        while (std::getline(rowStream, col, ',')) 
+        {
+            mapArray[offset++] = static_cast<char>(stoi(col));
+            //rowvector.push_back(col);
+        }
+        //mapvector.push_back(rowvector);
+    }
+    maps.close();
+}
 void renderMap()
 {
 
@@ -537,24 +543,13 @@ void renderMap()
         {
             c.X = i;
             c.Y = j;
+            //switch(mapArray[j * mapWidth + i])
+            //{
+                //case 1: //render '#'
+            //}
             g_Console.writeToBuffer(c, mapArray[j * mapWidth + i], Colour);
-        }
-       
+        }  
     }
-    //for (unsigned y = 0; y < 24; y++)
-    //{
-    //    for (unsigned x = 0; x < 50; x++)
-    //    {
-    //        WORD color = 0x00;
-    //        switch (stoi(mapvector[y][x])) {
-    //        case 1:
-    //            color = 0x01;
-    //            break;
-    //        }
-    //        g_Console.writeToBuffer(x * 2, y, " ", color);
-    //    }
-
-    //}
 } 
 
 

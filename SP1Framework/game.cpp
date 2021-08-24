@@ -369,7 +369,8 @@ void update(double dt)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-    g_dHeartBeat = fmod(g_dElapsedTime, 2.0); // 2 second timer for mob movement
+    g_dHeartBeat = fmod(g_dElapsedTime, movetimer); //timer for mob movement (changed to movetimer so just use setmobmoveinterval instead)
+    //modifies game diff 
     g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
     mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
     switch (g_eGameState)
@@ -381,10 +382,10 @@ void update(double dt)
     }
 }
 
-
+bool modeselected = false;
 void splashScreenWait()    // waits for time to pass in splash screen
 {//if mode seleceted == true g_eGamestate
-    if (g_dElapsedTime > 3) // wait for 3 seconds to switch to game mode, else do nothing
+    if (modeselected == true) // wait for 3 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
 
@@ -712,10 +713,33 @@ void renderMobs()
         g_Console.writeToBuffer(g_sMob4.m_cLocation, (char)1, mobColor);
     }
 }
-void setdifficulty()//to be changed with splash screen
-{//easy, normal,hard, EXTREME
-   
+bool easydiff = false;
+bool normdiff = false;
+bool hardfiff = false;
+bool lunadiff = false;
+//to be changed with splash screen
+//easy, normal,hard, EXTREME
+    if (g_eGameState == S_SPLASHSCREEN)
+    {
+        if (g_mouseEvent.buttonState == FROM_LEFT_1ST_BUTTON_PRESSED &&
+            g_mouseEvent.mousePosition.Y == 7)
+        {
+            //easy difficulty
+            easydiff = true;
+            normdiff = false;
+            hardfiff = false;
+            lunadiff = false;
+        
+        }
+        modeselected = true;
+                 
     }
+    }
+   
+
+
+
+
 
 
 

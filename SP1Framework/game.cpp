@@ -361,6 +361,7 @@ void gameplayMouseHandler(const MOUSE_EVENT_RECORD& mouseEvent)
 // Input    : dt = deltatime
 // Output   : void
 //--------------------------------------------------------------
+
 void update(double dt)
 {
     setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
@@ -368,9 +369,9 @@ void update(double dt)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-    g_dOldTime = g_dElapsedTime;
-    g_dHeartBeat = fmod(g_dElapsedTime, 2.0);
-    mobmovementspeedselector(0.04);
+    g_dHeartBeat = fmod(g_dElapsedTime, 2.0); // 2 second timer for mob movement
+    g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
+    mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
@@ -611,26 +612,59 @@ void moveCharacter()
     
 }
 
+bool easy_mode = true;
+bool hard_mode = false;
 
 void moveMob()
 {
-    if (g_sChar.m_cLocation.Y >g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)//0.02 hardcoded for now, change to difficulty
+    if (hard_mode == true)
     {
-        g_sMob.m_cLocation.Y++;
+        easy_mode = false;
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
+        {
+            g_sMob.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y - 1 <= 50)
+        {
+            g_sMob.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X + 1 <= 50)
+        {
+            g_sMob.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X - 1 <= 1)
+        {
+            g_sMob.m_cLocation.X--;
+        }
     }
-    else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)
+    if (easy_mode == true)
     {
-        g_sMob.m_cLocation.Y--;
-    }
-    else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
-    {
-        g_sMob.m_cLocation.X++;
-    }
-    else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
-    {
-        g_sMob.m_cLocation.X--; 
+        hard_mode = false;
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != '#')//0.02 hardcoded for now, change to difficulty
+        {
+            g_sMob.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != '#')
+        {
+            g_sMob.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != '#')
+        {
+            g_sMob.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != '#')
+        {
+            g_sMob.m_cLocation.X--;
+        }
     }
 }
+           
+
+
+
+
+
+
 
 void renderCharacter()
 {

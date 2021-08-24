@@ -18,8 +18,7 @@ double  g_dDeltaTime;
 double g_dOldTime;
 double g_dHeartBeat;
 double g_d30Timer;
-float movepace; // how many frames of movement for the mob
-float movetimer; // how fast the mob moves each interval
+float movepace;
 SKeyEvent g_skKeyEvent[K_COUNT];
 SMouseEvent g_mouseEvent;
 
@@ -168,11 +167,6 @@ void init( void )
     // remember to set your keyboard handler, so that your functions can be notified of input events
     g_Console.setKeyboardHandler(keyboardHandler);
     g_Console.setMouseHandler(mouseHandler);
-}
-
-void setmobmoveinterval(int interval)
-{
-    movetimer = interval;
 }
 
 void mobmovementspeedselector(int speeddifficulty)
@@ -363,13 +357,12 @@ void gameplayMouseHandler(const MOUSE_EVENT_RECORD& mouseEvent)
 //--------------------------------------------------------------
 void update(double dt)
 {
-    setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
-    mobmovementspeedselector(0.02); // how many frames of the mob's movement speed here (Jun Ying)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-    g_dHeartBeat = fmod(g_dElapsedTime, movetimer); // 2 second timer for mob movement
+    g_dHeartBeat = fmod(g_dElapsedTime, 2.0); // 2 second timer for mob movement
     g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
+    mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
@@ -474,7 +467,6 @@ void renderGame()
 
 int mapWidth = 50;
 int mapHeight = 24;
-
 //std::vector<char> mapArray;
 
 char mapArray[] = { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
@@ -592,54 +584,24 @@ void moveCharacter()
     
 }
 
-bool easy_mode = true;
-bool hard_mode = false;
 
 void moveMob()
 {
-    if (hard_mode == true)
+    if (g_sChar.m_cLocation.Y >g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)//0.02 hardcoded for now, change to difficulty
     {
-        easy_mode = false;
-
-        if (g_sChar.m_cLocation.Y >g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
-        {
-            g_sMob.m_cLocation.Y++;
-        }
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y - 1 <= 50)
-        {
-            g_sMob.m_cLocation.Y--;
-        }
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X + 1 <= 50)
-        {
-            g_sMob.m_cLocation.X++;
-        }
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X - 1 <= 1)
-        {
-            g_sMob.m_cLocation.X--;
-        }
+        g_sMob.m_cLocation.Y++;
     }
-
-    if (easy_mode == true)
+    if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)
     {
-        hard_mode = false;
-
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != '#' )//0.02 hardcoded for now, change to difficulty
-        {
-            g_sMob.m_cLocation.Y++;
-        }
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != '#')
-        {
-            g_sMob.m_cLocation.Y--;
-        }
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != '#')
-        {
-            g_sMob.m_cLocation.X++;
-        }
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != '#')
-        {
-            g_sMob.m_cLocation.X--;
-        }
-
+        g_sMob.m_cLocation.Y--;
+    }
+    if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
+    {
+        g_sMob.m_cLocation.X++;
+    }
+    if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
+    {
+        g_sMob.m_cLocation.X--; 
     }
 }
 
@@ -830,7 +792,7 @@ void weaponattacksystem()
 void renderWeaponAttack()
 {
     updateweaponattackpositions();
-    if (isattack == false && recentmoveinput == "UP" || recentmoveinput == "LEFT" || recentmoveinput == "RIGHT" || recentmoveinput == "DOWN")
+    if (isattack == false)
     {
         isattack = true;
 

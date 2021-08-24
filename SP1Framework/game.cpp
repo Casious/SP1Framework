@@ -876,31 +876,51 @@ void weapon2attacksystem()
 
         //if there are mobs within range of weapon attack
         if (g_sSlash.m_cLocation.X == g_sMob.m_cLocation.X &&
-            g_sSlash.m_cLocation.Y == g_sMob.m_cLocation.Y
+            g_sSlash.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+            g_sSlash2.m_cLocation.X == g_sMob.m_cLocation.X &&
+            g_sSlash2.m_cLocation.Y == g_sMob.m_cLocation.Y ||
+            g_sSlash3.m_cLocation.X == g_sMob.m_cLocation.X &&
+            g_sSlash3.m_cLocation.Y == g_sMob.m_cLocation.Y
             )
         {
             mob_exists = false;
         }
         if (g_sSlash.m_cLocation.X == g_sMob1.m_cLocation.X &&
-            g_sSlash.m_cLocation.Y == g_sMob1.m_cLocation.Y
+            g_sSlash.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+            g_sSlash2.m_cLocation.X == g_sMob1.m_cLocation.X &&
+            g_sSlash2.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
+            g_sSlash3.m_cLocation.X == g_sMob1.m_cLocation.X &&
+            g_sSlash3.m_cLocation.Y == g_sMob1.m_cLocation.Y 
             )
         {
             mob1_exists = false;
         }
         if (g_sSlash.m_cLocation.X == g_sMob2.m_cLocation.X &&
-            g_sSlash.m_cLocation.Y == g_sMob2.m_cLocation.Y
+            g_sSlash.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+            g_sSlash2.m_cLocation.X == g_sMob2.m_cLocation.X &&
+            g_sSlash2.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
+            g_sSlash3.m_cLocation.X == g_sMob2.m_cLocation.X &&
+            g_sSlash3.m_cLocation.Y == g_sMob2.m_cLocation.Y 
             )
         {
             mob2_exists = false;
         }
         if (g_sSlash.m_cLocation.X == g_sMob3.m_cLocation.X &&
-            g_sSlash.m_cLocation.Y == g_sMob3.m_cLocation.Y
+            g_sSlash.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+            g_sSlash2.m_cLocation.X == g_sMob3.m_cLocation.X &&
+            g_sSlash2.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
+            g_sSlash3.m_cLocation.X == g_sMob3.m_cLocation.X &&
+            g_sSlash3.m_cLocation.Y == g_sMob3.m_cLocation.Y
             )
         {
             mob3_exists = false;
         }
         if (g_sSlash.m_cLocation.X == g_sMob4.m_cLocation.X &&
-            g_sSlash.m_cLocation.Y == g_sMob4.m_cLocation.Y
+            g_sSlash.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+            g_sSlash2.m_cLocation.X == g_sMob4.m_cLocation.X &&
+            g_sSlash2.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
+            g_sSlash3.m_cLocation.X == g_sMob4.m_cLocation.X &&
+            g_sSlash3.m_cLocation.Y == g_sMob4.m_cLocation.Y
             )
         {
             mob4_exists = false;

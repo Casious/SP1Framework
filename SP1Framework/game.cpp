@@ -591,15 +591,15 @@ void moveMob()
     {
         g_sMob.m_cLocation.Y++;
     }
-    if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)
+    else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)
     {
         g_sMob.m_cLocation.Y--;
     }
-    if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
+    else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
     {
         g_sMob.m_cLocation.X++;
     }
-    if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
+    else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
     {
         g_sMob.m_cLocation.X--; 
     }

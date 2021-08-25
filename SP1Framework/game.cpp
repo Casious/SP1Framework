@@ -316,6 +316,10 @@ void gameplayKBHandler(const KEY_EVENT_RECORD& keyboardEvent)
     case VK_SPACE: key = K_SPACE; break;
     case VK_ESCAPE: key = K_ESCAPE; break; 
     case 0x42: key = K_B; break;
+    case 0x41: key = K_A; break;
+    case 0x51: key = K_Q; break;
+    case 0x5A:key = K_Z; break;
+
     }
     // a key pressed event would be one with bKeyDown == true
     // a key released event would be one with bKeyDown == false
@@ -385,7 +389,7 @@ void update(double dt)
 bool modeselected = false;
 void splashScreenWait()    // waits for time to pass in splash screen
 {//if mode seleceted == true g_eGamestate
-    if (g_dElapsedTime > 3 ) // wait for 3 seconds to switch to game mode, else do nothing
+    if (g_dElapsedTime > 100) // wait for 3 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
 
@@ -469,11 +473,7 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
     c.X = 10;
     c.Y = 11;
     g_Console.writeToBuffer(c, ss.str());
-    ss.str("");
-    ss << "Extreme Mode";
-    c.X = 13;
-    c.Y = 13;
-    g_Console.writeToBuffer(c, ss.str());
+   
     }
 //mouse clicker
 
@@ -724,14 +724,13 @@ void renderMobs()
 }
 bool easydiff = false;
 bool normdiff = false;
-bool hardfiff = false;
-bool lunadiff = false;
+bool harddiff = false;
 //to be changed with splash screen
 //easy, normal,hard, EXTREME
 void setdifficulty()
 {
     if (g_eGameState == S_SPLASHSCREEN)
-    {
+    {/*
         if (g_mouseEvent.buttonState == FROM_LEFT_1ST_BUTTON_PRESSED &&
             g_mouseEvent.mousePosition.Y == 7)
         {
@@ -740,12 +739,35 @@ void setdifficulty()
             normdiff = false;
             hardfiff = false;
             lunadiff = false;
-        
+
         }
         modeselected = true;
-                 
+    */
+
+    //doesnt work switching to new plan
+
+        if (g_skKeyEvent[K_Q].keyDown)
+        {
+            easydiff = true;
+
+
+        }
+        else if (g_skKeyEvent[K_A].keyDown)
+        {
+            normdiff = true;
+
+        }
+        else if (g_skKeyEvent[K_Z].keyDown)
+        {
+            harddiff = true;
+
+        }
+        modeselected = true;
+        g_eGameState = S_GAME;
+        
+
     }
-    }
+}
    
 
 
@@ -1253,6 +1275,12 @@ void renderInputEvents()
             break;
         case K_B: key = "B";
             break;
+        case K_Q: key = "Q";
+            break;
+        case K_A: key = "A";
+            break;
+        case K_Z: key = "Z";
+            break;
         default: continue;
         }
         if (g_skKeyEvent[i].keyDown)
@@ -1267,7 +1295,7 @@ void renderInputEvents()
             ss << key << " not pressed";
 
         COORD c = { startPos.X, startPos.Y + i };
-       // g_Console.writeToBuffer(c, ss.str(), 0x17);
+       g_Console.writeToBuffer(c, ss.str(), 0x17);
     }
 
 

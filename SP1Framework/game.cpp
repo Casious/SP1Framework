@@ -434,6 +434,8 @@ void splashScreenWait()    // waits for time to pass in splash screen
 
 }
 
+
+
 void updateGame()       // gameplay logic
 {
     if (after_cutscene == true)
@@ -578,7 +580,6 @@ void renderGame1()
     renderWeapon2Attack();
     renderWText();
     mobcollide();
-    setdifficulty();
     startscreen();
     cheat();
 
@@ -733,6 +734,12 @@ void renderMap2()
         }
     }
 }
+
+
+
+
+
+
 
 
 
@@ -944,7 +951,7 @@ void moveCharacter()
     
 }
 
-bool easy_mode = true;
+bool easy_mode = false;
 bool normal_mode = false;
 bool hard_mode = false;
 //hi
@@ -1032,16 +1039,19 @@ void moveMob()
            
 
 bool cleared = false;
+bool pt1cleared = false;
 void endgame()
 {
     if (g_sChar.m_cLocation.X == 49 && g_sChar.m_cLocation.Y == 11)
     {
+        g_sChar.m_cLocation.X = 1;
+        g_sChar.m_cLocation.Y = 2;
         cleared = true;
-        g_eGameState = S_WIN;//shows you cleared part 1 press enter to continue 
+        g_eGameState = S_GAME1;//shows you cleared part 1 press enter to continue 
 
-        if (g_eGameState == S_WIN)
+        if (cleared == true)
         {
-            COORD c;
+            /*COORD c;
             std::ostringstream ss;
             ss << " ";
             ss << "PRESS X TO PROCEED!";

@@ -169,7 +169,7 @@ void init( void )
 
     // remember to set your keyboard handler, so that your functions can be notified of input events
     g_Console.setKeyboardHandler(keyboardHandler);
-    g_Console.setMouseHandler(mouseHandler);
+    //g_Console.setMouseHandler(mouseHandler); // mouse functions redundant in program for now (Jun Ying)
 }
 
 void setmobmoveinterval(int interval)

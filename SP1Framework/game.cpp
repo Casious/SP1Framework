@@ -780,7 +780,7 @@ void moveCharacter()
 bool easy_mode = false;
 bool normal_mode = false;
 bool hard_mode = false;
-
+<<<<<<< Updated upstream
 //hi
 void moveMob()
 {
@@ -1054,11 +1054,13 @@ void moveMob()
     }
 }
            
+=======
 
 
            
 
 
+>>>>>>> Stashed changes
 
 void endgame()
 {

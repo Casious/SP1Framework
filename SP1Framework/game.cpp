@@ -649,26 +649,6 @@ void renderMap()
         }  
     }
 } 
-void startscreen()
-{
-    std::ifstream maze;
-    maze.open("themaze.txt", std::ifstream::in);
-    if (!maze)
-    {
-        exit(1);
-    }
-    std::vector<std::string>row1;
-    if (maze.is_open())
-    {
-        std::string rows;
-        while (std::getline(maze, rows))
-        {
-            row1.push_back(rows);
-        }
-        maze.close();
-    }
-
-}
 
 
 

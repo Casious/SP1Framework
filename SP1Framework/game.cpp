@@ -1049,16 +1049,11 @@ void endgame()
             c.X = 20;
             c.Y = 16;
             g_Console.writeToBuffer(c, ss.str());
-<<<<<<< Updated upstream
             ss.str("");
             ss << "Congradulations on clearing the 1st part";
             c.X = 20;
             c.Y = 15;
-            if (g_skKeyEvent[K_X].keyReleased)
-=======
-
             if (g_skKeyEvent[K_RETURN].keyReleased)
->>>>>>> Stashed changes
             {
                 g_sChar.m_cLocation.X = 1;
                 g_sChar.m_cLocation.Y = 1;

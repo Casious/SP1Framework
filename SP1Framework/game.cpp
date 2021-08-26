@@ -539,6 +539,11 @@ void endtext()
     c.X = 2;
     c.Y = 7;
     g_Console.writeToBuffer(c, ss.str());
+
+    ss << " You have escaped... for now";
+    c.X = 20;
+    c.Y = 15;
+    g_Console.writeToBuffer(c, ss.str());
    
 }
 
@@ -1874,12 +1879,7 @@ void playerwin()
     if (g_eGameState == S_GAME1 && g_sChar.m_cLocation.X == 49 && g_sChar.m_cLocation.Y == 11)//map 2, end location
     {
         g_eGameState = S_WIN;
-        COORD c;
-        std::ostringstream ss;
-        ss << " You have escaped... for now";
-        c.X = 20;
-        c.Y = 15;
-        g_Console.writeToBuffer(c, ss.str());
+
     }   
 }
 void renderWText()

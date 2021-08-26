@@ -444,24 +444,61 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
 {
     COORD c;
     std::ostringstream ss;
-    ss << "Select Difficulty";
-    c.X = 18;
+    ss.str("");
+    ss << ".########..##.....##.##....##";
+    c.X = 1;
+    c.Y = 3;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << ".##.....##.##.....##.###...##";
+    c.X = 1;
     c.Y = 4;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << ".##.....##.##.....##.####..##";
+    c.X = 1;
+    c.Y = 5;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << ".########..##.....##.##.##.##";
+    c.X = 1;
+    c.Y = 6;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << ".##...##...##.....##.##..####";
+    c.X = 1;
+    c.Y = 7;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << ".##....##..##.....##.##...###";
+    c.X = 1;
+    c.Y = 8;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << ".##.....##..#######..##....##";
+    c.X = 1;
+    c.Y = 9;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+
+    ss << "Select Difficulty";
+    c.X = 6;
+    c.Y = 19;
     g_Console.writeToBuffer(c, ss.str());
     ss.str("");
     ss << "Press 'Q' for Easy Mode";
     c.X = 6;
-    c.Y = 6;
+    c.Y = 20;
     g_Console.writeToBuffer(c, ss.str());
     ss.str("");
     ss << "Press 'A' for Normal Mode";
     c.X = 6;
-    c.Y = 7;
+    c.Y = 21;
     g_Console.writeToBuffer(c, ss.str());
     ss.str("");
     ss << "Press 'Z' for Hard Mode";
     c.X = 6;
-    c.Y = 8;
+    c.Y = 22;
     g_Console.writeToBuffer(c, ss.str());
     startscreen();
     renderstart();
@@ -1892,17 +1929,28 @@ void renderWText()
     {
         COORD c;
         std::ostringstream ss;
-        ss << "You picked up the cross!";
-        c.X = 55;
-        c.Y = 23;
+        ss.str("");
+        ss << "             +-+";
+        c.X = 50;
+        c.Y = 15;
+        g_Console.writeToBuffer(c, ss.str());
+        ss.str("");
+        ss << "=============| | READY!";
+        c.X = 50;
+        c.Y = 16;
+        g_Console.writeToBuffer(c, ss.str());
+        ss.str("");
+        ss << "            `:_;'";
+        c.X = 50;
+        c.Y = 17;
         g_Console.writeToBuffer(c, ss.str());
     }
     if (hasweapon2 == true)
     {
         COORD c;
         std::ostringstream ss;
-        ss << "You picked up the sword!";
-        c.X = 55;
+        ss << "*////{<>===============- READY!";
+        c.X = 50;
         c.Y = 20;
         g_Console.writeToBuffer(c, ss.str());
     }
@@ -1987,7 +2035,7 @@ void mobspawn()
         mob4_exists = false;
 
         //after a certain time, the ghosts will spawn again(Reagan)
-        /*if (g_dElapsedTime_2 > 10 && mob1_attacked_2 == false)
+        if (g_dElapsedTime_2 > 10 && mob1_attacked_2 == false)
         {
             mob1_exists = true;
         }
@@ -2006,7 +2054,7 @@ void mobspawn()
         if (g_dElapsedTime_2 > 0 && mob_attacked_2 == false)
         {
             mob_exists = true;
-        }*/
+        }
     }
 }
 
@@ -2059,6 +2107,7 @@ void renderInputEvents()
 
         COORD c = { startPos.X, startPos.Y + i };
        g_Console.writeToBuffer(c, ss.str(), 0x17);
+       
     }
 
 

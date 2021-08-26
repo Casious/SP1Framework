@@ -115,6 +115,7 @@ void mobspawn();
 void setdifficulty();       // allows user to set difficulty
 void mobmovementspeedselector(int);
 void weapon2init(); // sets initial positions for 2nd weapon attack
+void startscreen();
 
 
 

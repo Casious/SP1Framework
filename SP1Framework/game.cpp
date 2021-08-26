@@ -877,37 +877,84 @@ void moveMob()
         if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 )//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        {
             g_sMob1.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        {
             g_sMob2.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        {
             g_sMob3.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        {
             g_sMob4.m_cLocation.Y++;
-
         }
         //move up
-        else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 )
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 )
         {
             g_sMob.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        {
             g_sMob1.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        {
             g_sMob2.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        {
             g_sMob3.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        {
             g_sMob4.m_cLocation.Y--;
         }
         //move right
-        else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 )
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 )
         {
             g_sMob.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02)
+        {
             g_sMob1.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02)
+        {
             g_sMob2.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02)
+        {
             g_sMob3.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02)
+        {
             g_sMob4.m_cLocation.X++;
         }
         //move left
-        else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 )
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 )
         {
             g_sMob.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02)
+        {
             g_sMob1.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02)
+        {
             g_sMob2.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02)
+        {
             g_sMob3.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02)
+        {
             g_sMob4.m_cLocation.X--;
         }
     }
@@ -920,36 +967,84 @@ void moveMob()
         if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y + 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221))
+        {
             g_sMob1.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y + 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221))
+        {
             g_sMob2.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y + 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221))
+        {
             g_sMob3.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y + 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221))
+        {
             g_sMob4.m_cLocation.Y++;
         }
         //move up
         if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))
         {
             g_sMob.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y - 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221))
+        {
             g_sMob1.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y - 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221))
+        {
             g_sMob2.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y - 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221))
+        {
             g_sMob3.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y - 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221))
+        {
             g_sMob4.m_cLocation.Y--;
         }
         //move right
         if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != char(221))
         {
             g_sMob.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X + 1)] != char(221))
+        {
             g_sMob1.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X + 1)] != char(221))
+        {
             g_sMob2.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X + 1)] != char(221))
+        {
             g_sMob3.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X + 1)] != char(221))
+        {
             g_sMob4.m_cLocation.X++;
         }
         //move left
         if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != char(221))
         {
             g_sMob.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X - 1)] != char(221))
+        {
             g_sMob1.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X - 1)] != char(221))
+        {
             g_sMob2.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X - 1)] != char(221))
+        {
             g_sMob3.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X - 1)] != char(221))
+        {
             g_sMob4.m_cLocation.X--;
         }
     }
@@ -958,43 +1053,89 @@ void moveMob()
         hard_mode = false;
         easy_mode = false;
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))
         {
             g_sMob.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y + 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221))
+        {
             g_sMob1.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y + 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221))
+        {
             g_sMob2.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y + 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221))
+        {
             g_sMob3.m_cLocation.Y++;
+        }
+        if (g_sChar.m_cLocation.Y > g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y + 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221))
+        {
             g_sMob4.m_cLocation.Y++;
         }
         //move up
         if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))
         {
             g_sMob.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y - 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221))
+        {
             g_sMob1.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y - 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221))
+        {
             g_sMob2.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y - 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221))
+        {
             g_sMob3.m_cLocation.Y--;
+        }
+        if (g_sChar.m_cLocation.Y < g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y - 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221))
+        {
             g_sMob4.m_cLocation.Y--;
         }
         //move right
         if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != char(221))
         {
             g_sMob.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X + 1)] != char(221))
+        {
             g_sMob1.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X + 1)] != char(221))
+        {
             g_sMob2.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X + 1)] != char(221))
+        {
             g_sMob3.m_cLocation.X++;
+        }
+        if (g_sChar.m_cLocation.X > g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X + 1)] != char(221))
+        {
             g_sMob4.m_cLocation.X++;
         }
         //move left
         if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != char(221))
         {
             g_sMob.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X - 1)] != char(221))
+        {
             g_sMob1.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X - 1)] != char(221))
+        {
             g_sMob2.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X - 1)] != char(221))
+        {
             g_sMob3.m_cLocation.X--;
+        }
+        if (g_sChar.m_cLocation.X < g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X - 1)] != char(221))
+        {
             g_sMob4.m_cLocation.X--;
         }
-
-
     }
 }
            

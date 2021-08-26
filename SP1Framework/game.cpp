@@ -82,6 +82,21 @@ Console g_Console(80, 25, "SP1 Framework");
     bool mob3_exists = false;
     bool mob4_exists = false;
 
+    //if mob is attacked (Reagan)
+    bool mob_attacked = false; // dummy mob will remove later
+    bool mob1_attacked = false;
+    bool mob2_attacked = false;
+    bool mob3_attacked = false;
+    bool mob4_attacked = false;
+
+
+    //if mob is attacked in second map (Reagan)
+    bool mob_attacked_2 = false; // dummy mob will remove later
+    bool mob1_attacked_2 = false;
+    bool mob2_attacked_2 = false;
+    bool mob3_attacked_2 = false;
+    bool mob4_attacked_2= false;
+
     bool char_exists = true;
     
     bool cleared = false;
@@ -1077,35 +1092,7 @@ void endgame()
         weapon2Exist = true;
         hasweapon2 = false;
         
-        g_eGameState = S_GAME1;//shows you cleared part 1 press enter to continue 
-        /*
-        if (cleared == true)
-        {
-            COORD c;
-            std::ostringstream ss;
-            ss << " ";
-            ss << "PRESS X TO PROCEED!";
-            c.X = 20;
-            c.Y = 16;
-            g_Console.writeToBuffer(c, ss.str());
-            ss.str("");
-            ss << "Congradulations on clearing the 1st part";
-            c.X = 20;
-            c.Y = 15;
-            if (g_skKeyEvent[K_RETURN].keyReleased)
-            {
-                g_sChar.m_cLocation.X = 1;
-                g_sChar.m_cLocation.Y = 1;
-                g_eGameState = S_GAME1;
-                
-            }
-           
-
-
-
-
-        }
-        */
+        g_eGameState = S_GAME1;
 
 
 
@@ -1282,6 +1269,8 @@ void weaponattacksystem()
         )
     {
         mob_exists = false;
+        mob_attacked = true; 
+        
     }
 
     if (g_sSmash.m_cLocation.X == g_sMob1.m_cLocation.X &&
@@ -1303,6 +1292,15 @@ void weaponattacksystem()
         )
     {
         mob1_exists = false;
+
+        if (cleared == false)
+        {
+            mob1_attacked = true;
+        }
+        else if (cleared == true)
+        {
+            mob1_attacked_2 = true;
+        }
     }
 
     if (g_sSmash.m_cLocation.X == g_sMob2.m_cLocation.X &&
@@ -1324,6 +1322,14 @@ void weaponattacksystem()
         )
     {
         mob2_exists = false;
+        if (cleared == false)
+        {
+            mob2_attacked = true;
+        }
+        else if (cleared == true)
+        {
+            mob2_attacked_2 = true;
+        }
     }
 
     if (g_sSmash.m_cLocation.X == g_sMob3.m_cLocation.X &&
@@ -1345,6 +1351,15 @@ void weaponattacksystem()
         )
     {
         mob3_exists = false;
+        if (cleared == false)
+        {
+            mob3_attacked = true;
+        }
+        else if (cleared == true)
+        {
+            mob3_attacked_2 = true;
+        }
+       
     }
 
     if (g_sSmash.m_cLocation.X == g_sMob4.m_cLocation.X &&
@@ -1366,6 +1381,14 @@ void weaponattacksystem()
         )
     {
         mob4_exists = false;
+        if (cleared == false)
+        {
+            mob4_attacked = true;
+        }
+        else if (cleared == true)
+        {
+            mob4_attacked_2 = true;
+        }
     }
 }
 
@@ -1528,6 +1551,15 @@ void weapon2attacksystem()
             )
         {
             mob_exists = false;
+
+            if (cleared == false)
+            {
+                mob_attacked = true;
+            }
+            if (cleared == true)
+            {
+                mob_attacked_2 = true;
+            }
         }
         if (g_sSlash.m_cLocation.X == g_sMob1.m_cLocation.X &&
             g_sSlash.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
@@ -1538,6 +1570,16 @@ void weapon2attacksystem()
             )
         {
             mob1_exists = false;
+
+
+            if (cleared == false)
+            {
+                mob1_attacked = true;
+            }
+            if (cleared == true)
+            {
+                mob1_attacked_2 = true;
+            }
         }
         if (g_sSlash.m_cLocation.X == g_sMob2.m_cLocation.X &&
             g_sSlash.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
@@ -1548,6 +1590,16 @@ void weapon2attacksystem()
             )
         {
             mob2_exists = false;
+
+
+            if (cleared == false)
+            {
+                mob2_attacked = true;
+            }
+            if (cleared == true)
+            {
+                mob2_attacked_2 = true;
+            }
         }
         if (g_sSlash.m_cLocation.X == g_sMob3.m_cLocation.X &&
             g_sSlash.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
@@ -1558,6 +1610,16 @@ void weapon2attacksystem()
             )
         {
             mob3_exists = false;
+
+
+            if (cleared == false)
+            {
+                mob3_attacked = true;
+            }
+            if (cleared == true)
+            {
+                mob3_attacked_2 = true;
+            }
         }
         if (g_sSlash.m_cLocation.X == g_sMob4.m_cLocation.X &&
             g_sSlash.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
@@ -1568,6 +1630,16 @@ void weapon2attacksystem()
             )
         {
             mob4_exists = false;
+
+
+            if (cleared == false)
+            {
+                mob4_attacked = true;
+            }
+            if (cleared == true)
+            {
+                mob4_attacked_2 = true;
+            }
         }
     }
 }
@@ -1833,19 +1905,19 @@ void mobspawn()
 { 
     if (cleared == false)
     {
-        if (g_dElapsedTime > 10)
+        if (g_dElapsedTime > 10 && mob1_attacked == false)
         {
             mob1_exists = true;
         }
-        if (g_dElapsedTime > 30)
+        if (g_dElapsedTime > 30 && mob2_attacked == false)
         {
             mob2_exists = true;
         }
-        if (g_dElapsedTime > 50)
+        if (g_dElapsedTime > 50 && mob3_attacked == false)
         {
             mob3_exists = true;
         }
-        if (g_dElapsedTime > 70)
+        if (g_dElapsedTime > 70 && mob4_attacked == false)
         {
             mob4_exists = true;
         }
@@ -1860,23 +1932,23 @@ void mobspawn()
         mob4_exists = false;
 
         //after a certain time, the ghosts will spawn again(Reagan)
-        if (g_dElapsedTime_2 > 10)
+        if (g_dElapsedTime_2 > 10 && mob1_attacked_2 == false)
         {
             mob1_exists = true;
         }
-        if (g_dElapsedTime_2 > 30)
+        if (g_dElapsedTime_2 > 30 && mob2_attacked_2 == false)
         {
             mob2_exists = true;
         }
-        if (g_dElapsedTime_2 > 50)
+        if (g_dElapsedTime_2 > 50 && mob3_attacked_2 == false)
         {
             mob3_exists = true;
         }
-        if (g_dElapsedTime_2 > 70)
+        if (g_dElapsedTime_2 > 70 && mob4_attacked_2 == false)
         {
             mob4_exists = true;
         }
-        if (g_dElapsedTime_2 > 100)
+        if (g_dElapsedTime_2 > 100 && mob_attacked_2 == false)
         {
             mob_exists = true;
         }

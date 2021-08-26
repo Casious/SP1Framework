@@ -771,6 +771,7 @@ void moveMob()
 {
     if (hard_mode == true)
     {
+        normal_mode = false;
         easy_mode = false;
         //move down
         if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
@@ -795,6 +796,7 @@ void moveMob()
     }
     else if (easy_mode == true)
     {
+        normal_mode - false;
         hard_mode = false;
 
         //move down
@@ -817,6 +819,33 @@ void moveMob()
         {
             g_sMob.m_cLocation.X--;
         }
+    }
+    else if (normal_mode == true)
+    {
+        hard_mode = false;
+        easy_mode = false;
+        //move down
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))//0.02 hardcoded for now, change to difficulty
+        {
+            g_sMob.m_cLocation.Y++;
+        }
+        //move up
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))
+        {
+            g_sMob.m_cLocation.Y--;
+        }
+        //move right
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != char(221))
+        {
+            g_sMob.m_cLocation.X++;
+        }
+        //move left
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != char(221))
+        {
+            g_sMob.m_cLocation.X--;
+        }
+
+
     }
 }
            

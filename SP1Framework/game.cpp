@@ -92,8 +92,8 @@ Console g_Console(80, 25, "SP1 Framework");
 // Input    : void
 // Output   : void
 //--------------------------------------------------------------
-<<<<<<< Updated upstream
-void init( void )
+
+/*void init(void)
 {
 
  
@@ -176,9 +176,8 @@ void init( void )
     // remember to set your keyboard handler, so that your functions can be notified of input events
     g_Console.setKeyboardHandler(keyboardHandler);
     //g_Console.setMouseHandler(mouseHandler); // mouse functions redundant in program for now (Jun Ying)
-}
-=======
->>>>>>> Stashed changes
+}*/
+
 
 void setmobmoveinterval(int interval)
 {

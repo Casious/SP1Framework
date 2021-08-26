@@ -1179,7 +1179,7 @@ void setdifficulty()//completely doesnt work? its not being initalized
 
         if (g_skKeyEvent[K_Q].keyReleased)
         {
-            setmobmoveinterval(3.0); // the interval for each movement here (Jun Ying)
+            setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
             easy_mode = true;
             modeselected = true;
             start_time = true;
@@ -1188,7 +1188,7 @@ void setdifficulty()//completely doesnt work? its not being initalized
         }
         else if (g_skKeyEvent[K_A].keyReleased)
         {
-            setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
+            setmobmoveinterval(1.5); // the interval for each movement here (Jun Ying)
             normal_mode = true;
             modeselected = true;
             start_time = true;
@@ -1197,7 +1197,7 @@ void setdifficulty()//completely doesnt work? its not being initalized
         }
         else if (g_skKeyEvent[K_Z].keyReleased)
         {
-            setmobmoveinterval(1.0); // the interval for each movement here (Jun Ying)
+            setmobmoveinterval(1); // the interval for each movement here (Jun Ying)
             hard_mode = true;
             modeselected = true;
             start_time = true;
@@ -1876,44 +1876,44 @@ void renderInputEvents()
 
 
 
-    // mouse events    
-    ss.str("");
-    ss << "Mouse position (" << g_mouseEvent.mousePosition.X << ", " << g_mouseEvent.mousePosition.Y << ")";
-    g_Console.writeToBuffer(g_mouseEvent.mousePosition, ss.str(), 0x59);
-    ss.str("");
-    switch (g_mouseEvent.eventFlags)
-    {
-    case 0:
-        if (g_mouseEvent.buttonState == FROM_LEFT_1ST_BUTTON_PRESSED)
-        {
-            ss.str("Left Button Pressed");
-            g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 1, ss.str(), 0x59);
-        }
-        else if (g_mouseEvent.buttonState == RIGHTMOST_BUTTON_PRESSED)
-        {
-            ss.str("Right Button Pressed");
-            g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 2, ss.str(), 0x59);
-        }
-        else
-        {
-            ss.str("Some Button Pressed");
-            g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 3, ss.str(), 0x59);
-        }
-        break;
-    case DOUBLE_CLICK:
-        ss.str("Double Clicked");
-        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 4, ss.str(), 0x59);
-        break;        
-    case MOUSE_WHEELED:
-        if (g_mouseEvent.buttonState & 0xFF000000)
-            ss.str("Mouse wheeled down");
-        else
-            ss.str("Mouse wheeled up");
-        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 5, ss.str(), 0x59);
-        break;
-    default:        
-        break;
-    }
+    //// mouse events    
+    //ss.str("");
+    //ss << "Mouse position (" << g_mouseEvent.mousePosition.X << ", " << g_mouseEvent.mousePosition.Y << ")";
+    //g_Console.writeToBuffer(g_mouseEvent.mousePosition, ss.str(), 0x59);
+    //ss.str("");
+    //switch (g_mouseEvent.eventFlags)
+    //{
+    //case 0:
+    //    if (g_mouseEvent.buttonState == FROM_LEFT_1ST_BUTTON_PRESSED)
+    //    {
+    //        ss.str("Left Button Pressed");
+    //        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 1, ss.str(), 0x59);
+    //    }
+    //    else if (g_mouseEvent.buttonState == RIGHTMOST_BUTTON_PRESSED)
+    //    {
+    //        ss.str("Right Button Pressed");
+    //        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 2, ss.str(), 0x59);
+    //    }
+    //    else
+    //    {
+    //        ss.str("Some Button Pressed");
+    //        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 3, ss.str(), 0x59);
+    //    }
+    //    break;
+    //case DOUBLE_CLICK:
+    //    ss.str("Double Clicked");
+    //    g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 4, ss.str(), 0x59);
+    //    break;        
+    //case MOUSE_WHEELED:
+    //    if (g_mouseEvent.buttonState & 0xFF000000)
+    //        ss.str("Mouse wheeled down");
+    //    else
+    //        ss.str("Mouse wheeled up");
+    //    g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 5, ss.str(), 0x59);
+    //    break;
+    //default:        
+    //    break;
+    //}
     
 }
 

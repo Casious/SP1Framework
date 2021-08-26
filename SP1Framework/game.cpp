@@ -269,6 +269,10 @@ void keyboardHandler(const KEY_EVENT_RECORD& keyboardEvent)
         break;
     case S_LOSE: gameplayKBHandler(keyboardEvent); // press enter to return to title screen
         break;
+    case S_WIN: gameplayKBHandler(keyboardEvent);
+        break;
+    case S_GAME1: gameplayKBHandler(keyboardEvent);
+        break;
     }
 }
 std::vector<std::vector<std::string>>mapvector;
@@ -467,6 +471,10 @@ void render()
         break;
     case S_LOSE: renderLose();
         break;
+    case S_WIN: renderWin();//clear map1
+        break;
+    case S_GAME1:renderGame1();//map 2
+        break;
     }
     renderFramerate();      // renders debug information, frame rate, elapsed time, etc
     renderHeartbeat();
@@ -531,7 +539,8 @@ void renderGame()
     mobcollide();
     setdifficulty();
     startscreen();
-    
+    cheat();
+    endgame();
 }
 void renderLose()
 {
@@ -540,6 +549,36 @@ void renderLose()
 
 
 }
+
+void renderWin()
+{
+    endgame();
+
+
+
+
+}
+
+void renderGame1()
+{
+    MapDesign();
+    renderMap();        // renders the map to the buffer first
+    renderCharacter(); // renders the character into the buffer
+    renderMobs(); //renders mob
+    renderWeapons(); // render weapon
+    renderWeaponAttack();
+    renderWeapon2Attack();
+    renderWText();
+    mobcollide();
+    setdifficulty();
+    startscreen();
+    cheat();
+
+
+
+}
+
+
 int mapWidth = 50;
 int mapHeight = 24;
 std::vector<char>mapArray;
@@ -851,8 +890,65 @@ void moveMob()
 }
            
 
+bool cleared = false;
+void endgame()
+{
+    if (g_sChar.m_cLocation.X == 49 && g_sChar.m_cLocation.Y == 11)
+    {
+        cleared = true;
+        g_eGameState = S_WIN;//shows you cleared part 1 press enter to continue 
+
+        if (g_eGameState == S_WIN)
+        {
+            COORD c;
+            std::ostringstream ss;
+            ss << " ";
+            ss << "PRESS ENTER TO PROCEED!";
+            c.X = 20;
+            c.Y = 16;
+            g_Console.writeToBuffer(c, ss.str());
+
+            if (g_skKeyEvent[K_RETURN].keyReleased)
+            {
+
+                g_eGameState = S_GAME1;
 
 
+            }
+           
+
+
+
+
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+}
+void cheat()
+{
+    if (g_eGameState = S_GAME)
+    {
+        if (g_skKeyEvent[K_Q].keyReleased)
+        {
+            g_sChar.m_cLocation.X = 48;
+            g_sChar.m_cLocation.Y = 11;
+
+
+
+        }
+    }
+}
 
 
 

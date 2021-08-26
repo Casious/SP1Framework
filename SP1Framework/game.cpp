@@ -260,7 +260,7 @@ void keyboardHandler(const KEY_EVENT_RECORD& keyboardEvent)
 {    
     switch (g_eGameState)
     {
-    case S_SPLASHSCREEN: gameplayKBHandler(keyboardEvent);// don't handle anything for the splash screen
+    case S_SPLASHSCREEN: gameplayKBHandler(keyboardEvent);//handle anything for the splash screen
         break;
     case S_GAME: gameplayKBHandler(keyboardEvent); // handle gameplay keyboard event 
         break;
@@ -401,6 +401,7 @@ void updateGame()       // gameplay logic
 
 
     moveMob();
+    setdifficulty();
 
     pickedWeapon(); //when player picks up weapon
 
@@ -614,8 +615,8 @@ void moveCharacter()
 }
 
 bool easy_mode = true;
+bool normal_mode = false;
 bool hard_mode = false;
-
 //hi
 void moveMob()
 {
@@ -722,15 +723,14 @@ void renderMobs()
         g_Console.writeToBuffer(g_sMob4.m_cLocation, (char)1, mobColor);
     }
 }
-bool easydiff = false;
-bool normdiff = false;
-bool harddiff = false;
+
 //to be changed with splash screen
 //easy, normal,hard, EXTREME
-void setdifficulty()
+void setdifficulty()//completely doesnt work? its not being initalized
 {
     if (g_eGameState == S_SPLASHSCREEN)
-    {/*
+    {
+        /*
         if (g_mouseEvent.buttonState == FROM_LEFT_1ST_BUTTON_PRESSED &&
             g_mouseEvent.mousePosition.Y == 7)
         {
@@ -746,27 +746,28 @@ void setdifficulty()
 
     //doesnt work switching to new plan
 
+
         if (g_skKeyEvent[K_Q].keyDown)
         {
-            easydiff = true;
+            easy_mode = true;
 
 
         }
-        else if (g_skKeyEvent[K_A].keyDown)
+        else if (g_skKeyEvent[K_B].keyDown)
         {
-            normdiff = true;
+            normal_mode = true;
 
         }
         else if (g_skKeyEvent[K_Z].keyDown)
         {
-            harddiff = true;
+            hard_mode = true;
 
         }
         modeselected = true;
         g_eGameState = S_GAME;
-        
 
     }
+    
 }
    
 

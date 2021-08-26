@@ -695,38 +695,12 @@ void init_firstmap(void)
     g_sMob4.m_bActive = true;
 
 
-    //location for weapon spawns
-    switch (int random = rand() % 3 + 1)
-    {
-    case 1:
-        g_sWeapon.m_cLocation.X = rand() % 10 + 3; 
-        g_sWeapon.m_cLocation.Y = 6;
-        break;
-    case 2:
-        g_sWeapon.m_cLocation.X = rand() % 4 + 5;
-        g_sWeapon.m_cLocation.Y = 19;
-        break;
-    case 3:
-        g_sWeapon.m_cLocation.X = 14;
-        g_sWeapon.m_cLocation.Y = rand() % 6 + 8;
-        break;
-    }
+    //location for weapon
+    g_sWeapon.m_cLocation.X = 5; // Jun Ying spawning WIP (fixed position for now)
+    g_sWeapon.m_cLocation.Y = 4;
 
-    switch (int random2 = rand() % 3 + 1)
-    {
-    case 1:
-        g_sWeapon2.m_cLocation.X = 21;
-        g_sWeapon2.m_cLocation.Y = rand() % 6 + 16;
-        break;
-    case 2:
-        g_sWeapon2.m_cLocation.X = 23;
-        g_sWeapon2.m_cLocation.Y = rand() % 4 + 8;
-        break;
-    case 3:
-        g_sWeapon2.m_cLocation.X = rand() % 3 + 23;
-        g_sWeapon2.m_cLocation.Y = rand() % 4 + 13;
-        break;
-    }
+    g_sWeapon2.m_cLocation.X = 14; // Jun Ying spawning WIP (fixed position for now)
+    g_sWeapon2.m_cLocation.Y = 15;
 
     // g_sWeapon's attack position init 
     g_sSmash.m_cLocation.X = g_sChar.m_cLocation.X + 1; // right
@@ -821,6 +795,7 @@ void moveCharacter()
 bool easy_mode = false;
 bool normal_mode = false;
 bool hard_mode = false;
+
 //hi
 void moveMob()
 {
@@ -1093,6 +1068,13 @@ void moveMob()
         }
     }
 }
+ 
+
+
+
+           
+
+
 
 void endgame()
 {
@@ -1700,7 +1682,9 @@ void mobcollide()// working on loops now
                 mob2_exists = false;
                 mob3_exists = false;
                 mob4_exists = false;
-                g_eGameState = S_LOSE;//works need to import text 
+
+                //game over
+                g_eGameState = S_LOSE;
                 if (g_eGameState == S_LOSE)
                 {
                     
@@ -1708,15 +1692,6 @@ void mobcollide()// working on loops now
                     std::ostringstream ss;
                     /*
                     prints you died
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     */
                   
                     ss << " ";
@@ -1741,7 +1716,10 @@ void mobcollide()// working on loops now
 \|___|/                                                        \|_________|         */
 
                         init_firstmap();
-                        
+
+                        weapon2Exist = true;
+                        weaponExist = true;
+
                         g_dElapsedTime = 0;
 
                         //if you die, restart everything(Reagan)
@@ -1970,7 +1948,7 @@ void mobspawn()
         {
             mob4_exists = true;
         }
-        if (g_dElapsedTime_2 > 100 && mob_attacked_2 == false)
+        if (g_dElapsedTime_2 > 0 && mob_attacked_2 == false)
         {
             mob_exists = true;
         }

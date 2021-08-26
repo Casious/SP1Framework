@@ -21,6 +21,14 @@ double  g_dElapsedTime;
 double  g_dDeltaTime;
 double g_dHeartBeat;
 double g_d30Timer;
+
+
+
+
+double g_dElapsedTime_2;
+
+
+
 float movepace; // how many frames of movement for the mob
 float movetimer; // how fast the mob moves each interval
 SKeyEvent g_skKeyEvent[K_COUNT];
@@ -35,10 +43,6 @@ SGameMob g_sMob1;
 SGameMob g_sMob2;
 SGameMob g_sMob3;
 SGameMob g_sMob4;
-
-
-
-
 
 //weapon struct (Jun Ying)
 SGameWeapon g_sWeapon;
@@ -77,9 +81,26 @@ Console g_Console(80, 25, "SP1 Framework");
     bool mob2_exists = false;
     bool mob3_exists = false;
     bool mob4_exists = false;
+
+    //if mob is attacked (Reagan)
+    bool mob_attacked = false; // dummy mob will remove later
+    bool mob1_attacked = false;
+    bool mob2_attacked = false;
+    bool mob3_attacked = false;
+    bool mob4_attacked = false;
+
+
+    //if mob is attacked in second map (Reagan)
+    bool mob_attacked_2 = false; // dummy mob will remove later
+    bool mob1_attacked_2 = false;
+    bool mob2_attacked_2 = false;
+    bool mob3_attacked_2 = false;
+    bool mob4_attacked_2= false;
+
     bool char_exists = true;
     
-
+    bool cleared = false;
+    bool pt1cleared = false;
     bool start_time = false;
 
     // check for most recent key input
@@ -91,9 +112,6 @@ Console g_Console(80, 25, "SP1 Framework");
 // Input    : void
 // Output   : void
 //--------------------------------------------------------------
-
-
-
 
 void setmobmoveinterval(int interval)
 {
@@ -306,7 +324,7 @@ bool after_cutscene = false;
 
 void update(double dt)
 {
-    if (start_time == true)
+    if (start_time == true )
     {
         
         // get the delta time
@@ -316,6 +334,13 @@ void update(double dt)
         //modifies game diff 
         g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
         
+    }
+
+    if (cleared == true)
+    {
+        // get the delta time
+        g_dElapsedTime_2 += dt;
+
     }
 
     //after cutscene, the game starts (Reagan)
@@ -341,11 +366,6 @@ bool modeselected = false;
 void splashScreenWait()    // waits for time to pass in splash screen
 {//if mode seleceted == true g_eGamestate
     
-    /*if (g_dElapsedTime > 3) // wait for 3 seconds to switch to game mode, else do nothing
-    {
-        g_eGameState = S_GAME;
-    }*/
-    
     setdifficulty();
     startscreen();
 
@@ -355,20 +375,16 @@ void splashScreenWait()    // waits for time to pass in splash screen
 
 void updateGame()       // gameplay logic
 {
+
     if (after_cutscene == true)
     {
-        processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
-
-    
-        moveCharacter();    // moves the character, collision detection, physics, etc
-                            // sound can be played here too.
-
+         
         mobspawn();
-
-        moveMob();
-
+       
+        processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
+        moveCharacter();    // moves the character, collision detection, physics, etc
         
-
+        moveMob();
         pickedWeapon(); //when player picks up weapon
     }
 }
@@ -482,10 +498,6 @@ void renderLose()
 void renderWin()
 {
     endgame();
-
-
-
-
 }
 
 void renderGame1()
@@ -501,9 +513,6 @@ void renderGame1()
     mobcollide();
     startscreen();
     cheat();
-
-
-
 }
 
 
@@ -548,9 +557,6 @@ void MapDesign()
     maps.close();
 }
 
-
-
-
 void renderMap()
 {
 
@@ -578,6 +584,7 @@ void renderMap()
         }  
     }
 } 
+
 void startscreen()
 {/*
     std::ifstream maze;
@@ -655,84 +662,10 @@ void renderMap2()
 }
 
 
-
-
-
-
-
-
-
-
-
-//choose spawn points (Reagan)
-void spawn_points(int point_x, int point_y, bool active)
+void init_firstmap(void)
 {
     //to help with mob spawning
     srand((unsigned)time(0));
-
-    int number_generator = rand() % 10+ 1;
-    switch (number_generator)
-    {
-    case 1:
-        point_x = 25;
-        point_y = 5;
-        active = true;
-    case 2:
-        point_x = 35;
-        point_y = 11;
-        active = true;
-    case 3:
-        point_x = 27;
-        point_y = 20;
-        active = true;
-    case 4:
-        point_x = 47;
-        point_y = 5;
-        active = true;
-    case 5:
-        point_x = 1;
-        point_y = 22;
-        active = true;
-    case 6:
-        point_x = 46;
-        point_y = 18;
-        active = true;
-    case 7:
-        point_x = 18;
-        point_y = 9;
-        active = true;
-    case 8:
-        point_x = 18;
-        point_y = 4;
-        active = true;
-    case 9:
-        point_x = 24;
-        point_y = 16;
-        active = true;
-    case 10:
-        point_x = 31;
-        point_y = 20;
-        active = true;
-    default:
-        break;
-    }
-
-    /*return point_x;
-    return point_y;
-    return active;*/
-}
-
-void init(void)
-{
-
-    
-
-    //to help with mob spawning
-    srand((unsigned)time(0));
-    
-
-    // Set precision for floating point output
-    g_dElapsedTime = 0.0;
 
     // sets the initial state for the game
     g_eGameState = S_SPLASHSCREEN;
@@ -838,10 +771,6 @@ void init(void)
     g_Console.setMouseHandler(mouseHandler);
 }
 
-
-
-
-
 void renderstart()
 {/*
     COORD c;
@@ -900,7 +829,7 @@ void moveMob()
         normal_mode = false;
         easy_mode = false;
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 )//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
@@ -921,7 +850,7 @@ void moveMob()
             g_sMob4.m_cLocation.Y++;
         }
         //move up
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 )
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)
         {
             g_sMob.m_cLocation.Y--;
         }
@@ -942,7 +871,7 @@ void moveMob()
             g_sMob4.m_cLocation.Y--;
         }
         //move right
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 )
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
         {
             g_sMob.m_cLocation.X++;
         }
@@ -963,7 +892,7 @@ void moveMob()
             g_sMob4.m_cLocation.X++;
         }
         //move left
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 )
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
         {
             g_sMob.m_cLocation.X--;
         }
@@ -1164,10 +1093,7 @@ void moveMob()
         }
     }
 }
-           
 
-bool cleared = false;
-bool pt1cleared = false;
 void endgame()
 {
     if (g_sChar.m_cLocation.X == 49 && g_sChar.m_cLocation.Y == 11)
@@ -1176,53 +1102,20 @@ void endgame()
         g_sChar.m_cLocation.X = 1;
         g_sChar.m_cLocation.Y = 2;
         
+        cleared = true;
         
         weaponExist = true;
         hasweapon = false;
         weapon2Exist = true;
         hasweapon2 = false;
         
-        g_eGameState = S_GAME1;//shows you cleared part 1 press enter to continue 
-        /*
-        if (cleared == true)
-        {
-            COORD c;
-            std::ostringstream ss;
-            ss << " ";
-            ss << "PRESS X TO PROCEED!";
-            c.X = 20;
-            c.Y = 16;
-            g_Console.writeToBuffer(c, ss.str());
-            ss.str("");
-            ss << "Congradulations on clearing the 1st part";
-            c.X = 20;
-            c.Y = 15;
-            if (g_skKeyEvent[K_RETURN].keyReleased)
-            {
-                g_sChar.m_cLocation.X = 1;
-                g_sChar.m_cLocation.Y = 1;
-                g_eGameState = S_GAME1;
-            }
-           
-
-
-
-
-        }
-        */
+        g_eGameState = S_GAME1;
 
 
 
 
 
     }
-
-
-
-
-
-
-
 }
 void cheat()
 {
@@ -1346,16 +1239,6 @@ void setdifficulty()//completely doesnt work? its not being initalized
     
 }
    
-
-
-
-
-
-
-
-
-
-
 void renderWeapons() // Jun Ying
 {
     // Colour for the weapon symbol
@@ -1403,6 +1286,8 @@ void weaponattacksystem()
         )
     {
         mob_exists = false;
+        mob_attacked = true; 
+        
     }
 
     if (g_sSmash.m_cLocation.X == g_sMob1.m_cLocation.X &&
@@ -1424,6 +1309,15 @@ void weaponattacksystem()
         )
     {
         mob1_exists = false;
+
+        if (cleared == false)
+        {
+            mob1_attacked = true;
+        }
+        else if (cleared == true)
+        {
+            mob1_attacked_2 = true;
+        }
     }
 
     if (g_sSmash.m_cLocation.X == g_sMob2.m_cLocation.X &&
@@ -1445,6 +1339,14 @@ void weaponattacksystem()
         )
     {
         mob2_exists = false;
+        if (cleared == false)
+        {
+            mob2_attacked = true;
+        }
+        else if (cleared == true)
+        {
+            mob2_attacked_2 = true;
+        }
     }
 
     if (g_sSmash.m_cLocation.X == g_sMob3.m_cLocation.X &&
@@ -1466,6 +1368,15 @@ void weaponattacksystem()
         )
     {
         mob3_exists = false;
+        if (cleared == false)
+        {
+            mob3_attacked = true;
+        }
+        else if (cleared == true)
+        {
+            mob3_attacked_2 = true;
+        }
+       
     }
 
     if (g_sSmash.m_cLocation.X == g_sMob4.m_cLocation.X &&
@@ -1487,6 +1398,14 @@ void weaponattacksystem()
         )
     {
         mob4_exists = false;
+        if (cleared == false)
+        {
+            mob4_attacked = true;
+        }
+        else if (cleared == true)
+        {
+            mob4_attacked_2 = true;
+        }
     }
 }
 
@@ -1649,6 +1568,15 @@ void weapon2attacksystem()
             )
         {
             mob_exists = false;
+
+            if (cleared == false)
+            {
+                mob_attacked = true;
+            }
+            if (cleared == true)
+            {
+                mob_attacked_2 = true;
+            }
         }
         if (g_sSlash.m_cLocation.X == g_sMob1.m_cLocation.X &&
             g_sSlash.m_cLocation.Y == g_sMob1.m_cLocation.Y ||
@@ -1659,6 +1587,16 @@ void weapon2attacksystem()
             )
         {
             mob1_exists = false;
+
+
+            if (cleared == false)
+            {
+                mob1_attacked = true;
+            }
+            if (cleared == true)
+            {
+                mob1_attacked_2 = true;
+            }
         }
         if (g_sSlash.m_cLocation.X == g_sMob2.m_cLocation.X &&
             g_sSlash.m_cLocation.Y == g_sMob2.m_cLocation.Y ||
@@ -1669,6 +1607,16 @@ void weapon2attacksystem()
             )
         {
             mob2_exists = false;
+
+
+            if (cleared == false)
+            {
+                mob2_attacked = true;
+            }
+            if (cleared == true)
+            {
+                mob2_attacked_2 = true;
+            }
         }
         if (g_sSlash.m_cLocation.X == g_sMob3.m_cLocation.X &&
             g_sSlash.m_cLocation.Y == g_sMob3.m_cLocation.Y ||
@@ -1679,6 +1627,16 @@ void weapon2attacksystem()
             )
         {
             mob3_exists = false;
+
+
+            if (cleared == false)
+            {
+                mob3_attacked = true;
+            }
+            if (cleared == true)
+            {
+                mob3_attacked_2 = true;
+            }
         }
         if (g_sSlash.m_cLocation.X == g_sMob4.m_cLocation.X &&
             g_sSlash.m_cLocation.Y == g_sMob4.m_cLocation.Y ||
@@ -1689,6 +1647,16 @@ void weapon2attacksystem()
             )
         {
             mob4_exists = false;
+
+
+            if (cleared == false)
+            {
+                mob4_attacked = true;
+            }
+            if (cleared == true)
+            {
+                mob4_attacked_2 = true;
+            }
         }
     }
 }
@@ -1707,6 +1675,7 @@ void renderWeapon2Attack()
 
 
 }
+
 void mobcollide()// working on loops now
 {
     if (mob_exists == true)
@@ -1771,10 +1740,15 @@ void mobcollide()// working on loops now
 |\___/ /        \|_______|\|_______|        \|_______|\|_______|\_________\|_______|
 \|___|/                                                        \|_________|         */
 
-                        g_sMob.m_cLocation.X = 10;
-                        g_sMob.m_cLocation.Y = 10;
-                        g_sChar.m_cLocation.X = 1;
-                        g_sChar.m_cLocation.Y = 1;
+                        init_firstmap();
+                        
+                        g_dElapsedTime = 0;
+
+                        //if you die, restart everything(Reagan)
+                        if (cleared == true)
+                        {
+                            cleared = false;
+                        }
                         
                         g_eGameState = S_GAME;
                     }
@@ -1808,12 +1782,6 @@ void mobcollide()// working on loops now
         }
     }
 }
-
-
-
-
-
-
 
 void endscreen()
 {
@@ -1886,6 +1854,7 @@ void renderWText()
         }
     }
 
+    //if weapon is equipped
     if (hasweapon == true)
     {
         COORD c;
@@ -1953,26 +1922,61 @@ void renderFramerate()
     
 }
 
+//after a certain time, these mobs will spawn
 void mobspawn()
 { 
-    if (g_dElapsedTime > 10)
-     {
-        mob1_exists = true;
-     }
-    if (g_dElapsedTime > 30)
+    if (cleared == false)
     {
-       mob2_exists = true;
+        if (g_dElapsedTime > 10 && mob1_attacked == false)
+        {
+            mob1_exists = true;
+        }
+        if (g_dElapsedTime > 30 && mob2_attacked == false)
+        {
+            mob2_exists = true;
+        }
+        if (g_dElapsedTime > 50 && mob3_attacked == false)
+        {
+            mob3_exists = true;
+        }
+        if (g_dElapsedTime > 70 && mob4_attacked == false)
+        {
+            mob4_exists = true;
+        }
     }
-    if (g_dElapsedTime > 50)
+    //if cleared a level, the game will clear all gthosts(Reagan)
+    if (cleared == true)
     {
-       mob3_exists = true;
-    }
-    if (g_dElapsedTime > 70)
-    {
-       mob4_exists = true;
-    }
+        mob_exists = false;
+        mob1_exists = false;
+        mob2_exists = false;
+        mob3_exists = false;
+        mob4_exists = false;
 
+        //after a certain time, the ghosts will spawn again(Reagan)
+        if (g_dElapsedTime_2 > 10 && mob1_attacked_2 == false)
+        {
+            mob1_exists = true;
+        }
+        if (g_dElapsedTime_2 > 30 && mob2_attacked_2 == false)
+        {
+            mob2_exists = true;
+        }
+        if (g_dElapsedTime_2 > 50 && mob3_attacked_2 == false)
+        {
+            mob3_exists = true;
+        }
+        if (g_dElapsedTime_2 > 70 && mob4_attacked_2 == false)
+        {
+            mob4_exists = true;
+        }
+        if (g_dElapsedTime_2 > 100 && mob_attacked_2 == false)
+        {
+            mob_exists = true;
+        }
+    }
 }
+
 
 
 // this is an example of how you would use the input events

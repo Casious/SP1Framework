@@ -1331,38 +1331,60 @@ void mobcollide()// working on loops now
                 g_eGameState = S_LOSE;//works need to import text 
                 if (g_eGameState == S_LOSE)
                 {
-                    /*COORD c;
+                    COORD c;
                     std::ostringstream ss;
+                    /*
+                    prints you died
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    */
                   
                     ss << " ";
-                    ss << "PRESS SPACE TO CONTINUE";
-                    c.X = 25;
+                    ss << "PRESS ENTER TO RESTART AND SPACE TO QUIT!";
+                    c.X = 20;
                     c.Y = 16;
                     g_Console.writeToBuffer(c, ss.str());
-                    */
+                    
                     // adding end game and restart func
                     //g_bQuitGame = true; // ends game
-                    if (g_skKeyEvent[K_RETURN].keyReleased)
+                    if (g_skKeyEvent[K_RETURN].keyReleased)//this is go back to game(restart)
                     {   // add in u lose
 
                         /*
-  ___    ___ ________  ___  ___          ___       ________  ________  _______      
- |\  \  /  /|\   __  \|\  \|\  \        |\  \     |\   __  \|\   ____\|\  ___ \     
- \ \  \/  / | \  \|\  \ \  \\\  \       \ \  \    \ \  \|\  \ \  \___|\ \   __/|    
-  \ \    / / \ \  \\\  \ \  \\\  \       \ \  \    \ \  \\\  \ \_____  \ \  \_|/__  
-   \/  /  /   \ \  \\\  \ \  \\\  \       \ \  \____\ \  \\\  \|____|\  \ \  \_|\ \ 
+  ___    ___ ________  ___  ___          ___       ________  ________  _______
+ |\  \  /  /|\   __  \|\  \|\  \        |\  \     |\   __  \|\   ____\|\  ___ \
+ \ \  \/  / | \  \|\  \ \  \\\  \       \ \  \    \ \  \|\  \ \  \___|\ \   __/|
+  \ \    / / \ \  \\\  \ \  \\\  \       \ \  \    \ \  \\\  \ \_____  \ \  \_|/__
+   \/  /  /   \ \  \\\  \ \  \\\  \       \ \  \____\ \  \\\  \|____|\  \ \  \_|\ \
  __/  / /      \ \_______\ \_______\       \ \_______\ \_______\____\_\  \ \_______\
 |\___/ /        \|_______|\|_______|        \|_______|\|_______|\_________\|_______|
 \|___|/                                                        \|_________|         */
 
-
-                        g_eGameState = S_SPLASHSCREEN;//need to reset game screen weird ass looping bug
-
+                        g_sMob.m_cLocation.X = 10;
+                        g_sMob.m_cLocation.Y = 10;
+                        g_sChar.m_cLocation.X = 1;
+                        g_sChar.m_cLocation.Y = 1;
+                        g_eGameState = S_GAME;
+                    }
+                    if (g_skKeyEvent[K_SPACE].keyReleased)//ends programme
+                    {
+                        g_bQuitGame = true;
+                    
+                    
+                    
+                    }
                        
 
 
 
-                    }
+                    
                    
                     
 

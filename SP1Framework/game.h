@@ -48,6 +48,7 @@ enum EGAMESTATES
     S_GAME,
     S_COUNT,
     S_CHOSEN,
+    S_LOSE,
 };
 
 // struct for the game character
@@ -93,6 +94,7 @@ void processUserInput();    // checks if you should change states or do somethin
 void clearScreen();         // clears the current screen and draw from scratch 
 void renderSplashScreen();  // renders the splash screen
 void renderGame();          // renders the game stuff
+void renderLose();           // renders lost screen
 void MapDesign();
 void renderMap();       // renders the map to the buffer first
 void renderMobs();

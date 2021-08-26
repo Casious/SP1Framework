@@ -1068,6 +1068,7 @@ void endgame()
         g_sChar.m_cLocation.X = 1;
         g_sChar.m_cLocation.Y = 2;
         
+        cleared = true;
         
         weaponExist = true;
         hasweapon = false;

@@ -466,6 +466,7 @@ void render()
     }
     renderFramerate();      // renders debug information, frame rate, elapsed time, etc
     renderHeartbeat();
+    render30sTimer();
     renderInputEvents();    // renders status of input events
     renderToScreen();    // dump the contents of the buffer to the screen, one frame worth of game
 }
@@ -958,6 +959,7 @@ void weaponattacksystem()
     }
 }
 
+
 void renderWeaponAttack()
 {
     updateweaponattackpositions();
@@ -1295,7 +1297,7 @@ void renderWText()
 void renderHeartbeat()
 {
     COORD c;
-    // displays the framerate
+    // displays the mob movement interval
     std::ostringstream ss;
     ss << std::fixed << std::setprecision(3);
     ss << "Heartbeat:" << g_dHeartBeat;
@@ -1307,7 +1309,7 @@ void renderHeartbeat()
 void render30sTimer()
 {
     COORD c;
-    // displays the framerate
+    // displays the mob spawning
     std::ostringstream ss;
     ss << std::fixed << std::setprecision(3);
     ss << "30sTimer:" << g_d30Timer;

@@ -1,0 +1,248 @@
+Author : blaster8524 Commit : deleting my log first to try again
+Author : blaster8524 Commit : my git log (i think)
+Author : Casious Commit : Added a readme for controls and how to play
+Author : Catclysmisnotavailable Commit : fixed bug
+Author : Catclysmisnotavailable Commit : updated logic for mob collide
+Author : Catclysmisnotavailable Commit : changed ui for 1st screen
+Author : ReaganTeng Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : ReaganTeng Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : added working win func
+Author : Catclysmisnotavailable Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : updated mob movement (mob moves only when spawned) and changed character and mob looks
+Author : Catclysmisnotavailable Commit : Update game.h
+Author : Catclysmisnotavailable Commit : added win text
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : Random weapon spawning
+Author : Casious Commit : removed github comment
+Author : ReaganTeng Commit : Update game.cpp
+Author : Casious Commit : removed comments
+Author : ReaganTeng Commit : Update game.cpp
+Author : Casious Commit : removed github's comments
+Author : ReaganTeng Commit : Update game.cpp
+Author : ReaganTeng Commit : added new elapsed time
+Author : ReaganTeng Commit : added new elapsed time
+Author : blaster8524 Commit : Individual mob movement towards player
+Author : Catclysmisnotavailable Commit : made bool for mob despawns
+Author : Catclysmisnotavailable Commit : mobs now die correctly
+Author : Catclysmisnotavailable Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Catclysmisnotavailable Commit : done weapon respawn
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : Update interval for mob movement
+Author : ReaganTeng Commit : Update game.cpp
+Author : ReaganTeng Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : changed map sequence
+Author : Catclysmisnotavailable Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Catclysmisnotavailable Commit : fixed error made from merge
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : Updating mob movement based on difficulty
+Author : Catclysmisnotavailable Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : push
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : Bringing back mouse function for reagan's debugging
+Author : Casious Commit : removed break
+Author : Casious Commit : ??
+Author : Casious Commit : ???
+Author : Casious Commit : ???
+Author : Catclysmisnotavailable Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Catclysmisnotavailable Commit : added new keys
+Author : ReaganTeng Commit : Update game.cpp
+Author : ReaganTeng Commit : Update game.cpp
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : removing of mouse UI and timer displays (not needed)
+Author : ReaganTeng Commit : Added switch staetment for random spawn
+Author : Casious Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Casious Commit : map2 colour
+Author : Catclysmisnotavailable Commit : dummy push
+Author : Catclysmisnotavailable Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Catclysmisnotavailable Commit : made changes
+Author : blaster8524 Commit : Clearing mouse events on the console (not needed)
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : Cleanup of code
+Author : Catclysmisnotavailable Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Catclysmisnotavailable Commit : made map 2 transition
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : Changed Player initial spawning position
+Author : Catclysmisnotavailable Commit : added multiple funcs for different maps still bugged as of now
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : Update to weapon render and beam collision on walls
+Author : Casious Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Casious Commit : game.h update new lvl
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : 30s timer for david and change to comments
+Author : Catclysmisnotavailable Commit : fixes loop bug
+Author : Catclysmisnotavailable Commit : added normal diff mob movement
+Author : Casious Commit : map2
+Author : Casious Commit : new map
+Author : ReaganTeng Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : dummy push
+Author : Catclysmisnotavailable Commit : fixed errors
+Author : Catclysmisnotavailable Commit : fixed issue where u cannot compile
+Author : Catclysmisnotavailable Commit : added print txt file(expriment)
+Author : ReaganTeng Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : removed dupe
+Author : Catclysmisnotavailable Commit : added lose screen(bugged still fixed)
+Author : Casious Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Casious Commit : map
+Author : blaster8524 Commit : 30s timer for david mob spawning
+Author : blaster8524 Commit : Revert "Revert "Added text boxes""
+Author : blaster8524 Commit : Revert "Added text boxes"
+Author : blaster8524 Commit : Revert "Merge for mob movement"
+Author : blaster8524 Commit : Merge for mob movement
+Author : ReaganTeng Commit : Added text boxes
+Author : Casious Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Catclysmisnotavailable Commit : added new screens for losing
+Author : Casious Commit : txt files
+Author : Catclysmisnotavailable Commit : added fix for selection
+Author : Catclysmisnotavailable Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : updated game.cpp
+Author : Catclysmisnotavailable Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : added keys
+Author : blaster8524 Commit : Weapon 2 beam collision (beam does not pass through walls)
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : Changing buffer colour and tweaking beam collision for 2nd weapon
+Author : Casious Commit : mob movement
+Author : Catclysmisnotavailable Commit : Update game.cpp
+Author : ReaganTeng Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : fixxed 48 errors
+Author : Catclysmisnotavailable Commit : Update game.cpp
+Author : ReaganTeng Commit : Update game.cpp
+Author : ReaganTeng Commit : Update game.cpp
+Author : Casious Commit : Update game.cpp
+Author : Casious Commit : Update game.cpp
+Author : Casious Commit : Update game.cpp
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : mob move change
+Author : ReaganTeng Commit : Update game.cpp
+Author : blaster8524 Commit : tweak to interval for mob movement
+Author : Catclysmisnotavailable Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Catclysmisnotavailable Commit : changed splash screen ui
+Author : Casious Commit : Update game.cpp
+Author : Casious Commit : Update game.cpp
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : Setting mob's movement interval (for difficulty selector)
+Author : ReaganTeng Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Casious Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Casious Commit : map csv
+Author : ReaganTeng Commit : Added difficulty bool
+Author : blaster8524 Commit : Removing redundant timer
+Author : blaster8524 Commit : Updating Weapon2 Attack on different mobs
+Author : blaster8524 Commit : Mob moves every 2 seconds
+Author : Casious Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Casious Commit : map WIP
+Author : Casious Commit : Add files via upload
+Author : Casious Commit : Add files via upload
+Author : Casious Commit : Add files via upload
+Author : Casious Commit : Add files via upload
+Author : ReaganTeng Commit : Made a readme file
+Author : Casious Commit : Add files via upload
+Author : Casious Commit : changes
+Author : Casious Commit : vbvb
+Author : Casious Commit : changed stuff for map but still not done
+Author : blaster8524 Commit : Weapon2
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : Weapon2 should be done
+Author : Casious Commit : cv
+Author : Casious Commit : stuff
+Author : blaster8524 Commit : Weapon 2
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : 2nd Weapon implementation
+Author : ReaganTeng Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : ReaganTeng Commit : Added collision to maze
+Author : Casious Commit : Add files via upload
+Author : Casious Commit : map
+Author : Casious Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Casious Commit : map
+Author : blaster8524 Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : blaster8524 Commit : attack
+Author : Catclysmisnotavailable Commit : added modspawn but 3 4 5 does spawn correctly yet
+Author : Catclysmisnotavailable Commit : there should be a ghost mob locations after mob dies
+Author : Catclysmisnotavailable Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Catclysmisnotavailable Commit : programm should not randomly crash after mob dying
+Author : Casious Commit : Merge branch 'master' of https://github.com/Casious/SP1Framework
+Author : Casious Commit : ..
+Author : Casious Commit : ??
+Author : Catclysmisnotavailable Commit : added end game func when losing
+Author : ReaganTeng Commit : Merged my code with others
+Author : Catclysmisnotavailable Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : fixed broken in game.cpp
+Author : Casious Commit : remove comments
+Author : Catclysmisnotavailable Commit : Update game.cpp
+Author : blaster8524 Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : added mob collision
+Author : Casious Commit : s
+Author : blaster8524 Commit : Update game.cpp
+Author : blaster8524 Commit : attack
+Author : ReaganTeng Commit : Added more mobs, added booleans  and functions for those mobs to appear
+Author : ReaganTeng Commit : added mob exists function, make mobs disappear
+Author : blaster8524 Commit : attack mechanic
+Author : blaster8524 Commit : Weapon attack
+Author : Casious Commit : Add files via upload
+Author : Catclysmisnotavailable Commit : updated time and fps
+Author : Casious Commit : timing
+Author : blaster8524 Commit : Weapon symbol and colour
+Author : blaster8524 Commit : uncommented space function and added bool if player has a weapon
+Author : ReaganTeng Commit : Added bool weaponExist, remove tile of colours, added renderWeapon and pickedWeapon
+Author : Catclysmisnotavailable Commit : updated console for time
+Author : Casious Commit : recommit
+Author : Casious Commit : removed comments
+Author : blaster8524 Commit : Update game.cpp
+Author : Catclysmisnotavailable Commit : added import map
+Author : Catclysmisnotavailable Commit : added mob
+Author : ReaganTeng Commit : Update game.cpp
+Author : blaster8524 Commit : Added in some basic init stuff for weapon
+Author : ReaganTeng Commit : dvd
+Author : ReaganTeng Commit : Update game.cpp
+Author : ReaganTeng Commit : Update game.cpp
+Author : ReaganTeng Commit : Update game.cpp
+Author : Casious Commit : added comments
+Author : ReaganTeng Commit : Empty level
+Author : Casious Commit : 1st commit
+Author : SIM TZE JAN Commit : added winmm.lib to the dependency in Release mode
+Author : SIM TZE JAN Commit : Updated the framework to show how event input handlers work Added a keyboard input handler Added a mouse input handler Sample code on how to interpret input events.
+Author : SIM TZE JAN Commit : Implemented Event based input for keyboard and mouse If a keyboard or mouse event has triggered in the console, it will call the respective keyboard or mouse handler set by the user.
+Author : Sim Tze Jan Commit : Added in a parameter in writeToBuffer to indicate the length of the string to write. Without this parameter, the function will write until the null character.
+Author : SIM TZE JAN Commit : Optimise the writeToBuffer function so that it does not need to check the length of the string. clearBuffer now access the memory location once, instead of twice. writeToConsole does not need to create temporary variables anymore.
+Author : SIM TZE JAN Commit : Updated project file for Visual Studio 2013
+Author : Sim Tze Jan Commit : Updated some tips
+Author : Sim Tze Jan Commit : Update Readme.md
+Author : unknown Commit : Fixed a bug in resizing the console window size. Now the console size scales beautifully.
+Author : Sim Tze Jan Commit : Merge branch 'master' of https://github.com/tzejan/SP1Framework
+Author : Sim Tze Jan Commit : Bug fix in the calculation of the last index in the screen buffer
+Author : tzejan Commit : Update README.md
+Author : Sim Tze Jan Commit : Added a better example of what is expected in the update and render loops Added a debouncing code. To prevent accidental trigger of actions because of high framerates and slow human reflexes.
+Author : Sim Tze Jan Commit : renamed console variable
+Author : Sim Tze Jan Commit : Merge branch 'writeToBuffer'
+Author : unknown Commit : Added in comments by Victor
+Author : tzejan Commit : Update README.md
+Author : tzejan Commit : Update README.md
+Author : Sim Tze Jan Commit : Added in a function to set the console font
+Author : Sim Tze Jan Commit : Added overload functions for write to buffer so that it does not need to take in a COORD type
+Author : Sim Tze Jan Commit : put the codes into their respective functions added more comments to guide users of this framework
+Author : Sim Tze Jan Commit : Write to buffer functions are now in the console object Added more comments and description to help students with the framework
+Author : Sim Tze Jan Commit : Merge branch 'writeToBuffer' of https://github.com/tzejan/SP1Framework into writeToBuffer
+Author : Sim Tze Jan Commit : Pass the C++ string as a reference instead
+Author : Jan Sim Commit : Reuse code for writing to buffer Fixed a bug in writing buffer to console output
+Author : tzejan Commit : Update README.md
+Author : tzejan Commit : Update README.md
+Author : Jan Sim Commit : Added default parameter for attribute Put in sample code
+Author : Sim Tze Jan Commit : A faster console output No more flickers!
+Author : Sim Tze Jan Commit : test writing to a buffer then displaying it on the console
+Author : tzejan Commit : Update README.md
+Author : tzejan Commit : Updated readme
+Author : Sim Tze Jan Commit : Merge branch 'master' of https://github.com/tzejan/SP1Framework into SetConsoleSize
+Author : Sim Tze Jan Commit : Added a function to set the size of the console
+Author : tzejan Commit : Update README.md
+Author : Sim Tze Jan Commit : Added the output for elapsed time Added a delta time variable
+Author : Sim Tze Jan Commit : Merge branch 'master' of https://github.com/tzejan/SP1Framework
+Author : Sim Tze Jan Commit : Comment about potential bug
+Author : Jan Sim Commit : Update gotoXY function to take in COORD Implemented a function to detect keypress Gets the size of the console for limiting character movement purposes Implement a simple character movement with arrow key presses Renders a test coloured text Reduced frame rate to 5FPS Introduced beep sound Changed game loop to loop with a flag instead of returning from function Removed commented out code
+Author : Jan Sim Commit : Sample of getting the state of keys
+Author : Jan Sim Commit : Merge branch 'master' of https://github.com/tzejan/SP1Framework
+Author : Sim Tze Jan Commit : Added delta time to update function Used FPS to calculate frame time Used proper naming convention for global variables Updated timer class to keep track of elapsed time
+Author : Sim Tze Jan Commit : Added timer windows console stuff game loop update loop render loop
+Author : Jan Sim Commit : Updated ignore files
+Author : Jan Sim Commit : Merge branch 'master' of https://github.com/tzejan/SP1Framework
+Author : Jan Sim Commit : First commit for the SP1 Framework
+Author : tzejan Commit : Initial commit

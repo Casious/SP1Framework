@@ -1749,7 +1749,7 @@ void mobcollide()// working on loops now
             char_exists == false;
         }
     }
-    if (char_exists == true)
+    if (char_exists == false)
     {
         mob1_exists = false;
         mob2_exists = false;

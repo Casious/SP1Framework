@@ -1058,8 +1058,6 @@ void endgame()
                 g_sChar.m_cLocation.X = 1;
                 g_sChar.m_cLocation.Y = 1;
                 g_eGameState = S_GAME1;
-
-                break;
             }
            
 

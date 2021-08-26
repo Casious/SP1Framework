@@ -561,8 +561,8 @@ void renderWin()
 
 void renderGame1()
 {
-    MapDesign();
-    renderMap();        // renders the map to the buffer first
+    MapDesign2();
+    renderMap2();        // renders the map to the buffer first
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
     renderWeapons(); // render weapon
@@ -910,7 +910,8 @@ void endgame()
 
             if (g_skKeyEvent[K_RETURN].keyReleased)
             {
-
+                g_sChar.m_cLocation.X = 1;
+                g_sChar.m_cLocation.Y = 1;
                 g_eGameState = S_GAME1;
 
 
@@ -937,17 +938,19 @@ void endgame()
 }
 void cheat()
 {
-    if (g_eGameState = S_GAME)
+    /*if (g_eGameState = S_GAME)
     {
+        bool cheat = false;
         if (g_skKeyEvent[K_Q].keyReleased)
         {
+            cheat = true;
             g_sChar.m_cLocation.X = 48;
             g_sChar.m_cLocation.Y = 11;
-
+            cheat = false;
 
 
         }
-    }
+    }*/
 }
 
 

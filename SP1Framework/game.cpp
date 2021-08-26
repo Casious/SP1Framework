@@ -732,7 +732,7 @@ void MapDesign2()
 void renderMap2()
 {
     COORD c;
-    WORD Colour = 0x0B;
+    WORD Colour = 0x0110;
     for (int j = 0; j < mapHeight; j++) {
         for (int i = 0; i < mapWidth; i++)
         {

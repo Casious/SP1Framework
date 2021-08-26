@@ -1545,7 +1545,15 @@ void mobcollide()// working on loops now
     if (mob_exists == true)
     {
         if (g_sMob.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y
+            && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y||
+            g_sMob1.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob1.m_cLocation.Y == g_sChar.m_cLocation.Y||
+            g_sMob2.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob2.m_cLocation.Y == g_sChar.m_cLocation.Y||
+            g_sMob3.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob3.m_cLocation.Y == g_sChar.m_cLocation.Y||
+            g_sMob4.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob4.m_cLocation.Y == g_sChar.m_cLocation.Y
             )
         {
             char_exists == false;

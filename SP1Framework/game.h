@@ -47,6 +47,7 @@ enum EGAMESTATES
 {
     S_SPLASHSCREEN,
     S_GAME,
+    S_GAME1,
     S_COUNT,
     S_CHOSEN,
     S_LOSE,
@@ -96,8 +97,10 @@ void processUserInput();    // checks if you should change states or do somethin
 void clearScreen();         // clears the current screen and draw from scratch 
 void renderSplashScreen();  // renders the splash screen
 void renderGame();          // renders the game stuff
-void renderLose();           // renders lost screen
+void renderLose();      // renders lost screen
 void MapDesign();
+void renderWin();
+void renderGame1();
 void renderMap();       // renders the map to the buffer first
 void MapDesign2();
 void renderMap2();
@@ -123,6 +126,7 @@ void weapon2init(); // sets initial positions for 2nd weapon attack
 void endscreen();
 void startscreen();
 void renderstart();
+void cheat(); // for testing
 
 
 

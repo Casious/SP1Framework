@@ -377,6 +377,9 @@ void update(double dt)
     //modifies game diff 
     g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
     mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
+
+
+
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
@@ -389,8 +392,13 @@ void update(double dt)
 bool modeselected = false;
 void splashScreenWait()    // waits for time to pass in splash screen
 {//if mode seleceted == true g_eGamestate
-    if (g_dElapsedTime > 100) // wait for 3 seconds to switch to game mode, else do nothing
+    
+    /*if (g_dElapsedTime > 3) // wait for 3 seconds to switch to game mode, else do nothing
+    {
         g_eGameState = S_GAME;
+    }*/
+
+    setdifficulty();
 }
 
 void updateGame()       // gameplay logic
@@ -401,7 +409,7 @@ void updateGame()       // gameplay logic
 
 
     moveMob();
-    setdifficulty();
+    
 
     pickedWeapon(); //when player picks up weapon
 
@@ -471,7 +479,7 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
     g_Console.writeToBuffer(c, ss.str());
     ss.str("");
     ss << "Hard Mode";
-    c.X = 10;
+    c.X = 12;
     c.Y = 11;
     g_Console.writeToBuffer(c, ss.str());
    
@@ -750,21 +758,24 @@ void setdifficulty()//completely doesnt work? its not being initalized
         if (g_skKeyEvent[K_Q].keyDown)
         {
             easy_mode = true;
-
+            modeselected = true;
+            g_eGameState = S_GAME;
 
         }
-        else if (g_skKeyEvent[K_B].keyDown)
+        else if (g_skKeyEvent[K_A].keyDown)
         {
             normal_mode = true;
+            modeselected = true;
+            g_eGameState = S_GAME;
 
         }
         else if (g_skKeyEvent[K_Z].keyDown)
         {
             hard_mode = true;
-
+            modeselected = true;
+            g_eGameState = S_GAME;
         }
-        modeselected = true;
-        g_eGameState = S_GAME;
+    
 
     }
     
@@ -1140,16 +1151,17 @@ void mobcollide()//david WIP dection works tho
         {
             char_exists == false;
 
-
-            COORD c;
-            std::ostringstream ss;
-            ss << "You Lose!";
-            c.X = 25;
-            c.Y = 15;
-            g_Console.writeToBuffer(c, ss.str());
-            // adding end game and restart func
-            //g_bQuitGame = true; // ends game
-
+            if (char_exists == true)
+            {
+                COORD c;
+                std::ostringstream ss;
+                ss << "You Lose!";
+                c.X = 25;
+                c.Y = 15;
+                g_Console.writeToBuffer(c, ss.str());
+                // adding end game and restart func
+                //g_bQuitGame = true; // ends game
+            }
 
 
 

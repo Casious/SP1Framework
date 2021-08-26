@@ -1370,7 +1370,7 @@ void renderWText()
         {
             COORD c;
             std::ostringstream ss;
-            ss << "Welcome!";
+            ss << "Welcome to the maze!";
             c.X = 55;
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());

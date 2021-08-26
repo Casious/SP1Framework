@@ -465,8 +465,13 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
     g_Console.writeToBuffer(c, ss.str());
     startscreen();
     renderstart();
+    
     }
 //mouse clicker
+void renderWin()
+{
+    endtext();
+}
 
 
 
@@ -495,9 +500,46 @@ void renderLose()
 
 }
 
-void renderWin()
+void endtext()
 {
-    endgame();
+    COORD c;
+    std::ostringstream ss;
+    ss.str("");
+    ss << ".##....##..#######..##.....##....##......##.####.##....##.####";
+    c.X = 2;
+    c.Y = 2;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << "..##..##..##.....##.##.....##....##..##..##..##..###...##.####";
+    c.X = 2;
+    c.Y = 3;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << "...####...##.....##.##.....##....##..##..##..##..####..##.####";
+    c.X = 2;
+    c.Y = 3;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << "....##....##.....##.##.....##....##..##..##..##..##.##.##..##.";
+    c.X = 2;
+    c.Y = 4;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << "....##....##.....##.##.....##....##..##..##..##..##..####.....";
+    c.X = 2;
+    c.Y = 5;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << "....##....##.....##.##.....##....##..##..##..##..##...###.####";
+    c.X = 2;
+    c.Y = 6;
+    g_Console.writeToBuffer(c, ss.str());
+    ss.str("");
+    ss << "....##.....#######...#######......###..###..####.##....##.####";
+    c.X = 2;
+    c.Y = 7;
+    g_Console.writeToBuffer(c, ss.str());
+   
 }
 
 void renderGame1()
@@ -513,6 +555,7 @@ void renderGame1()
     mobcollide();
     startscreen();
     cheat();
+    playerwin();
 }
 
 
@@ -522,6 +565,7 @@ std::vector<char>mapArray;
 int startX = 12;
 int startY = 2;
 std::vector<char>startArray;
+
 
 
 void MapDesign()
@@ -1793,6 +1837,19 @@ void pickedWeapon()
     }
 
 
+}
+void playerwin()
+{
+    if (g_eGameState == S_GAME1 && g_sChar.m_cLocation.X == 49 && g_sChar.m_cLocation.Y == 11)//map 2, end location
+    {
+        g_eGameState = S_WIN;
+        COORD c;
+        std::ostringstream ss;
+        ss << " You have escaped... for now";
+        c.X = 20;
+        c.Y = 15;
+        g_Console.writeToBuffer(c, ss.str());
+    }   
 }
 void renderWText()
 {

@@ -468,17 +468,17 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
     c.Y = 4;
     g_Console.writeToBuffer(c, ss.str());
     ss.str("");
-    ss << "Easy Mode";
+    ss << "Press 'Q' for Easy Mode";
     c.X = 6;
     c.Y = 7;
     g_Console.writeToBuffer(c, ss.str());
     ss.str("");
-    ss << "Normal Mode";
+    ss << "Press 'A' for Normal Mode";
     c.X = 8;
     c.Y = 9;
     g_Console.writeToBuffer(c, ss.str());
     ss.str("");
-    ss << "Hard Mode";
+    ss << "Press 'Z' for Hard Mode";
     c.X = 12;
     c.Y = 11;
     g_Console.writeToBuffer(c, ss.str());
@@ -755,21 +755,21 @@ void setdifficulty()//completely doesnt work? its not being initalized
     //doesnt work switching to new plan
 
 
-        if (g_skKeyEvent[K_Q].keyDown)
+        if (g_skKeyEvent[K_Q].keyReleased)
         {
             easy_mode = true;
             modeselected = true;
             g_eGameState = S_GAME;
 
         }
-        else if (g_skKeyEvent[K_A].keyDown)
+        else if (g_skKeyEvent[K_A].keyReleased)
         {
             normal_mode = true;
             modeselected = true;
             g_eGameState = S_GAME;
 
         }
-        else if (g_skKeyEvent[K_Z].keyDown)
+        else if (g_skKeyEvent[K_Z].keyReleased)
         {
             hard_mode = true;
             modeselected = true;
@@ -1250,15 +1250,15 @@ void renderFramerate()
         }
     if (g_dElapsedTime > 30)
     {
-       // mob1_exists = true;
+       mob2_exists = true;
     }
     if (g_dElapsedTime > 50)
     {
-       // mob1_exists = true;
+       mob3_exists = true;
     }
     if (g_dElapsedTime > 70)
     {
-      // mob1_exists = true;
+       mob4_exists = true;
     }
 
     }

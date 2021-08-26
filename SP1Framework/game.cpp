@@ -762,12 +762,38 @@ void init(void)
     g_sMob4.m_bActive = true;
 
 
-    //location for weapon
-    g_sWeapon.m_cLocation.X = 5; // Jun Ying spawning WIP (fixed position for now)
-    g_sWeapon.m_cLocation.Y = 4;
+    //location for weapon spawns
+    switch (int random = rand() % 3 + 1)
+    {
+    case 1:
+        g_sWeapon.m_cLocation.X = rand() % 10 + 3; 
+        g_sWeapon.m_cLocation.Y = 6;
+        break;
+    case 2:
+        g_sWeapon.m_cLocation.X = rand() % 4 + 5;
+        g_sWeapon.m_cLocation.Y = 19;
+        break;
+    case 3:
+        g_sWeapon.m_cLocation.X = 14;
+        g_sWeapon.m_cLocation.Y = rand() % 6 + 8;
+        break;
+    }
 
-    g_sWeapon2.m_cLocation.X = 14; // Jun Ying spawning WIP (fixed position for now)
-    g_sWeapon2.m_cLocation.Y = 15;
+    switch (int random2 = rand() % 3 + 1)
+    {
+    case 1:
+        g_sWeapon2.m_cLocation.X = 21;
+        g_sWeapon2.m_cLocation.Y = rand() % 6 + 16;
+        break;
+    case 2:
+        g_sWeapon2.m_cLocation.X = 23;
+        g_sWeapon2.m_cLocation.Y = rand() % 4 + 8;
+        break;
+    case 3:
+        g_sWeapon2.m_cLocation.X = rand() % 3 + 23;
+        g_sWeapon2.m_cLocation.Y = rand() % 4 + 13;
+        break;
+    }
 
     // g_sWeapon's attack position init 
     g_sSmash.m_cLocation.X = g_sChar.m_cLocation.X + 1; // right

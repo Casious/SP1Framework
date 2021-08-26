@@ -76,9 +76,6 @@ Console g_Console(80, 25, "SP1 Framework");
     bool mob4_exists = false;
     bool char_exists = true;
     
-
-    bool start_time = false;
-
     // check for most recent key input
     std::string recentmoveinput;
 //--------------------------------------------------------------
@@ -372,30 +369,19 @@ void gameplayMouseHandler(const MOUSE_EVENT_RECORD& mouseEvent)
 // Output   : void
 //--------------------------------------------------------------
 
-bool after_cutscene = false;
-
 void update(double dt)
 {
-    if (start_time == true)
-    {
-        
-        // get the delta time
-        g_dElapsedTime += dt;
-        g_dDeltaTime = dt;
-        g_dHeartBeat = fmod(g_dElapsedTime, movetimer); //timer for mob movement (changed to movetimer so just use setmobmoveinterval instead)
-        //modifies game diff 
-        g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
-        
-    }
+    setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
+    mobmovementspeedselector(0.02); // how many frames of the mob's movement speed here (Jun Ying)
+    // get the delta time
+    g_dElapsedTime += dt;
+    g_dDeltaTime = dt;
+    g_dHeartBeat = fmod(g_dElapsedTime, movetimer); //timer for mob movement (changed to movetimer so just use setmobmoveinterval instead)
+    //modifies game diff 
+    g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
+    mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
 
-    //after cutscene, the game starts (Reagan)
-    if (after_cutscene == true)
-    {
-        mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
-        g_dHeartBeat = fmod(g_dElapsedTime, movetimer); //timer for mob movement (changed to movetimer so just use setmobmoveinterval instead)
-        setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
-        mobmovementspeedselector(0.02); // how many frames of the mob's movement speed here (Jun Ying)
-    }
+
 
     switch (g_eGameState)
     {
@@ -420,20 +406,16 @@ void splashScreenWait()    // waits for time to pass in splash screen
 
 void updateGame()       // gameplay logic
 {
-    if (after_cutscene == true)
-    {
-        processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
+    processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
+    moveCharacter();    // moves the character, collision detection, physics, etc
+                        // sound can be played here too.
 
+
+    moveMob();
     
-        moveCharacter();    // moves the character, collision detection, physics, etc
-                            // sound can be played here too.
 
+    pickedWeapon(); //when player picks up weapon
 
-        moveMob();
-
-
-        pickedWeapon(); //when player picks up weapon
-    }
 }
 
 
@@ -788,7 +770,6 @@ void setdifficulty()//completely doesnt work? its not being initalized
         {
             easy_mode = true;
             modeselected = true;
-            start_time = true;
             g_eGameState = S_GAME;
 
         }
@@ -796,7 +777,6 @@ void setdifficulty()//completely doesnt work? its not being initalized
         {
             normal_mode = true;
             modeselected = true;
-            start_time = true;
             g_eGameState = S_GAME;
 
         }
@@ -804,7 +784,6 @@ void setdifficulty()//completely doesnt work? its not being initalized
         {
             hard_mode = true;
             modeselected = true;
-            start_time = true;
             g_eGameState = S_GAME;
         }
     
@@ -1245,33 +1224,6 @@ void pickedWeapon()
 }
 void renderWText()
 {
-    //text box spawn after a certain time
-    if (modeselected == true)
-    {
-        if (g_dElapsedTime >= 1 && g_dElapsedTime < 4)
-        {
-            COORD c;
-            std::ostringstream ss;
-            ss << "Welcome!";
-            c.X = 55;
-            c.Y = 15;
-            g_Console.writeToBuffer(c, ss.str());
-        }
-        if (g_dElapsedTime >= 4 && g_dElapsedTime < 7)
-        {
-            COORD c;
-            std::ostringstream ss;
-            ss << "Will you survive?";
-            c.X = 55;
-            c.Y = 15;
-            g_Console.writeToBuffer(c, ss.str());
-        }
-        if (g_dElapsedTime >= 7)
-        {
-            after_cutscene = true;
-        }
-    }
-
     if (hasweapon == true)
     {
         COORD c;
@@ -1304,29 +1256,23 @@ void renderHeartbeat()
     g_Console.writeToBuffer(c, ss.str());
 }
 
-
-
 void renderFramerate()
 {
-    
-        COORD c;
-        // displays the framerate
-        std::ostringstream ss;
-        ss << std::fixed << std::setprecision(3);
-        ss << "FPS:" << 1.0 / g_dDeltaTime;
-        c.X = g_Console.getConsoleSize().X - 12;
-        c.Y = 0;
-        g_Console.writeToBuffer(c, ss.str());
+    COORD c;
+    // displays the framerate
+    std::ostringstream ss;
+    ss << std::fixed << std::setprecision(3);
+    ss <<"FPS:"<< 1.0 / g_dDeltaTime;
+    c.X = g_Console.getConsoleSize().X - 12;
+    c.Y = 0;
+    g_Console.writeToBuffer(c, ss.str());
 
-        // displays the elapsed time
-        ss.str("");
-        ss << "Time:" << g_dElapsedTime;
-        c.X = 68;
-        c.Y = 1;
-        g_Console.writeToBuffer(c, ss.str());
-    
-
-    
+    // displays the elapsed time
+    ss.str("");
+    ss <<"Time:" <<g_dElapsedTime;
+    c.X = 68;
+    c.Y = 1;
+    g_Console.writeToBuffer(c, ss.str());
 }
 
     void mobspawn()

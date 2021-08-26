@@ -387,6 +387,15 @@ void update(double dt)
         g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
         
     }
+    setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
+    mobmovementspeedselector(movetimer/10); // how many frames of the mob's movement speed here (Jun Ying)
+    // get the delta time
+    g_dElapsedTime += dt;
+    g_dDeltaTime = dt;
+    g_dHeartBeat = fmod(g_dElapsedTime, movetimer); //timer for mob movement (changed to movetimer so just use setmobmoveinterval instead)
+    //modifies game diff 
+    g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
+
 
     //after cutscene, the game starts (Reagan)
     if (after_cutscene == true)
@@ -466,6 +475,7 @@ void render()
     }
     renderFramerate();      // renders debug information, frame rate, elapsed time, etc
     renderHeartbeat();
+    render30stimer();
     renderInputEvents();    // renders status of input events
     renderToScreen();    // dump the contents of the buffer to the screen, one frame worth of game
 }
@@ -686,22 +696,22 @@ void moveMob()
         hard_mode = false;
 
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != 1)//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= movetimer && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != 1)//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
         //move up
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != 1)
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= movetimer && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != 1)
         {
             g_sMob.m_cLocation.Y--;
         }
         //move right
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != 1)
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= movetimer && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != 1)
         {
             g_sMob.m_cLocation.X++;
         }
         //move left
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != 1)
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= movetimer && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != 1)
         {
             g_sMob.m_cLocation.X--;
         }
@@ -1303,8 +1313,6 @@ void renderHeartbeat()
     c.Y = 2;
     g_Console.writeToBuffer(c, ss.str());
 }
-
-
 
 void renderFramerate()
 {

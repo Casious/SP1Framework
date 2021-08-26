@@ -510,6 +510,7 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
     c.Y = 11;
     g_Console.writeToBuffer(c, ss.str());
     startscreen();
+    renderstart();
     }
 //mouse clicker
 
@@ -541,6 +542,9 @@ void renderLose()
 int mapWidth = 50;
 int mapHeight = 24;
 std::vector<char>mapArray;
+int startX = 12;
+int startY = 2;
+std::vector<char>startArray;
 //char mapArray[] = { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
 //'#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
 //'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',
@@ -600,26 +604,7 @@ void MapDesign()
     maps.close();
 }
 
-void startscreen()
-{
-    std::ifstream maze;
-    maze.open("themaze.txt", std::ifstream::in);
-    if (!maze)
-    {
-        exit(1);
-    }
-    std::vector<std::string>row1;
-    if (maze.is_open())
-    {
-        std::string rows;
-        while (std::getline(maze, rows))
-        {
-            row1.push_back(rows);
-        }
-        maze.close();
-    }
-    
-}
+
 
 
 void renderMap()
@@ -649,7 +634,62 @@ void renderMap()
         }  
     }
 } 
+void startscreen()
+{
+    std::ifstream maze;
+    maze.open("themaze.txt", std::ifstream::in);
+    //int level=1;
+    //switch (level)
+    //{
+    //case 1: maps = std::ifstream("MapDesign1.txt");
+    //    break;
 
+    //}
+    // Opening may fail, always check.
+    if (!maze) {
+        exit(1);
+    }
+    std::string row;
+    while (std::getline(maze, row))
+    {
+        std::stringstream rowStream(row);
+        std::string(col);
+        std::vector<std::string>rowvector;
+        //mapArray.reserve(100);
+        while (std::getline(rowStream, col, ','))
+        {
+            startArray.push_back(stoi(col));
+            //           mapArray[offset++] = static_cast<char>(stoi(col));
+            //           rowvector.push_back(col);
+        }
+        //   mapArray.push_back(rowvector);
+    }
+    maze.close();
+}
+
+    
+
+
+
+
+
+
+
+void renderstart()
+{
+    COORD c;
+
+    WORD Colour = 0x0B;//0x0110 (cursed blue colour)
+    for (int j = 0; j < startY; j++) {
+        for (int i = 0; i < startX; i++)
+        {
+            c.X = i;
+            c.Y = j;
+          
+            g_Console.writeToBuffer(c, startY[j * startX + i], Colour);
+        }
+    }
+}
 
 
 void moveCharacter()
@@ -692,22 +732,22 @@ void moveMob()
     {
         easy_mode = false;
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
         //move up
-        else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.Y - 1 <= 50)
+        else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y - 1 <= 50)
         {
             g_sMob.m_cLocation.Y--;
         }
         //move right
-        else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.X + 1 <= 50)
+        else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X + 1 <= 50)
         {
             g_sMob.m_cLocation.X++;
         }
         //move left
-        else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.X - 1 <= 1)
+        else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X - 1 <= 1)
         {
             g_sMob.m_cLocation.X--;
         }

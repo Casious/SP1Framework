@@ -120,6 +120,8 @@ void mobmovementspeedselector(int);
 void weapon2init(); // sets initial positions for 2nd weapon attack
 void endscreen();
 void startscreen();
+void renderstart();
+
 
 
 

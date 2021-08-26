@@ -114,7 +114,7 @@ void renderWeapons(); // renders the weapon (Jun Ying WIP)
 void renderWeapons1();
 void renderWeaponAttack(); // renders the weapon attack
 void renderWeapon2Attack();
-void mobcollide();          //mob contact with enemy
+void mobcollide();          //mob contact with enemyf
 void updateGame1();
 void pickedWeapon(); //when player picks up weapon (Reagan)
 void renderFramerate();     // renders debug information, frame rate, elapsed time, etc
@@ -126,7 +126,7 @@ void teleChar();
 void renderWText();
 void endgame();                   // ends the game
 void mobspawn();
-
+void playerwin();
 void setdifficulty();       // allows user to set difficulty
 void mobmovementspeedselector(int);
 void weapon2init(); // sets initial positions for 2nd weapon attack
@@ -134,6 +134,8 @@ void endscreen();
 void startscreen();
 void renderstart();
 void cheat(); // for testing
+void endtext();
+void renderendtext();
 
 
 

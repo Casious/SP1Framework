@@ -829,86 +829,86 @@ void moveMob()
         normal_mode = false;
         easy_mode = false;
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mob_exists == true)//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.Y > g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mob1_exists == true)
         {
             g_sMob1.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.Y > g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mob2_exists == true)
         {
             g_sMob2.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.Y > g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mob3_exists == true)
         {
             g_sMob3.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.Y > g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mob4_exists == true)
         {
             g_sMob4.m_cLocation.Y++;
         }
         //move up
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mob_exists == true)
         {
             g_sMob.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.Y < g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mob1_exists == true)
         {
             g_sMob1.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.Y < g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mob2_exists == true)
         {
             g_sMob2.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.Y < g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mob3_exists == true)
         {
             g_sMob3.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.Y < g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mob4_exists == true)
         {
             g_sMob4.m_cLocation.Y--;
         }
         //move right
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mob_exists == true)
         {
             g_sMob.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.X > g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mob1_exists == true)
         {
             g_sMob1.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.X > g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mob2_exists == true)
         {
             g_sMob2.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.X > g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mob3_exists == true)
         {
             g_sMob3.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.X > g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mob4_exists == true)
         {
             g_sMob4.m_cLocation.X++;
         }
         //move left
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mob_exists == true)
         {
             g_sMob.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.X < g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mob1_exists == true)
         {
             g_sMob1.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.X < g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mob2_exists == true)
         {
             g_sMob2.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.X < g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mob3_exists == true)
         {
             g_sMob3.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02)
+        if (g_sChar.m_cLocation.X < g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mob4_exists == true)
         {
             g_sMob4.m_cLocation.X--;
         }
@@ -919,86 +919,86 @@ void moveMob()
         hard_mode = false;
 
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != char(221) && mob_exists == true)//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y + 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y > g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y + 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221) && mob1_exists == true)
         {
             g_sMob1.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y + 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y > g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y + 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221) && mob2_exists == true)
         {
             g_sMob2.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y + 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y > g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y + 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221) && mob3_exists == true)
         {
             g_sMob3.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y + 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y > g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y + 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221) && mob4_exists == true)
         {
             g_sMob4.m_cLocation.Y++;
         }
         //move up
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != char(221) && mob_exists == true)
         {
             g_sMob.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y - 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y < g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y - 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221) && mob1_exists == true)
         {
             g_sMob1.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y - 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y < g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y - 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221) && mob2_exists == true)
         {
             g_sMob2.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y - 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y < g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y - 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221) && mob3_exists == true)
         {
             g_sMob3.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y - 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y < g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y - 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221) && mob4_exists == true)
         {
             g_sMob4.m_cLocation.Y--;
         }
         //move right
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != char(221))
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != char(221) && mob_exists == true)
         {
             g_sMob.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X + 1)] != char(221))
+        if (g_sChar.m_cLocation.X > g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X + 1)] != char(221) && mob1_exists == true)
         {
             g_sMob1.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X + 1)] != char(221))
+        if (g_sChar.m_cLocation.X > g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X + 1)] != char(221) && mob2_exists == true)
         {
             g_sMob2.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X + 1)] != char(221))
+        if (g_sChar.m_cLocation.X > g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X + 1)] != char(221) && mob3_exists == true)
         {
             g_sMob3.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X + 1)] != char(221))
+        if (g_sChar.m_cLocation.X > g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X + 1)] != char(221) && mob4_exists == true)
         {
             g_sMob4.m_cLocation.X++;
         }
         //move left
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != char(221))
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != char(221) && mob_exists == true)
         {
             g_sMob.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X - 1)] != char(221))
+        if (g_sChar.m_cLocation.X < g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X - 1)] != char(221) && mob1_exists == true)
         {
             g_sMob1.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X - 1)] != char(221))
+        if (g_sChar.m_cLocation.X < g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X - 1)] != char(221) && mob2_exists == true)
         {
             g_sMob2.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X - 1)] != char(221))
+        if (g_sChar.m_cLocation.X < g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X - 1)] != char(221) && mob3_exists == true)
         {
             g_sMob3.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X - 1)] != char(221))
+        if (g_sChar.m_cLocation.X < g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X - 1)] != char(221) && mob4_exists == true)
         {
             g_sMob4.m_cLocation.X--;
         }
@@ -1008,86 +1008,86 @@ void moveMob()
         hard_mode = false;
         easy_mode = false;
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != char(221) && mob_exists == true)
         {
             g_sMob.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y + 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y > g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y + 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221) && mob1_exists == true)
         {
             g_sMob1.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y + 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y > g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y + 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221) && mob2_exists == true)
         {
             g_sMob2.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y + 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y > g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y + 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221) && mob3_exists == true)
         {
             g_sMob3.m_cLocation.Y++;
         }
-        if (g_sChar.m_cLocation.Y > g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y + 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y > g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y + 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221) && mob4_exists == true)
         {
             g_sMob4.m_cLocation.Y++;
         }
         //move up
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != char(221) && mob_exists == true)
         {
             g_sMob.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y - 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y < g_sMob1.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob1.m_cLocation.Y - 1) * mapWidth + g_sMob1.m_cLocation.X] != char(221) && mob1_exists == true)
         {
             g_sMob1.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y - 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y < g_sMob2.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob2.m_cLocation.Y - 1) * mapWidth + g_sMob2.m_cLocation.X] != char(221) && mob2_exists == true)
         {
             g_sMob2.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y - 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y < g_sMob3.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob3.m_cLocation.Y - 1) * mapWidth + g_sMob3.m_cLocation.X] != char(221) && mob3_exists == true)
         {
             g_sMob3.m_cLocation.Y--;
         }
-        if (g_sChar.m_cLocation.Y < g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y - 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221))
+        if (g_sChar.m_cLocation.Y < g_sMob4.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob4.m_cLocation.Y - 1) * mapWidth + g_sMob4.m_cLocation.X] != char(221) && mob4_exists == true)
         {
             g_sMob4.m_cLocation.Y--;
         }
         //move right
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != char(221))
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != char(221) && mob_exists == true)
         {
             g_sMob.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X + 1)] != char(221))
+        if (g_sChar.m_cLocation.X > g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X + 1)] != char(221) && mob1_exists == true)
         {
             g_sMob1.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X + 1)] != char(221))
+        if (g_sChar.m_cLocation.X > g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X + 1)] != char(221) && mob2_exists == true)
         {
             g_sMob2.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X + 1)] != char(221))
+        if (g_sChar.m_cLocation.X > g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X + 1)] != char(221) && mob3_exists == true)
         {
             g_sMob3.m_cLocation.X++;
         }
-        if (g_sChar.m_cLocation.X > g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X + 1)] != char(221))
+        if (g_sChar.m_cLocation.X > g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X + 1)] != char(221) && mob4_exists == true)
         {
             g_sMob4.m_cLocation.X++;
         }
         //move left
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != char(221))
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != char(221) && mob_exists == true)
         {
             g_sMob.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X - 1)] != char(221))
+        if (g_sChar.m_cLocation.X < g_sMob1.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob1.m_cLocation.Y * mapWidth + (g_sMob1.m_cLocation.X - 1)] != char(221) && mob1_exists == true)
         {
             g_sMob1.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X - 1)] != char(221))
+        if (g_sChar.m_cLocation.X < g_sMob2.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob2.m_cLocation.Y * mapWidth + (g_sMob2.m_cLocation.X - 1)] != char(221) && mob2_exists == true)
         {
             g_sMob2.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X - 1)] != char(221))
+        if (g_sChar.m_cLocation.X < g_sMob3.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob3.m_cLocation.Y * mapWidth + (g_sMob3.m_cLocation.X - 1)] != char(221) && mob3_exists == true)
         {
             g_sMob3.m_cLocation.X--;
         }
-        if (g_sChar.m_cLocation.X < g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X - 1)] != char(221))
+        if (g_sChar.m_cLocation.X < g_sMob4.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob4.m_cLocation.Y * mapWidth + (g_sMob4.m_cLocation.X - 1)] != char(221) && mob4_exists == true)
         {
             g_sMob4.m_cLocation.X--;
         }
@@ -1145,7 +1145,7 @@ void renderCharacter()
     {
         charColor = 0x0A;
     }
-    g_Console.writeToBuffer(g_sChar.m_cLocation, (char)1, charColor);
+    g_Console.writeToBuffer(g_sChar.m_cLocation, (char)80, charColor);
 
 }
 
@@ -1159,27 +1159,27 @@ void renderMobs()
     
     if (mob_exists == true)
     {
-        g_Console.writeToBuffer(g_sMob.m_cLocation, (char)1, mobColor);
+        g_Console.writeToBuffer(g_sMob.m_cLocation, (char)233, mobColor);
     }
     
     if (mob1_exists == true)
     {
-        g_Console.writeToBuffer(g_sMob1.m_cLocation, (char)1, mobColor);
+        g_Console.writeToBuffer(g_sMob1.m_cLocation, (char)233, mobColor);
     }
 
     if (mob2_exists == true)
     {
-        g_Console.writeToBuffer(g_sMob2.m_cLocation, (char)1, mobColor); 
+        g_Console.writeToBuffer(g_sMob2.m_cLocation, (char)233, mobColor); 
     }
 
     if (mob3_exists == true)
     {
-        g_Console.writeToBuffer(g_sMob3.m_cLocation, (char)1, mobColor);
+        g_Console.writeToBuffer(g_sMob3.m_cLocation, (char)233, mobColor);
     }
 
     if (mob4_exists == true)
     {
-        g_Console.writeToBuffer(g_sMob4.m_cLocation, (char)1, mobColor);
+        g_Console.writeToBuffer(g_sMob4.m_cLocation, (char)233, mobColor);
     }
 }
 
@@ -2061,7 +2061,7 @@ void renderInputEvents()
     //case MOUSE_WHEELED:
     //    if (g_mouseEvent.buttonState & 0xFF000000)
     //        ss.str("Mouse wheeled down");
-    //    else
+    //    else 
     //        ss.str("Mouse wheeled up");
     //    g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 5, ss.str(), 0x59);
     //    break;

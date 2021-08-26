@@ -106,6 +106,7 @@ void mobcollide();          //mob contact with enemy
 void pickedWeapon(); //when player picks up weapon (Reagan)
 void renderFramerate();     // renders debug information, frame rate, elapsed time, etc
 void renderHeartbeat();
+void render30sTimer();
 void renderToScreen();      // dump the contents of the buffer to the screen, one frame worth of game
 void renderInputEvents();   // renders the status of input events
 void teleChar();

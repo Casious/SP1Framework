@@ -1329,7 +1329,17 @@ void renderHeartbeat()
     g_Console.writeToBuffer(c, ss.str());
 }
 
-
+void render30sTimer()
+{
+    COORD c;
+    // displays the framerate
+    std::ostringstream ss;
+    ss << std::fixed << std::setprecision(3);
+    ss << "30sTimer:" << g_d30Timer;
+    c.X = g_Console.getConsoleSize().X - 15;
+    c.Y = 3;
+    g_Console.writeToBuffer(c, ss.str());
+}
 
 void renderFramerate()
 {

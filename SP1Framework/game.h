@@ -99,6 +99,8 @@ void renderGame();          // renders the game stuff
 void renderLose();           // renders lost screen
 void MapDesign();
 void renderMap();       // renders the map to the buffer first
+void MapDesign2();
+void renderMap2();
 void renderMobs();
 void renderCharacter();     // renders the character into the buffer
 void renderWeapons(); // renders the weapon (Jun Ying WIP)

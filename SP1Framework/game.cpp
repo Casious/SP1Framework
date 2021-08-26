@@ -26,8 +26,7 @@ double g_d30Timer;
 
 
 double g_dElapsedTime_2;
-double g_dDeltaTime_2;
-double g_d30Timer_2;
+
 
 
 float movepace; // how many frames of movement for the mob
@@ -82,6 +81,7 @@ Console g_Console(80, 25, "SP1 Framework");
     bool mob2_exists = false;
     bool mob3_exists = false;
     bool mob4_exists = false;
+
     bool char_exists = true;
     
     bool cleared = false;
@@ -325,10 +325,6 @@ void update(double dt)
     {
         // get the delta time
         g_dElapsedTime_2 += dt;
-        g_dDeltaTime_2 = dt;
-        g_dHeartBeat = fmod(g_dElapsedTime, movetimer); //timer for mob movement (changed to movetimer so just use setmobmoveinterval instead)
-        //modifies game diff 
-        g_d30Timer_2 = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
 
     }
 
@@ -784,7 +780,7 @@ void moveCharacter()
 bool easy_mode = false;
 bool normal_mode = false;
 bool hard_mode = false;
-<<<<<<< Updated upstream
+
 //hi
 void moveMob()
 {
@@ -1058,13 +1054,11 @@ void moveMob()
     }
 }
            
-=======
 
 
            
 
 
->>>>>>> Stashed changes
 
 void endgame()
 {

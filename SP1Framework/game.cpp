@@ -406,7 +406,6 @@ void update(double dt)
     {
         mobmovementspeedselector(0.02); // the difficulty of the mob's movement speed here (Jun Ying)
         g_dHeartBeat = fmod(g_dElapsedTime, movetimer); //timer for mob movement (changed to movetimer so just use setmobmoveinterval instead)
-        setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
         mobmovementspeedselector(0.02); // how many frames of the mob's movement speed here (Jun Ying)
     }
 
@@ -963,22 +962,22 @@ void moveMob()
         normal_mode = false;
         easy_mode = false;
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 )//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
         //move up
-        else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y - 1 <= 50)
+        else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 )
         {
             g_sMob.m_cLocation.Y--;
         }
         //move right
-        else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X + 1 <= 50)
+        else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 )
         {
             g_sMob.m_cLocation.X++;
         }
         //move left
-        else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X - 1 <= 1)
+        else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 )
         {
             g_sMob.m_cLocation.X--;
         }
@@ -1180,6 +1179,7 @@ void setdifficulty()//completely doesnt work? its not being initalized
 
         if (g_skKeyEvent[K_Q].keyReleased)
         {
+            setmobmoveinterval(3.0); // the interval for each movement here (Jun Ying)
             easy_mode = true;
             modeselected = true;
             start_time = true;
@@ -1188,6 +1188,7 @@ void setdifficulty()//completely doesnt work? its not being initalized
         }
         else if (g_skKeyEvent[K_A].keyReleased)
         {
+            setmobmoveinterval(2.0); // the interval for each movement here (Jun Ying)
             normal_mode = true;
             modeselected = true;
             start_time = true;
@@ -1196,6 +1197,7 @@ void setdifficulty()//completely doesnt work? its not being initalized
         }
         else if (g_skKeyEvent[K_Z].keyReleased)
         {
+            setmobmoveinterval(1.0); // the interval for each movement here (Jun Ying)
             hard_mode = true;
             modeselected = true;
             start_time = true;

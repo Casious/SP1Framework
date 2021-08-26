@@ -264,6 +264,7 @@ void keyboardHandler(const KEY_EVENT_RECORD& keyboardEvent)
         break;
     case S_GAME: gameplayKBHandler(keyboardEvent); // handle gameplay keyboard event 
         break;
+    case S_LOSE: gameplayKBHandler(keyboardEvent); // press enter to return to title screen
     }
 }
 std::vector<std::vector<std::string>>mapvector;
@@ -290,6 +291,8 @@ void mouseHandler(const MOUSE_EVENT_RECORD& mouseEvent)
     case S_SPLASHSCREEN: gameplayMouseHandler(mouseEvent);// don't handle anything for the splash screen
         break;
     case S_GAME: gameplayMouseHandler(mouseEvent); // handle gameplay mouse event
+        break;
+    case S_LOSE: //dont handle
         break;
     }
 }
@@ -318,7 +321,7 @@ void gameplayKBHandler(const KEY_EVENT_RECORD& keyboardEvent)
     case 0x42: key = K_B; break;
     case 0x41: key = K_A; break;
     case 0x51: key = K_Q; break;
-    case 0x5A:key = K_Z; break;
+    case 0x5A: key = K_Z; break;
 
     }
     // a key pressed event would be one with bKeyDown == true
@@ -440,6 +443,8 @@ void render()
         break;
     case S_GAME: renderGame();
         break;
+    case S_LOSE: renderLose();
+        break;
     }
     renderFramerate();      // renders debug information, frame rate, elapsed time, etc
     renderHeartbeat();
@@ -488,6 +493,7 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
 
 
 
+
 void renderGame()
 {
     MapDesign();
@@ -502,7 +508,12 @@ void renderGame()
     setdifficulty();
     
 }
+void renderLose()
+{
+    mobcollide();
 
+
+}
 int mapWidth = 50;
 int mapHeight = 24;
 //std::vector<char> mapArray;
@@ -632,22 +643,22 @@ void moveMob()
     {
         easy_mode = false;
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
         //move up
-        else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y - 1 <= 50)
+        else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.Y - 1 <= 50)
         {
             g_sMob.m_cLocation.Y--;
         }
         //move right
-        else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X + 1 <= 50)
+        else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.X + 1 <= 50)
         {
             g_sMob.m_cLocation.X++;
         }
         //move left
-        else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X - 1 <= 1)
+        else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.X - 1 <= 1)
         {
             g_sMob.m_cLocation.X--;
         }
@@ -778,6 +789,7 @@ void setdifficulty()//completely doesnt work? its not being initalized
     
 
     }
+    
     
 }
    
@@ -1153,14 +1165,34 @@ void mobcollide()//david WIP dection works tho
 
             if (char_exists == true)
             {
-                COORD c;
-                std::ostringstream ss;
-                ss << "You Lose!";
-                c.X = 25;
-                c.Y = 15;
-                g_Console.writeToBuffer(c, ss.str());
-                // adding end game and restart func
-                //g_bQuitGame = true; // ends game
+
+                g_eGameState = S_LOSE;//works need to import text 
+                if (g_eGameState == S_LOSE)
+                {
+                    COORD c;
+                    std::ostringstream ss;
+                    ss << "You Lose!";
+                    c.X = 25;
+                    c.Y = 15;
+                    g_Console.writeToBuffer(c, ss.str());
+                    ss << " ";
+                    ss << "PRESS SPACE TO CONTINUE";
+                    c.X = 25;
+                    c.Y = 16;
+                    g_Console.writeToBuffer(c, ss.str());
+                    
+                    // adding end game and restart func
+                    //g_bQuitGame = true; // ends game
+                    
+
+
+
+
+
+
+                }
+
+
             }
 
 

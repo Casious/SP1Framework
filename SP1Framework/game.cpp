@@ -15,7 +15,6 @@
 using namespace std;
 double  g_dElapsedTime;
 double  g_dDeltaTime;
-double g_dOldTime;
 double g_dHeartBeat;
 double g_d30Timer;
 float movepace; // how many frames of movement for the mob
@@ -26,7 +25,7 @@ SMouseEvent g_mouseEvent;
 // Game specific variables here
 
 //game character (Reagan)
-SGameChar   g_sChar;
+SGameChar g_sChar;
 SGameMob g_sMob;
 SGameMob g_sMob1;
 SGameMob g_sMob2;
@@ -170,7 +169,7 @@ void init( void )
 
     // remember to set your keyboard handler, so that your functions can be notified of input events
     g_Console.setKeyboardHandler(keyboardHandler);
-    g_Console.setMouseHandler(mouseHandler);
+    //g_Console.setMouseHandler(mouseHandler); // mouse functions redundant in program for now (Jun Ying)
 }
 
 void setmobmoveinterval(int interval)

@@ -1,7 +1,6 @@
 // This is the main file for the game logic and function
 //im pushing this for shuan cuz he sucks and messed up 
 //
-//
 #include "game.h"
 #include "Framework\console.h"
 #include <iostream>
@@ -1064,15 +1063,12 @@ void endgame()
             ss << "Congradulations on clearing the 1st part";
             c.X = 20;
             c.Y = 15;
-            if (g_skKeyEvent[K_X].keyDown)
+            if (g_skKeyEvent[K_RETURN].keyReleased)
             {
                 g_sChar.m_cLocation.X = 1;
-                g_sChar.m_cLocation.Y = 2;
-
+                g_sChar.m_cLocation.Y = 1;
                 g_eGameState = S_GAME1;
-                cleared = false;
-               
-            }*/
+            }
            
 
 
@@ -1095,7 +1091,7 @@ void endgame()
 }
 void cheat()
 {
-    if (g_eGameState = S_GAME)
+    /*if (g_eGameState = S_GAME)
     {
         bool cheat = false;
         if (g_skKeyEvent[K_Q].keyReleased)
@@ -1107,7 +1103,7 @@ void cheat()
 
 
         }
-    }
+    }*/
 }
 
 
@@ -1715,7 +1711,7 @@ void renderWText()
     //text box spawn after a certain time
     if (modeselected == true)
     {
-        if (g_dElapsedTime >= 1 && g_dElapsedTime < 2)
+        if (g_dElapsedTime >= 1 && g_dElapsedTime < 4)
         {
             COORD c;
             std::ostringstream ss;
@@ -1724,7 +1720,7 @@ void renderWText()
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
         }
-        if (g_dElapsedTime >= 2 && g_dElapsedTime < 3)
+        if (g_dElapsedTime >= 4 && g_dElapsedTime < 7)
         {
             COORD c;
             std::ostringstream ss;
@@ -1733,7 +1729,7 @@ void renderWText()
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
         }
-        if (g_dElapsedTime >= 3)
+        if (g_dElapsedTime >= 7)
         {
             after_cutscene = true;
         }
@@ -1878,44 +1874,44 @@ void renderInputEvents()
 
 
 
-    //// mouse events    
-    //ss.str("");
-    //ss << "Mouse position (" << g_mouseEvent.mousePosition.X << ", " << g_mouseEvent.mousePosition.Y << ")";
-    //g_Console.writeToBuffer(g_mouseEvent.mousePosition, ss.str(), 0x59);
-    //ss.str("");
-    //switch (g_mouseEvent.eventFlags)
-    //{
-    //case 0:
-    //    if (g_mouseEvent.buttonState == FROM_LEFT_1ST_BUTTON_PRESSED)
-    //    {
-    //        ss.str("Left Button Pressed");
-    //        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 1, ss.str(), 0x59);
-    //    }
-    //    else if (g_mouseEvent.buttonState == RIGHTMOST_BUTTON_PRESSED)
-    //    {
-    //        ss.str("Right Button Pressed");
-    //        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 2, ss.str(), 0x59);
-    //    }
-    //    else
-    //    {
-    //        ss.str("Some Button Pressed");
-    //        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 3, ss.str(), 0x59);
-    //    }
-    //    break;
-    //case DOUBLE_CLICK:
-    //    ss.str("Double Clicked");
-    //    g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 4, ss.str(), 0x59);
-    //    break;        
-    //case MOUSE_WHEELED:
-    //    if (g_mouseEvent.buttonState & 0xFF000000)
-    //        ss.str("Mouse wheeled down");
-    //    else
-    //        ss.str("Mouse wheeled up");
-    //    g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 5, ss.str(), 0x59);
-    //    break;
-    //default:        
-    //    break;
-    //}
+    // mouse events    
+    ss.str("");
+    ss << "Mouse position (" << g_mouseEvent.mousePosition.X << ", " << g_mouseEvent.mousePosition.Y << ")";
+    g_Console.writeToBuffer(g_mouseEvent.mousePosition, ss.str(), 0x59);
+    ss.str("");
+    switch (g_mouseEvent.eventFlags)
+    {
+    case 0:
+        if (g_mouseEvent.buttonState == FROM_LEFT_1ST_BUTTON_PRESSED)
+        {
+            ss.str("Left Button Pressed");
+            g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 1, ss.str(), 0x59);
+        }
+        else if (g_mouseEvent.buttonState == RIGHTMOST_BUTTON_PRESSED)
+        {
+            ss.str("Right Button Pressed");
+            g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 2, ss.str(), 0x59);
+        }
+        else
+        {
+            ss.str("Some Button Pressed");
+            g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 3, ss.str(), 0x59);
+        }
+        break;
+    case DOUBLE_CLICK:
+        ss.str("Double Clicked");
+        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 4, ss.str(), 0x59);
+        break;        
+    case MOUSE_WHEELED:
+        if (g_mouseEvent.buttonState & 0xFF000000)
+            ss.str("Mouse wheeled down");
+        else
+            ss.str("Mouse wheeled up");
+        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 5, ss.str(), 0x59);
+        break;
+    default:        
+        break;
+    }
     
 }
 

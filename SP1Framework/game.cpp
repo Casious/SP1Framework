@@ -1052,7 +1052,7 @@ void endgame()
 
         if (cleared == true)
         {
-            /*COORD c;
+            COORD c;
             std::ostringstream ss;
             ss << " ";
             ss << "PRESS X TO PROCEED!";

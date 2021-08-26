@@ -795,6 +795,10 @@ void moveCharacter()
 bool easy_mode = false;
 bool normal_mode = false;
 bool hard_mode = false;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 //hi
 void moveMob()
 {
@@ -1067,6 +1071,17 @@ void moveMob()
         }
     }
 }
+<<<<<<< Updated upstream
+=======
+           
+
+
+
+           
+
+
+
+>>>>>>> Stashed changes
 
 void endgame()
 {
@@ -1714,10 +1729,15 @@ void mobcollide()// working on loops now
 |\___/ /        \|_______|\|_______|        \|_______|\|_______|\_________\|_______|
 \|___|/                                                        \|_________|         */
 
-                        g_sMob.m_cLocation.X = 10;
-                        g_sMob.m_cLocation.Y = 10;
-                        g_sChar.m_cLocation.X = 1;
-                        g_sChar.m_cLocation.Y = 1;
+                        init_firstmap();
+                        
+                        g_dElapsedTime = 0;
+
+                        //if you die, restart everything(Reagan)
+                        if (cleared == true)
+                        {
+                            cleared = false;
+                        }
                         
                         g_eGameState = S_GAME;
                     }

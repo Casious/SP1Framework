@@ -112,6 +112,7 @@ void renderWeapons(); // renders the weapon (Jun Ying WIP)
 void renderWeaponAttack(); // renders the weapon attack
 void renderWeapon2Attack();
 void mobcollide();          //mob contact with enemy
+void updateGame1();
 void pickedWeapon(); //when player picks up weapon (Reagan)
 void renderFramerate();     // renders debug information, frame rate, elapsed time, etc
 void renderHeartbeat();

@@ -34,6 +34,7 @@ enum EKEYS
     K_RIGHT,
     K_ESCAPE,
     K_SPACE,
+    K_RETURN,
     K_B,
     K_COUNT,
     K_Q,
@@ -49,6 +50,7 @@ enum EGAMESTATES
     S_COUNT,
     S_CHOSEN,
     S_LOSE,
+    S_WIN,
 };
 
 // struct for the game character
@@ -116,6 +118,10 @@ void mobspawn();
 void setdifficulty();       // allows user to set difficulty
 void mobmovementspeedselector(int);
 void weapon2init(); // sets initial positions for 2nd weapon attack
+void endscreen();
+void startscreen();
+void renderstart();
+
 
 
 

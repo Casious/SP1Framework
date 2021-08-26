@@ -268,6 +268,7 @@ void keyboardHandler(const KEY_EVENT_RECORD& keyboardEvent)
     case S_GAME: gameplayKBHandler(keyboardEvent); // handle gameplay keyboard event 
         break;
     case S_LOSE: gameplayKBHandler(keyboardEvent); // press enter to return to title screen
+        break;
     }
 }
 std::vector<std::vector<std::string>>mapvector;
@@ -321,6 +322,7 @@ void gameplayKBHandler(const KEY_EVENT_RECORD& keyboardEvent)
     case VK_RIGHT: key = K_RIGHT; break; 
     case VK_SPACE: key = K_SPACE; break;
     case VK_ESCAPE: key = K_ESCAPE; break; 
+    case VK_RETURN:key = K_RETURN; break; //enter key
     case 0x42: key = K_B; break;
     case 0x41: key = K_A; break;
     case 0x51: key = K_Q; break;
@@ -414,8 +416,10 @@ void splashScreenWait()    // waits for time to pass in splash screen
     {
         g_eGameState = S_GAME;
     }*/
-
+    
     setdifficulty();
+    startscreen();
+
 }
 
 void updateGame()       // gameplay logic
@@ -506,7 +510,8 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
     c.X = 12;
     c.Y = 11;
     g_Console.writeToBuffer(c, ss.str());
-   
+    startscreen();
+    renderstart();
     }
 //mouse clicker
 
@@ -525,43 +530,47 @@ void renderGame()
     renderWText();
     mobcollide();
     setdifficulty();
+    startscreen();
     
 }
 void renderLose()
 {
-    mobcollide();
+    mobcollide();//weird ass name gonna change it LOL
+    
 
 
 }
 int mapWidth = 50;
 int mapHeight = 24;
-//std::vector<char> mapArray;
-
-char mapArray[] = { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
-'#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
-'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',
-'#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
-'#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ','#','#','#','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#',' ',' ',' ',' ',' ','#',
-'#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#',' ','#',' ','#','#',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#',' ',' ',' ',' ',' ',' ',' ','#',
-'#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#','#','#','#','#','#','#',
-'#',' ','#','#','#','#','#',' ','#','#','#','#','#',' ','#',' ','#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#',
-'#',' ',' ',' ',' ',' ','#',' ','#',' ',' ',' ','#',' ',' ','#','#','#','#','#','#',' ','#',' ','#','#','#','#',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#','#','#','#',' ','#','#',
-'#',' ','#','#',' ','#','#',' ','#','#','#','#','#','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#',' ',' ',' ',' ',' ',' ','#',' ','#',
-'#',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ',' ','#',' ',' ','#','#','#','#','#','#','#','#','#','#','#',
-'#',' ','#',' ','#',' ','#',' ','#','#','#','#',' ','#',' ','#',' ','#',' ',' ','#',' ','#',' ','#',' ',' ',' ','#',' ',' ','#',' ',' ',' ',' ','#','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
-'#','#','#',' ',' ',' ','#',' ','#',' ',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#','#','#',' ',' ',' ','#',' ','#','#','#','#','#','#','#',' ',' ','#',' ','#','#','#','#','#','#','#','#','#',
-'#',' ','#',' ','#',' ','#',' ','#','#',' ','#',' ','#',' ','#','#','#','#','#','#',' ','#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ','#','#',' ','#','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
-'#',' ','#',' ','#',' ','#',' ',' ',' ','#','#',' ','#','#','#','#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#',' ',' ','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
-'#',' ','#',' ','#',' ','#','#','#',' ','#','#',' ',' ',' ','#','#',' ','#','#','#','#','#',' ',' ',' ',' ','#',' ',' ',' ',' ',' ','#',' ','#','#',' ','#','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
-'#',' ','#',' ','#',' ','#',' ','#',' ','#',' ','#','#',' ','#','#',' ','#',' ',' ',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ','#',' ','#','#',' ','#','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
-'#',' ',' ','#','#',' ','#',' ','#',' ','#',' ',' ','#',' ',' ',' ',' ','#',' ',' ',' ','#',' ',' ',' ',' ','#',' ','#','#','#','#','#',' ','#','#',' ','#','#',' ','#','#','#','#','#','#','#',' ','#',
-'#',' ',' ',' ','#',' ','#',' ','#',' ','#',' ',' ','#','#',' ','#','#','#','#','#',' ','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',' ','#','#',' ','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
-'#',' ',' ',' ','#',' ',' ',' ',' ',' ','#',' ',' ',' ','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ','#','#',' ','#','#','#','#',' ','#',
-'#',' ',' ',' ','#','#','#','#','#','#','#',' ',' ',' ','#',' ','#','#','#','#','#',' ','#','#','#',' ','#',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#','#',
-'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#',' ',' ','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ','#','#',
-'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#','#','#','#','#','#','#',' ','#',' ','#',' ','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#',
-'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'
-}; 
+std::vector<char>mapArray;
+int startX = 12;
+int startY = 2;
+std::vector<char>startArray;
+//char mapArray[] = { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
+//'#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+//'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',
+//'#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+//'#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ','#','#','#','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#',' ',' ',' ',' ',' ','#',
+//'#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#',' ','#',' ','#','#',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#',' ',' ',' ',' ',' ',' ',' ','#',
+//'#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#','#','#','#','#','#','#',
+//'#',' ','#','#','#','#','#',' ','#','#','#','#','#',' ','#',' ','#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#',
+//'#',' ',' ',' ',' ',' ','#',' ','#',' ',' ',' ','#',' ',' ','#','#','#','#','#','#',' ','#',' ','#','#','#','#',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#','#','#','#',' ','#','#',
+//'#',' ','#','#',' ','#','#',' ','#','#','#','#','#','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#',' ',' ',' ',' ',' ',' ','#',' ','#',
+//'#',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ',' ','#',' ',' ','#','#','#','#','#','#','#','#','#','#','#',
+//'#',' ','#',' ','#',' ','#',' ','#','#','#','#',' ','#',' ','#',' ','#',' ',' ','#',' ','#',' ','#',' ',' ',' ','#',' ',' ','#',' ',' ',' ',' ','#','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+//'#','#','#',' ',' ',' ','#',' ','#',' ',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#','#','#',' ',' ',' ','#',' ','#','#','#','#','#','#','#',' ',' ','#',' ','#','#','#','#','#','#','#','#','#',
+//'#',' ','#',' ','#',' ','#',' ','#','#',' ','#',' ','#',' ','#','#','#','#','#','#',' ','#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ','#','#',' ','#','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
+//'#',' ','#',' ','#',' ','#',' ',' ',' ','#','#',' ','#','#','#','#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#',' ',' ','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
+//'#',' ','#',' ','#',' ','#','#','#',' ','#','#',' ',' ',' ','#','#',' ','#','#','#','#','#',' ',' ',' ',' ','#',' ',' ',' ',' ',' ','#',' ','#','#',' ','#','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
+//'#',' ','#',' ','#',' ','#',' ','#',' ','#',' ','#','#',' ','#','#',' ','#',' ',' ',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ','#',' ','#','#',' ','#','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
+//'#',' ',' ','#','#',' ','#',' ','#',' ','#',' ',' ','#',' ',' ',' ',' ','#',' ',' ',' ','#',' ',' ',' ',' ','#',' ','#','#','#','#','#',' ','#','#',' ','#','#',' ','#','#','#','#','#','#','#',' ','#',
+//'#',' ',' ',' ','#',' ','#',' ','#',' ','#',' ',' ','#','#',' ','#','#','#','#','#',' ','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',' ','#','#',' ','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+//'#',' ',' ',' ','#',' ',' ',' ',' ',' ','#',' ',' ',' ','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ','#','#',' ','#','#','#','#',' ','#',
+//'#',' ',' ',' ','#','#','#','#','#','#','#',' ',' ',' ','#',' ','#','#','#','#','#',' ','#','#','#',' ','#',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#','#',
+//'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#',' ',' ','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ','#','#',
+//'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#','#','#','#','#','#','#',' ','#',' ','#',' ','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#',
+//'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'
+//}; 
 
 void MapDesign()
 {
@@ -575,25 +584,30 @@ void MapDesign()
 
     //}
     // Opening may fail, always check.
-  //  if (!maps) {
-    //    exit(1);
-    //}
-    int offset = 0;
+    if (!maps) {
+        exit(1);
+    }
     std::string row;
     while (std::getline(maps, row))
     {
         std::stringstream rowStream(row);
         std::string(col);
         std::vector<std::string>rowvector;
+        //mapArray.reserve(100);
         while (std::getline(rowStream, col, ',')) 
         {
-            mapArray[offset++] = static_cast<char>(stoi(col));
-           // rowvector.push_back(col);
+            mapArray.push_back(stoi(col));
+ //           mapArray[offset++] = static_cast<char>(stoi(col));
+ //           rowvector.push_back(col);
         }
-      //  mapvector.push_back(rowvector);
+     //   mapArray.push_back(rowvector);
     }
     maps.close();
 }
+
+
+
+
 void renderMap()
 {
 
@@ -611,15 +625,113 @@ void renderMap()
         {
             c.X = i;
             c.Y = j;
-            //switch(mapArray[j * mapWidth + i])
-            //{
-                //case 1: //render '#'
-            //}
+            switch(mapArray[j * mapWidth + i])
+            {
+            case 1: 
+                (mapArray[j * mapWidth + i]) = char(221);
+                break;
+            }
             g_Console.writeToBuffer(c, mapArray[j * mapWidth + i], Colour);
         }  
     }
 } 
+void startscreen()
+{/*
+    std::ifstream maze;
+    maze.open("themaze.txt", std::ifstream::in);
+    //int level=1;
+    //switch (level)
+    //{
+    //case 1: maps = std::ifstream("MapDesign1.txt");
+    //    break;
 
+    //}
+    // Opening may fail, always check.
+    if (!maze) {
+        exit(1);
+    }
+    std::string row;
+    while (std::getline(maze, row))
+    {
+        std::stringstream rowStream(row);
+        std::string(col);
+        std::vector<std::string>rowvector;
+        //mapArray.reserve(100);
+        while (std::getline(rowStream, col, ','))
+        {
+            startArray.push_back(stoi(col));
+            //           mapArray[offset++] = static_cast<char>(stoi(col));
+            //           rowvector.push_back(col);
+        }
+        //   mapArray.push_back(rowvector);
+    }
+    maze.close();
+    */
+}
+void MapDesign2()
+{
+    std::ifstream maps;
+    maps.open("MapDesign2.txt", std::ifstream::in);
+    // Opening may fail, always check.
+    if (!maps) {
+        exit(1);
+    }
+    std::string row;
+    while (std::getline(maps, row))
+    {
+        std::stringstream rowStream(row);
+        std::string(col);
+        std::vector<std::string>rowvector;
+        while (std::getline(rowStream, col, ','))
+        {
+            mapArray.push_back(stoi(col));
+        }
+
+    }
+    maps.close();
+}
+
+void renderMap2()
+{
+    COORD c;
+    WORD Colour = 0x0B;
+    for (int j = 0; j < mapHeight; j++) {
+        for (int i = 0; i < mapWidth; i++)
+        {
+            c.X = i;
+            c.Y = j;
+            switch (mapArray[j * mapWidth + i])
+            {
+            case 1:
+                (mapArray[j * mapWidth + i]) = char(221);
+                break;
+            }
+            g_Console.writeToBuffer(c, mapArray[j * mapWidth + i], Colour);
+        }
+    }
+}
+    
+
+
+
+
+
+
+void renderstart()
+{/*
+    COORD c;
+
+    WORD Colour = 0x0B;//0x0110 (cursed blue colour)
+    for (int j = 0; j < startY; j++) {
+        for (int i = 0; i < startX; i++)
+        {
+            c.X = i;
+            c.Y = j;
+          
+            g_Console.writeToBuffer(c, startY[j * startX + i], Colour);
+        }
+    }*/
+}
 
 
 void moveCharacter()
@@ -629,22 +741,22 @@ void moveCharacter()
     // Updating the location of the character based on the key release
     // providing a beep sound whenver we shift the character
 
-    if (g_skKeyEvent[K_UP].keyReleased && mapArray[(g_sChar.m_cLocation.Y - 1)* mapWidth + g_sChar.m_cLocation.X] != 1 )
+    if (g_skKeyEvent[K_UP].keyReleased && mapArray[(g_sChar.m_cLocation.Y - 1)* mapWidth + g_sChar.m_cLocation.X] != char(221))
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.Y--;       
     }
-    if (g_skKeyEvent[K_LEFT].keyReleased && mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 1)] != 1)
+    if (g_skKeyEvent[K_LEFT].keyReleased && mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 1)] != char(221))
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.X--;        
     }
-    if (g_skKeyEvent[K_DOWN].keyReleased && mapArray[(g_sChar.m_cLocation.Y + 1) * mapWidth + g_sChar.m_cLocation.X] != 1)
+    if (g_skKeyEvent[K_DOWN].keyReleased && mapArray[(g_sChar.m_cLocation.Y + 1) * mapWidth + g_sChar.m_cLocation.X] != char(221))
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.Y++;        
     }
-    if (g_skKeyEvent[K_RIGHT].keyReleased && mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 1)] != 1)
+    if (g_skKeyEvent[K_RIGHT].keyReleased && mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 1)] != char(221))
     {
         //Beep(1440, 30);
         g_sChar.m_cLocation.X++;        
@@ -660,52 +772,81 @@ void moveMob()
 {
     if (hard_mode == true)
     {
+        normal_mode = false;
         easy_mode = false;
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y + 1 <= 1)//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
         //move up
-        else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.Y - 1 <= 50)
+        else if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.Y - 1 <= 50)
         {
             g_sMob.m_cLocation.Y--;
         }
         //move right
-        else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.X + 1 <= 50)
+        else if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X + 1 <= 50)
         {
             g_sMob.m_cLocation.X++;
         }
         //move left
-        else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.01 && g_sMob.m_cLocation.X - 1 <= 1)
+        else if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && g_sMob.m_cLocation.X - 1 <= 1)
         {
             g_sMob.m_cLocation.X--;
         }
     }
     else if (easy_mode == true)
     {
+        normal_mode - false;
         hard_mode = false;
 
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != 1)//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
         //move up
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != 1)
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))
         {
             g_sMob.m_cLocation.Y--;
         }
         //move right
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != 1)
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != char(221))
         {
             g_sMob.m_cLocation.X++;
         }
         //move left
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != 1)
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != char(221))
         {
             g_sMob.m_cLocation.X--;
         }
+    }
+    else if (normal_mode == true)
+    {
+        hard_mode = false;
+        easy_mode = false;
+        //move down
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y + 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))//0.02 hardcoded for now, change to difficulty
+        {
+            g_sMob.m_cLocation.Y++;
+        }
+        //move up
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 && mapArray[(g_sMob.m_cLocation.Y - 1) * mapWidth + g_sMob.m_cLocation.X] != char(221))
+        {
+            g_sMob.m_cLocation.Y--;
+        }
+        //move right
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X + 1)] != char(221))
+        {
+            g_sMob.m_cLocation.X++;
+        }
+        //move left
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 && mapArray[g_sMob.m_cLocation.Y * mapWidth + (g_sMob.m_cLocation.X - 1)] != char(221))
+        {
+            g_sMob.m_cLocation.X--;
+        }
+
+
     }
 }
            
@@ -748,7 +889,7 @@ void renderMobs()
 
     if (mob2_exists == true)
     {
-        g_Console.writeToBuffer(g_sMob2.m_cLocation, (char)1, mobColor);
+        g_Console.writeToBuffer(g_sMob2.m_cLocation, (char)1, mobColor); 
     }
 
     if (mob3_exists == true)
@@ -783,7 +924,7 @@ void setdifficulty()//completely doesnt work? its not being initalized
     */
 
     //doesnt work switching to new plan
-
+        getInput();
 
         if (g_skKeyEvent[K_Q].keyReleased)
         {
@@ -1176,7 +1317,7 @@ void renderWeapon2Attack()
 
 
 }
-void mobcollide()//david WIP dection works tho
+void mobcollide()// working on loops now
 {
     if (mob_exists == true)
     {
@@ -1194,18 +1335,59 @@ void mobcollide()//david WIP dection works tho
                 {
                     COORD c;
                     std::ostringstream ss;
-                    ss << "You Lose!";
-                    c.X = 25;
-                    c.Y = 15;
-                    g_Console.writeToBuffer(c, ss.str());
+                    /*
+                    prints you died
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    */
+                  
                     ss << " ";
-                    ss << "PRESS SPACE TO CONTINUE";
-                    c.X = 25;
+                    ss << "PRESS ENTER TO RESTART AND SPACE TO QUIT!";
+                    c.X = 20;
                     c.Y = 16;
                     g_Console.writeToBuffer(c, ss.str());
                     
                     // adding end game and restart func
                     //g_bQuitGame = true; // ends game
+                    if (g_skKeyEvent[K_RETURN].keyReleased)//this is go back to game(restart)
+                    {   // add in u lose
+
+                        /*
+  ___    ___ ________  ___  ___          ___       ________  ________  _______
+ |\  \  /  /|\   __  \|\  \|\  \        |\  \     |\   __  \|\   ____\|\  ___ \
+ \ \  \/  / | \  \|\  \ \  \\\  \       \ \  \    \ \  \|\  \ \  \___|\ \   __/|
+  \ \    / / \ \  \\\  \ \  \\\  \       \ \  \    \ \  \\\  \ \_____  \ \  \_|/__
+   \/  /  /   \ \  \\\  \ \  \\\  \       \ \  \____\ \  \\\  \|____|\  \ \  \_|\ \
+ __/  / /      \ \_______\ \_______\       \ \_______\ \_______\____\_\  \ \_______\
+|\___/ /        \|_______|\|_______|        \|_______|\|_______|\_________\|_______|
+\|___|/                                                        \|_________|         */
+
+                        g_sMob.m_cLocation.X = 10;
+                        g_sMob.m_cLocation.Y = 10;
+                        g_sChar.m_cLocation.X = 1;
+                        g_sChar.m_cLocation.Y = 1;
+                        g_eGameState = S_GAME;
+                    }
+                    if (g_skKeyEvent[K_SPACE].keyReleased)//ends programme
+                    {
+                        g_bQuitGame = true;
+                    
+                    
+                    
+                    }
+                       
+
+
+
+                    
+                   
                     
 
 
@@ -1222,6 +1404,33 @@ void mobcollide()//david WIP dection works tho
 
         }
     }
+}
+
+
+
+
+
+
+
+void endscreen()
+{
+    std::ifstream lose;
+    lose.open("youlose.txt", std::ifstream::in);
+    if (!lose)
+    {
+        exit(1);
+    }
+    std::vector<std::string>row1;
+    if (lose.is_open())
+    {
+        std::string rows;
+        while (std::getline(lose, rows))
+        {
+            row1.push_back(rows);
+        }
+        lose.close();
+    }
+
 }
 
 
@@ -1254,7 +1463,7 @@ void renderWText()
         {
             COORD c;
             std::ostringstream ss;
-            ss << "Welcome!";
+            ss << "Welcome to the maze!";
             c.X = 55;
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
@@ -1391,6 +1600,8 @@ void renderInputEvents()
         case K_A: key = "A";
             break;
         case K_Z: key = "Z";
+            break;
+        case K_RETURN:key = "ENTER";
             break;
         default: continue;
         }

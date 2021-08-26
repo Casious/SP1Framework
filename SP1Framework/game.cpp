@@ -795,7 +795,6 @@ void moveCharacter()
 bool easy_mode = false;
 bool normal_mode = false;
 bool hard_mode = false;
-<<<<<<< Updated upstream
 //hi
 void moveMob()
 {
@@ -804,7 +803,7 @@ void moveMob()
         normal_mode = false;
         easy_mode = false;
         //move down
-        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 )//0.02 hardcoded for now, change to difficulty
+        if (g_sChar.m_cLocation.Y > g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)//0.02 hardcoded for now, change to difficulty
         {
             g_sMob.m_cLocation.Y++;
         }
@@ -825,7 +824,7 @@ void moveMob()
             g_sMob4.m_cLocation.Y++;
         }
         //move up
-        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02 )
+        if (g_sChar.m_cLocation.Y < g_sMob.m_cLocation.Y && g_dHeartBeat <= 0.02)
         {
             g_sMob.m_cLocation.Y--;
         }
@@ -846,7 +845,7 @@ void moveMob()
             g_sMob4.m_cLocation.Y--;
         }
         //move right
-        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 )
+        if (g_sChar.m_cLocation.X > g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
         {
             g_sMob.m_cLocation.X++;
         }
@@ -867,7 +866,7 @@ void moveMob()
             g_sMob4.m_cLocation.X++;
         }
         //move left
-        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02 )
+        if (g_sChar.m_cLocation.X < g_sMob.m_cLocation.X && g_dHeartBeat <= 0.02)
         {
             g_sMob.m_cLocation.X--;
         }
@@ -1068,14 +1067,6 @@ void moveMob()
         }
     }
 }
-           
-=======
-
-
-           
-
-
->>>>>>> Stashed changes
 
 void endgame()
 {

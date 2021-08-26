@@ -15,7 +15,6 @@
 using namespace std;
 double  g_dElapsedTime;
 double  g_dDeltaTime;
-double g_dOldTime;
 double g_dHeartBeat;
 double g_d30Timer;
 float movepace; // how many frames of movement for the mob
@@ -26,7 +25,7 @@ SMouseEvent g_mouseEvent;
 // Game specific variables here
 
 //game character (Reagan)
-SGameChar   g_sChar;
+SGameChar g_sChar;
 SGameMob g_sMob;
 SGameMob g_sMob1;
 SGameMob g_sMob2;

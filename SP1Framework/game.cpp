@@ -1,7 +1,6 @@
 // This is the main file for the game logic and function
 //im pushing this for shuan cuz he sucks and messed up 
 //
-//
 #include "game.h"
 #include "Framework\console.h"
 #include <iostream>
@@ -337,6 +336,8 @@ void gameplayKBHandler(const KEY_EVENT_RECORD& keyboardEvent)
     case 0x41: key = K_A; break;
     case 0x51: key = K_Q; break;
     case 0x5A: key = K_Z; break;
+    case 0x58: key = K_X; break;
+    case 0x46: key = K_F; break;
 
     }
     // a key pressed event would be one with bKeyDown == true
@@ -414,6 +415,8 @@ void update(double dt)
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
             break;
         case S_GAME: updateGame(); // gameplay logic when we are in the game
+            break;
+        case S_GAME1: updateGame();
             break;
     }
 }
@@ -534,8 +537,8 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
 
 void renderGame()
 {
-    MapDesign();
-    renderMap();        // renders the map to the buffer first
+    MapDesign2();
+    renderMap2();        // renders the map to the buffer first
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
     renderWeapons(); // render weapon
@@ -567,8 +570,8 @@ void renderWin()
 
 void renderGame1()
 {
-    MapDesign2();
-    renderMap2();        // renders the map to the buffer first
+    MapDesign();
+    renderMap();        // renders the map to the buffer first
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
     renderWeapons(); // render weapon
@@ -1042,7 +1045,7 @@ void endgame()
             COORD c;
             std::ostringstream ss;
             ss << " ";
-            ss << "PRESS ENTER TO PROCEED!";
+            ss << "PRESS X TO PROCEED!";
             c.X = 20;
             c.Y = 16;
             g_Console.writeToBuffer(c, ss.str());
@@ -1053,11 +1056,8 @@ void endgame()
             if (g_skKeyEvent[K_RETURN].keyReleased)
             {
                 g_sChar.m_cLocation.X = 1;
-                g_sChar.m_cLocation.Y = 2;
-
+                g_sChar.m_cLocation.Y = 1;
                 g_eGameState = S_GAME1;
-
-
             }
            
 
@@ -1081,7 +1081,7 @@ void endgame()
 }
 void cheat()
 {
-    if (g_eGameState = S_GAME)
+    /*if (g_eGameState = S_GAME)
     {
         bool cheat = false;
         if (g_skKeyEvent[K_Q].keyReleased)
@@ -1093,7 +1093,7 @@ void cheat()
 
 
         }
-    }
+    }*/
 }
 
 
@@ -1701,7 +1701,7 @@ void renderWText()
     //text box spawn after a certain time
     if (modeselected == true)
     {
-        if (g_dElapsedTime >= 1 && g_dElapsedTime < 2)
+        if (g_dElapsedTime >= 1 && g_dElapsedTime < 4)
         {
             COORD c;
             std::ostringstream ss;
@@ -1710,7 +1710,7 @@ void renderWText()
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
         }
-        if (g_dElapsedTime >= 2 && g_dElapsedTime < 3)
+        if (g_dElapsedTime >= 4 && g_dElapsedTime < 7)
         {
             COORD c;
             std::ostringstream ss;
@@ -1719,7 +1719,7 @@ void renderWText()
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
         }
-        if (g_dElapsedTime >= 3)
+        if (g_dElapsedTime >= 7)
         {
             after_cutscene = true;
         }

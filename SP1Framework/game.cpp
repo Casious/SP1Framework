@@ -676,7 +676,7 @@ void startscreen()
 
 
 void renderstart()
-{
+{/*
     COORD c;
 
     WORD Colour = 0x0B;//0x0110 (cursed blue colour)
@@ -688,7 +688,7 @@ void renderstart()
           
             g_Console.writeToBuffer(c, startY[j * startX + i], Colour);
         }
-    }
+    }*/
 }
 
 

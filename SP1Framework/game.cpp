@@ -268,6 +268,7 @@ void keyboardHandler(const KEY_EVENT_RECORD& keyboardEvent)
     case S_GAME: gameplayKBHandler(keyboardEvent); // handle gameplay keyboard event 
         break;
     case S_LOSE: gameplayKBHandler(keyboardEvent); // press enter to return to title screen
+        break;
     }
 }
 std::vector<std::vector<std::string>>mapvector;
@@ -321,6 +322,7 @@ void gameplayKBHandler(const KEY_EVENT_RECORD& keyboardEvent)
     case VK_RIGHT: key = K_RIGHT; break; 
     case VK_SPACE: key = K_SPACE; break;
     case VK_ESCAPE: key = K_ESCAPE; break; 
+    case VK_RETURN:key = K_RETURN; break; //enter key
     case 0x42: key = K_B; break;
     case 0x41: key = K_A; break;
     case 0x51: key = K_Q; break;
@@ -507,7 +509,7 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
     c.X = 12;
     c.Y = 11;
     g_Console.writeToBuffer(c, ss.str());
-   
+    startscreen();
     }
 //mouse clicker
 
@@ -531,7 +533,8 @@ void renderGame()
 }
 void renderLose()
 {
-    mobcollide();
+    mobcollide();//weird ass name gonna change it LOL
+    
 
 
 }
@@ -596,6 +599,29 @@ void MapDesign()
     }
     maps.close();
 }
+
+void startscreen()
+{
+    std::ifstream maze;
+    maze.open("themaze.txt", std::ifstream::in);
+    if (!maze)
+    {
+        exit(1);
+    }
+    std::vector<std::string>row1;
+    if (maze.is_open())
+    {
+        std::string rows;
+        while (std::getline(maze, rows))
+        {
+            row1.push_back(rows);
+        }
+        maze.close();
+    }
+    
+}
+
+
 void renderMap()
 {
 
@@ -772,7 +798,7 @@ void renderMobs()
 
     if (mob2_exists == true)
     {
-        g_Console.writeToBuffer(g_sMob2.m_cLocation, (char)1, mobColor);
+        g_Console.writeToBuffer(g_sMob2.m_cLocation, (char)1, mobColor); 
     }
 
     if (mob3_exists == true)
@@ -807,7 +833,7 @@ void setdifficulty()//completely doesnt work? its not being initalized
     */
 
     //doesnt work switching to new plan
-
+        getInput();
 
         if (g_skKeyEvent[K_Q].keyReleased)
         {
@@ -1199,7 +1225,7 @@ void renderWeapon2Attack()
 
 
 }
-void mobcollide()//david WIP dection works tho
+void mobcollide()// working on loops now
 {
     if (mob_exists == true)
     {
@@ -1215,20 +1241,39 @@ void mobcollide()//david WIP dection works tho
                 g_eGameState = S_LOSE;//works need to import text 
                 if (g_eGameState == S_LOSE)
                 {
-                    COORD c;
+                    /*COORD c;
                     std::ostringstream ss;
-                    ss << "You Lose!";
-                    c.X = 25;
-                    c.Y = 15;
-                    g_Console.writeToBuffer(c, ss.str());
+                  
                     ss << " ";
                     ss << "PRESS SPACE TO CONTINUE";
                     c.X = 25;
                     c.Y = 16;
                     g_Console.writeToBuffer(c, ss.str());
-                    
+                    */
                     // adding end game and restart func
                     //g_bQuitGame = true; // ends game
+                    if (g_skKeyEvent[K_RETURN].keyReleased)
+                    {   // add in u lose
+
+                        /*
+  ___    ___ ________  ___  ___          ___       ________  ________  _______      
+ |\  \  /  /|\   __  \|\  \|\  \        |\  \     |\   __  \|\   ____\|\  ___ \     
+ \ \  \/  / | \  \|\  \ \  \\\  \       \ \  \    \ \  \|\  \ \  \___|\ \   __/|    
+  \ \    / / \ \  \\\  \ \  \\\  \       \ \  \    \ \  \\\  \ \_____  \ \  \_|/__  
+   \/  /  /   \ \  \\\  \ \  \\\  \       \ \  \____\ \  \\\  \|____|\  \ \  \_|\ \ 
+ __/  / /      \ \_______\ \_______\       \ \_______\ \_______\____\_\  \ \_______\
+|\___/ /        \|_______|\|_______|        \|_______|\|_______|\_________\|_______|
+\|___|/                                                        \|_________|         */
+
+
+                        g_eGameState = S_SPLASHSCREEN;//need to reset game screen weird ass looping bug
+
+                       
+
+
+
+                    }
+                   
                     
 
 
@@ -1245,6 +1290,33 @@ void mobcollide()//david WIP dection works tho
 
         }
     }
+}
+
+
+
+
+
+
+
+void endscreen()
+{
+    std::ifstream lose;
+    lose.open("youlose.txt", std::ifstream::in);
+    if (!lose)
+    {
+        exit(1);
+    }
+    std::vector<std::string>row1;
+    if (lose.is_open())
+    {
+        std::string rows;
+        while (std::getline(lose, rows))
+        {
+            row1.push_back(rows);
+        }
+        lose.close();
+    }
+
 }
 
 
@@ -1414,6 +1486,8 @@ void renderInputEvents()
         case K_A: key = "A";
             break;
         case K_Z: key = "Z";
+            break;
+        case K_RETURN:key = "ENTER";
             break;
         default: continue;
         }

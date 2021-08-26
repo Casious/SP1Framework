@@ -83,7 +83,9 @@ struct SGameMap {
     COORD m_cLocation;
     bool m_bActive;
 };
-void init        ( void );      // initialize your variables, allocate memory, etc
+void init_firstmap( void );      // initialize your variables, allocate memory, etc
+void init_secondmap(void);
+
 void getInput    ( void );      // get input from player
 void update      ( double dt ); // update the game and the state of the game
 void render      ( void );      // renders the current state of the game to the console
@@ -124,6 +126,7 @@ void teleChar();
 void renderWText();
 void endgame();                   // ends the game
 void mobspawn();
+
 void setdifficulty();       // allows user to set difficulty
 void mobmovementspeedselector(int);
 void weapon2init(); // sets initial positions for 2nd weapon attack

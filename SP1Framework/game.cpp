@@ -21,6 +21,15 @@ double  g_dElapsedTime;
 double  g_dDeltaTime;
 double g_dHeartBeat;
 double g_d30Timer;
+
+
+
+
+double g_dElapsedTime_2;
+double g_dDeltaTime_2;
+double g_d30Timer_2;
+
+
 float movepace; // how many frames of movement for the mob
 float movetimer; // how fast the mob moves each interval
 SKeyEvent g_skKeyEvent[K_COUNT];
@@ -35,10 +44,6 @@ SGameMob g_sMob1;
 SGameMob g_sMob2;
 SGameMob g_sMob3;
 SGameMob g_sMob4;
-
-
-
-
 
 //weapon struct (Jun Ying)
 SGameWeapon g_sWeapon;
@@ -79,7 +84,8 @@ Console g_Console(80, 25, "SP1 Framework");
     bool mob4_exists = false;
     bool char_exists = true;
     
-
+    bool cleared = false;
+    bool pt1cleared = false;
     bool start_time = false;
 
     // check for most recent key input
@@ -91,9 +97,6 @@ Console g_Console(80, 25, "SP1 Framework");
 // Input    : void
 // Output   : void
 //--------------------------------------------------------------
-
-
-
 
 void setmobmoveinterval(int interval)
 {
@@ -306,7 +309,7 @@ bool after_cutscene = false;
 
 void update(double dt)
 {
-    if (start_time == true)
+    if (start_time == true )
     {
         
         // get the delta time
@@ -316,6 +319,17 @@ void update(double dt)
         //modifies game diff 
         g_d30Timer = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
         
+    }
+
+    if (cleared == true)
+    {
+        // get the delta time
+        g_dElapsedTime_2 += dt;
+        g_dDeltaTime_2 = dt;
+        g_dHeartBeat = fmod(g_dElapsedTime, movetimer); //timer for mob movement (changed to movetimer so just use setmobmoveinterval instead)
+        //modifies game diff 
+        g_d30Timer_2 = fmod(g_dElapsedTime, 30.0); // 30 second timer here for david (Jun Ying)
+
     }
 
     //after cutscene, the game starts (Reagan)
@@ -341,11 +355,6 @@ bool modeselected = false;
 void splashScreenWait()    // waits for time to pass in splash screen
 {//if mode seleceted == true g_eGamestate
     
-    /*if (g_dElapsedTime > 3) // wait for 3 seconds to switch to game mode, else do nothing
-    {
-        g_eGameState = S_GAME;
-    }*/
-    
     setdifficulty();
     startscreen();
 
@@ -355,20 +364,16 @@ void splashScreenWait()    // waits for time to pass in splash screen
 
 void updateGame()       // gameplay logic
 {
+
     if (after_cutscene == true)
     {
-        processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
-
-    
-        moveCharacter();    // moves the character, collision detection, physics, etc
-                            // sound can be played here too.
-
+         
         mobspawn();
-
-        moveMob();
-
+       
+        processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
+        moveCharacter();    // moves the character, collision detection, physics, etc
         
-
+        moveMob();
         pickedWeapon(); //when player picks up weapon
     }
 }
@@ -482,10 +487,6 @@ void renderLose()
 void renderWin()
 {
     endgame();
-
-
-
-
 }
 
 void renderGame1()
@@ -501,9 +502,6 @@ void renderGame1()
     mobcollide();
     startscreen();
     cheat();
-
-
-
 }
 
 
@@ -548,9 +546,6 @@ void MapDesign()
     maps.close();
 }
 
-
-
-
 void renderMap()
 {
 
@@ -578,6 +573,7 @@ void renderMap()
         }  
     }
 } 
+
 void startscreen()
 {/*
     std::ifstream maze;
@@ -655,84 +651,10 @@ void renderMap2()
 }
 
 
-
-
-
-
-
-
-
-
-
-//choose spawn points (Reagan)
-void spawn_points(int point_x, int point_y, bool active)
+void init_firstmap(void)
 {
     //to help with mob spawning
     srand((unsigned)time(0));
-
-    int number_generator = rand() % 10+ 1;
-    switch (number_generator)
-    {
-    case 1:
-        point_x = 25;
-        point_y = 5;
-        active = true;
-    case 2:
-        point_x = 35;
-        point_y = 11;
-        active = true;
-    case 3:
-        point_x = 27;
-        point_y = 20;
-        active = true;
-    case 4:
-        point_x = 47;
-        point_y = 5;
-        active = true;
-    case 5:
-        point_x = 1;
-        point_y = 22;
-        active = true;
-    case 6:
-        point_x = 46;
-        point_y = 18;
-        active = true;
-    case 7:
-        point_x = 18;
-        point_y = 9;
-        active = true;
-    case 8:
-        point_x = 18;
-        point_y = 4;
-        active = true;
-    case 9:
-        point_x = 24;
-        point_y = 16;
-        active = true;
-    case 10:
-        point_x = 31;
-        point_y = 20;
-        active = true;
-    default:
-        break;
-    }
-
-    /*return point_x;
-    return point_y;
-    return active;*/
-}
-
-void init(void)
-{
-
-    
-
-    //to help with mob spawning
-    srand((unsigned)time(0));
-    
-
-    // Set precision for floating point output
-    g_dElapsedTime = 0.0;
 
     // sets the initial state for the game
     g_eGameState = S_SPLASHSCREEN;
@@ -812,10 +734,6 @@ void init(void)
     g_Console.setMouseHandler(mouseHandler);
 }
 
-
-
-
-
 void renderstart()
 {/*
     COORD c;
@@ -866,6 +784,7 @@ void moveCharacter()
 bool easy_mode = false;
 bool normal_mode = false;
 bool hard_mode = false;
+<<<<<<< Updated upstream
 //hi
 void moveMob()
 {
@@ -1139,9 +1058,14 @@ void moveMob()
     }
 }
            
+=======
 
-bool cleared = false;
-bool pt1cleared = false;
+
+           
+
+
+>>>>>>> Stashed changes
+
 void endgame()
 {
     if (g_sChar.m_cLocation.X == 49 && g_sChar.m_cLocation.Y == 11)
@@ -1176,6 +1100,7 @@ void endgame()
                 g_sChar.m_cLocation.X = 1;
                 g_sChar.m_cLocation.Y = 1;
                 g_eGameState = S_GAME1;
+                
             }
            
 
@@ -1190,13 +1115,6 @@ void endgame()
 
 
     }
-
-
-
-
-
-
-
 }
 void cheat()
 {
@@ -1320,16 +1238,6 @@ void setdifficulty()//completely doesnt work? its not being initalized
     
 }
    
-
-
-
-
-
-
-
-
-
-
 void renderWeapons() // Jun Ying
 {
     // Colour for the weapon symbol
@@ -1681,6 +1589,7 @@ void renderWeapon2Attack()
 
 
 }
+
 void mobcollide()// working on loops now
 {
     if (mob_exists == true)
@@ -1783,12 +1692,6 @@ void mobcollide()// working on loops now
     }
 }
 
-
-
-
-
-
-
 void endscreen()
 {
     std::ifstream lose;
@@ -1860,6 +1763,7 @@ void renderWText()
         }
     }
 
+    //if weapon is equipped
     if (hasweapon == true)
     {
         COORD c;
@@ -1927,26 +1831,61 @@ void renderFramerate()
     
 }
 
+//after a certain time, these mobs will spawn
 void mobspawn()
 { 
-    if (g_dElapsedTime > 10)
-     {
-        mob1_exists = true;
-     }
-    if (g_dElapsedTime > 30)
+    if (cleared == false)
     {
-       mob2_exists = true;
+        if (g_dElapsedTime > 10)
+        {
+            mob1_exists = true;
+        }
+        if (g_dElapsedTime > 30)
+        {
+            mob2_exists = true;
+        }
+        if (g_dElapsedTime > 50)
+        {
+            mob3_exists = true;
+        }
+        if (g_dElapsedTime > 70)
+        {
+            mob4_exists = true;
+        }
     }
-    if (g_dElapsedTime > 50)
+    //if cleared a level, the game will clear all gthosts(Reagan)
+    if (cleared == true)
     {
-       mob3_exists = true;
-    }
-    if (g_dElapsedTime > 70)
-    {
-       mob4_exists = true;
-    }
+        mob_exists = false;
+        mob1_exists = false;
+        mob2_exists = false;
+        mob3_exists = false;
+        mob4_exists = false;
 
+        //after a certain time, the ghosts will spawn again(Reagan)
+        if (g_dElapsedTime_2 > 10)
+        {
+            mob1_exists = true;
+        }
+        if (g_dElapsedTime_2 > 30)
+        {
+            mob2_exists = true;
+        }
+        if (g_dElapsedTime_2 > 50)
+        {
+            mob3_exists = true;
+        }
+        if (g_dElapsedTime_2 > 70)
+        {
+            mob4_exists = true;
+        }
+        if (g_dElapsedTime_2 > 100)
+        {
+            mob_exists = true;
+        }
+    }
 }
+
 
 
 // this is an example of how you would use the input events

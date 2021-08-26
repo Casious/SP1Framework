@@ -538,8 +538,8 @@ void renderSplashScreen()  // renders the splash screen difficulties UI for the 
 
 void renderGame()
 {
-    MapDesign2();
-    renderMap2();        // renders the map to the buffer first
+    MapDesign();
+    renderMap();        // renders the map to the buffer first
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
     renderWeapons(); // render weapon
@@ -571,8 +571,8 @@ void renderWin()
 
 void renderGame1()
 {
-    MapDesign();
-    renderMap();        // renders the map to the buffer first
+    MapDesign2();
+    renderMap2();        // renders the map to the buffer first
     renderCharacter(); // renders the character into the buffer
     renderMobs(); //renders mob
     renderWeapons(); // render weapon

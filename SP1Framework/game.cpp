@@ -635,7 +635,7 @@ void renderMap()
     }
 } 
 void startscreen()
-{
+{/*
     std::ifstream maze;
     maze.open("themaze.txt", std::ifstream::in);
     //int level=1;
@@ -665,6 +665,7 @@ void startscreen()
         //   mapArray.push_back(rowvector);
     }
     maze.close();
+    */
 }
 
     

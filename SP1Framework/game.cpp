@@ -1717,7 +1717,6 @@ void renderWText()
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
         }
-        if (g_dElapsedTime >= 2 && g_dElapsedTime < 3)
         if (g_dElapsedTime >= 4 && g_dElapsedTime < 7)
         {
             COORD c;

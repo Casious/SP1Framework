@@ -1143,7 +1143,7 @@ void weapon2attacksystem()
         // sword attack
         if (recentmoveinput == "UP")// up
         {
-            if (mapArray[(g_sChar.m_cLocation.Y - 1) * mapWidth + g_sChar.m_cLocation.X] != 1)
+            if (mapArray[(g_sChar.m_cLocation.Y - 1) * mapWidth + g_sChar.m_cLocation.X] != char(221))
             {
                 canbeam = true;
                 g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
@@ -1151,7 +1151,7 @@ void weapon2attacksystem()
                 g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
             }
 
-            if (mapArray[(g_sChar.m_cLocation.Y - 2) * mapWidth + g_sChar.m_cLocation.X] != 1 && canbeam == true)
+            if (mapArray[(g_sChar.m_cLocation.Y - 2) * mapWidth + g_sChar.m_cLocation.X] != char(221) && canbeam == true)
             {
                 canbeam2 = true;
                 g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
@@ -1159,7 +1159,7 @@ void weapon2attacksystem()
                 g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
             }
 
-            if (mapArray[(g_sChar.m_cLocation.Y - 3) * mapWidth + g_sChar.m_cLocation.X] != 1 && canbeam2 == true)
+            if (mapArray[(g_sChar.m_cLocation.Y - 3) * mapWidth + g_sChar.m_cLocation.X] != char(221) && canbeam2 == true)
             {
                 canbeam3 = true;
                 g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X;
@@ -1170,7 +1170,7 @@ void weapon2attacksystem()
         }
         else if (recentmoveinput == "LEFT")//left
         {
-            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 1)] != 1)
+            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 1)] != char(221))
             {
                 canbeam = true;
                 g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X - 1;
@@ -1178,7 +1178,7 @@ void weapon2attacksystem()
                 g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
             }
 
-            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 2)] != 1 && canbeam == true)
+            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 2)] != char(221) && canbeam == true)
             {
                 canbeam2 = true;
                 g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X - 2;
@@ -1186,7 +1186,7 @@ void weapon2attacksystem()
                 g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
             }
 
-            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 3)] != 1 && canbeam2 == true)
+            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X - 3)] != char(221) && canbeam2 == true)
             {
                 canbeam3 = true;
                 g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X - 3;
@@ -1197,7 +1197,7 @@ void weapon2attacksystem()
         }
         else if (recentmoveinput == "RIGHT")//right
         {
-            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 1)] != 1)
+            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 1)] != char(221))
             {
                 canbeam = true;
                 g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X + 1;
@@ -1205,7 +1205,7 @@ void weapon2attacksystem()
                 g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
             }
 
-            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 2)] != 1 && canbeam == true)
+            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 2)] != char(221) && canbeam == true)
             {
                 canbeam2 = true;
                 g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X + 2;
@@ -1213,7 +1213,7 @@ void weapon2attacksystem()
                 g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
             }
 
-            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 3)] != 1 && canbeam2 == true)
+            if (mapArray[g_sChar.m_cLocation.Y * mapWidth + (g_sChar.m_cLocation.X + 3)] != char(221) && canbeam2 == true)
             {
                 g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X + 3;
                 g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y;
@@ -1223,7 +1223,7 @@ void weapon2attacksystem()
         }
         else if (recentmoveinput == "DOWN")//down
         {
-            if (mapArray[(g_sChar.m_cLocation.Y + 1) * mapWidth + g_sChar.m_cLocation.X] != 1)
+            if (mapArray[(g_sChar.m_cLocation.Y + 1) * mapWidth + g_sChar.m_cLocation.X] != char(221))
             {
                 canbeam = true;
                 g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
@@ -1231,7 +1231,7 @@ void weapon2attacksystem()
                 g_Console.writeToBuffer(g_sSlash.m_cLocation, (char)219, attackColor);
             }
 
-            if (mapArray[(g_sChar.m_cLocation.Y + 2) * mapWidth + g_sChar.m_cLocation.X] != 1 && canbeam == true)
+            if (mapArray[(g_sChar.m_cLocation.Y + 2) * mapWidth + g_sChar.m_cLocation.X] != char(221) && canbeam == true)
             {
                 canbeam2 = true;
                 g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
@@ -1239,7 +1239,7 @@ void weapon2attacksystem()
                 g_Console.writeToBuffer(g_sSlash2.m_cLocation, (char)219, attackColor);
             }
 
-            if (mapArray[(g_sChar.m_cLocation.Y + 3) * mapWidth + g_sChar.m_cLocation.X] != 1 && canbeam2 == true)
+            if (mapArray[(g_sChar.m_cLocation.Y + 3) * mapWidth + g_sChar.m_cLocation.X] != char(221) && canbeam2 == true)
             {
                 canbeam3 = true;
                 g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X;

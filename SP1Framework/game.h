@@ -109,6 +109,7 @@ void renderMap2();
 void renderMobs();
 void renderCharacter();     // renders the character into the buffer
 void renderWeapons(); // renders the weapon (Jun Ying WIP)
+void renderWeapons1();
 void renderWeaponAttack(); // renders the weapon attack
 void renderWeapon2Attack();
 void mobcollide();          //mob contact with enemy

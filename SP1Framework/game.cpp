@@ -1044,11 +1044,18 @@ void endgame()
 {
     if (g_sChar.m_cLocation.X == 49 && g_sChar.m_cLocation.Y == 11)
     {
+        
         g_sChar.m_cLocation.X = 1;
         g_sChar.m_cLocation.Y = 2;
-        cleared = true;
+        
+        
+        weaponExist = true;
+        hasweapon = false;
+        weapon2Exist = true;
+        hasweapon2 = false;
+        
         g_eGameState = S_GAME1;//shows you cleared part 1 press enter to continue 
-
+        /*
         if (cleared == true)
         {
             COORD c;
@@ -1074,6 +1081,7 @@ void endgame()
 
 
         }
+        */
 
 
 
@@ -1713,7 +1721,7 @@ void renderWText()
     //text box spawn after a certain time
     if (modeselected == true)
     {
-        if (g_dElapsedTime >= 1 && g_dElapsedTime < 4)
+        if (g_dElapsedTime >= 1 && g_dElapsedTime < 2)
         {
             COORD c;
             std::ostringstream ss;
@@ -1722,16 +1730,16 @@ void renderWText()
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
         }
-        if (g_dElapsedTime >= 4 && g_dElapsedTime < 7)
+        if (g_dElapsedTime >= 2 && g_dElapsedTime < 3)
         {
             COORD c;
             std::ostringstream ss;
-            ss << "Will you survive?";
+            ss << "Can u get out alive??";
             c.X = 55;
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
         }
-        if (g_dElapsedTime >= 7)
+        if (g_dElapsedTime >= 3)
         {
             after_cutscene = true;
         }

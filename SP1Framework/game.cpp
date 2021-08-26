@@ -1560,10 +1560,14 @@ void mobcollide()// working on loops now
 
             if (char_exists == true)
             {
-
+                mob1_exists = false;
+                mob2_exists = false;
+                mob3_exists = false;
+                mob4_exists = false;
                 g_eGameState = S_LOSE;//works need to import text 
                 if (g_eGameState == S_LOSE)
                 {
+                    
                     COORD c;
                     std::ostringstream ss;
                     /*
@@ -1604,6 +1608,7 @@ void mobcollide()// working on loops now
                         g_sMob.m_cLocation.Y = 10;
                         g_sChar.m_cLocation.X = 1;
                         g_sChar.m_cLocation.Y = 1;
+                        
                         g_eGameState = S_GAME;
                     }
                     if (g_skKeyEvent[K_SPACE].keyReleased)//ends programme

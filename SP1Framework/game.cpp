@@ -101,7 +101,7 @@ void init( void )
     g_eGameState = S_SPLASHSCREEN;
 
     g_sChar.m_cLocation.X = 1;
-    g_sChar.m_cLocation.Y = 1;
+    g_sChar.m_cLocation.Y = 2;
     g_sChar.m_bActive = true;
 
     g_sMob2.m_cLocation.X = 30;

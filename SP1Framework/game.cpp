@@ -1317,6 +1317,9 @@ void weaponattacksystem()
         )
     {
         mob_exists = false;
+        g_sMob.m_cLocation.X = 49;
+        g_sMob.m_cLocation.Y = 1;
+        
         mob_attacked = true; 
         
     }
@@ -1340,6 +1343,8 @@ void weaponattacksystem()
         )
     {
         mob1_exists = false;
+        g_sMob1.m_cLocation.X = 49;
+        g_sMob1.m_cLocation.Y = 1;
 
         if (cleared == false)
         {
@@ -1370,6 +1375,9 @@ void weaponattacksystem()
         )
     {
         mob2_exists = false;
+        g_sMob2.m_cLocation.X = 49;
+        g_sMob2.m_cLocation.Y = 1;
+
         if (cleared == false)
         {
             mob2_attacked = true;
@@ -1399,6 +1407,9 @@ void weaponattacksystem()
         )
     {
         mob3_exists = false;
+        g_sMob3.m_cLocation.X = 49;
+        g_sMob3.m_cLocation.Y = 1;
+
         if (cleared == false)
         {
             mob3_attacked = true;
@@ -1429,6 +1440,9 @@ void weaponattacksystem()
         )
     {
         mob4_exists = false;
+        g_sMob4.m_cLocation.X = 49;
+        g_sMob4.m_cLocation.Y = 1;
+
         if (cleared == false)
         {
             mob4_attacked = true;
@@ -1709,114 +1723,81 @@ void renderWeapon2Attack()
 
 void mobcollide()// working on loops now
 {
-    if (mob_exists == true)
+    if (mob_exists == true||mob1_exists == true||mob2_exists == true||mob3_exists == true||mob4_exists==true)
     {
         if (g_sMob.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y)
+            && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y ||
+            g_sMob1.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob1.m_cLocation.Y == g_sChar.m_cLocation.Y ||
+            g_sMob2.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob2.m_cLocation.Y == g_sChar.m_cLocation.Y ||
+            g_sMob3.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob3.m_cLocation.Y == g_sChar.m_cLocation.Y ||
+            g_sMob4.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob4.m_cLocation.Y == g_sChar.m_cLocation.Y
+            )
         {
             char_exists == false;
-        }
-    }
-    if (mob1_exists == true)
-    {
-        if (g_sMob1.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob1.m_cLocation.Y == g_sChar.m_cLocation.Y)
-        {
-            char_exists == false;
-        }
-    }
-    if (mob2_exists == true)
-    {
-        if (g_sMob2.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob2.m_cLocation.Y == g_sChar.m_cLocation.Y)
-        {
-            char_exists == false;
-        }
-    }
-    if (mob3_exists == true)
-    {
-        if (g_sMob3.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob3.m_cLocation.Y == g_sChar.m_cLocation.Y)
-        {
-            char_exists == false;
-        }
-    }
-    if (mob4_exists == true)
-    {
-        if (g_sMob4.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob4.m_cLocation.Y == g_sChar.m_cLocation.Y)
-        {
-            char_exists == false;
-        }
-    }
-    if (char_exists == false)
-    {
-        mob1_exists = false;
-        mob2_exists = false;
-        mob3_exists = false;
-        mob4_exists = false;
-
-        //game over
-        g_eGameState = S_LOSE;
-        if (g_eGameState == S_LOSE)
-        {
-
-            COORD c;
-            std::ostringstream ss;
-            /*
-            prints you died
-            */
-
-            ss << " ";
-            ss << "PRESS ENTER TO RESTART AND SPACE TO QUIT!";
-            c.X = 20;
-            c.Y = 16;
-            g_Console.writeToBuffer(c, ss.str());
-
-            // adding end game and restart func
-            //g_bQuitGame = true; // ends game
-            if (g_skKeyEvent[K_RETURN].keyReleased)//this is go back to game(restart)
-            {   // add in u lose
-
-                /*
-___    ___ ________  ___  ___          ___       ________  ________  _______
-|\  \  /  /|\   __  \|\  \|\  \        |\  \     |\   __  \|\   ____\|\  ___ \
-\ \  \/  / | \  \|\  \ \  \\\  \       \ \  \    \ \  \|\  \ \  \___|\ \   __/|
- \ \    / / \ \  \\\  \ \  \\\  \       \ \  \    \ \  \\\  \ \_____  \ \  \_|/__
-  \/  /  /   \ \  \\\  \ \  \\\  \       \ \  \____\ \  \\\  \|____|\  \ \  \_|\ \
-__/  / /      \ \_______\ \_______\       \ \_______\ \_______\____\_\  \ \_______\
-|\___/ /        \|_______|\|_______|        \|_______|\|_______|\_________\|_______|
-\|___|/                                                        \|_________|         */
-
-                init_firstmap();
-
-                weapon2Exist = true;
-                weaponExist = true;
-
-                g_dElapsedTime = 0;
-
-                //if you die, restart everything(Reagan)
-                if (cleared == true)
+            if (char_exists == true)
+            {
+                mob1_exists = false;
+                mob2_exists = false;
+                mob3_exists = false;
+                mob4_exists = false;
+                //game over
+                g_eGameState = S_LOSE;
+                if (g_eGameState == S_LOSE)
                 {
-                    cleared = false;
+
+                    COORD c;
+                    std::ostringstream ss;
+                    ss << " ";
+                    ss << "PRESS ENTER TO RESTART AND SPACE TO QUIT!";
+                    c.X = 20;
+                    c.Y = 16;
+                    g_Console.writeToBuffer(c, ss.str());
+
+                    // adding end game and restart func
+                    //g_bQuitGame = true; // ends game
+                    if (g_skKeyEvent[K_RETURN].keyReleased)//this is go back to game(restart)
+                    {   // add in u lose
+                        init_firstmap();
+                        weapon2Exist = true;
+                        weaponExist = true;
+                        g_dElapsedTime = 0;
+                        //if you die, restart everything(Reagan)
+                        if (cleared == true)
+                        {
+                            cleared = false;
+                        }
+
+                        g_eGameState = S_GAME;
+                    }
+                    if (g_skKeyEvent[K_SPACE].keyReleased)//ends programme
+                    {
+                        g_bQuitGame = true;
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
 
-                g_eGameState = S_GAME;
-            }
-            if (g_skKeyEvent[K_SPACE].keyReleased)//ends programme
-            {
-                g_bQuitGame = true;
-
-
 
             }
-
-
-
-
-
-
-
 
 
 
@@ -1824,15 +1805,7 @@ __/  / /      \ \_______\ \_______\       \ \_______\ \_______\____\_\  \ \_____
 
 
         }
-
-
     }
-
-
-
-
-
-
 }
 
 void endscreen()
@@ -2014,7 +1987,7 @@ void mobspawn()
         mob4_exists = false;
 
         //after a certain time, the ghosts will spawn again(Reagan)
-        if (g_dElapsedTime_2 > 10 && mob1_attacked_2 == false)
+        /*if (g_dElapsedTime_2 > 10 && mob1_attacked_2 == false)
         {
             mob1_exists = true;
         }
@@ -2033,7 +2006,7 @@ void mobspawn()
         if (g_dElapsedTime_2 > 0 && mob_attacked_2 == false)
         {
             mob_exists = true;
-        }
+        }*/
     }
 }
 

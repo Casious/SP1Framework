@@ -1,3 +1,4 @@
+Author : blaster8524 Commit : Created the git log (update if need be)
 Author : blaster8524 Commit : deleting my log first to try again
 Author : blaster8524 Commit : my git log (i think)
 Author : Casious Commit : Added a readme for controls and how to play

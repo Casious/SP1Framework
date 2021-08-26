@@ -667,9 +667,49 @@ void startscreen()
     maze.close();
     */
 }
+void MapDesign2()
+{
+    std::ifstream maps;
+    maps.open("MapDesign2.txt", std::ifstream::in);
+    // Opening may fail, always check.
+    if (!maps) {
+        exit(1);
+    }
+    std::string row;
+    while (std::getline(maps, row))
+    {
+        std::stringstream rowStream(row);
+        std::string(col);
+        std::vector<std::string>rowvector;
+        while (std::getline(rowStream, col, ','))
+        {
+            mapArray.push_back(stoi(col));
+        }
 
+    }
+    maps.close();
+}
+
+void renderMap2()
+{
+    COORD c;
+    WORD Colour = 0x0B;
+    for (int j = 0; j < mapHeight; j++) {
+        for (int i = 0; i < mapWidth; i++)
+        {
+            c.X = i;
+            c.Y = j;
+            switch (mapArray[j * mapWidth + i])
+            {
+            case 1:
+                (mapArray[j * mapWidth + i]) = char(221);
+                break;
+            }
+            g_Console.writeToBuffer(c, mapArray[j * mapWidth + i], Colour);
+        }
+    }
+}
     
-//fix
 
 
 

@@ -1,6 +1,7 @@
 // This is the main file for the game logic and function
 //im pushing this for shuan cuz he sucks and messed up 
 //
+//
 #include "game.h"
 #include "Framework\console.h"
 #include <iostream>
@@ -941,7 +942,7 @@ void endgame()
 }
 void cheat()
 {
-    /*if (g_eGameState = S_GAME)
+    if (g_eGameState = S_GAME)
     {
         bool cheat = false;
         if (g_skKeyEvent[K_Q].keyReleased)
@@ -953,7 +954,7 @@ void cheat()
 
 
         }
-    }*/
+    }
 }
 
 

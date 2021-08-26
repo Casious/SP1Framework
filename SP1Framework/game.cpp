@@ -13,6 +13,10 @@
 #include <cmath>
 
 
+//for spawning at random positions
+#include <cstdlib>
+#include <ctime>
+
 using namespace std;
 double  g_dElapsedTime;
 double  g_dDeltaTime;
@@ -88,7 +92,8 @@ Console g_Console(80, 25, "SP1 Framework");
 // Input    : void
 // Output   : void
 //--------------------------------------------------------------
-void init( void )
+
+/*void init(void)
 {
 
  
@@ -171,7 +176,8 @@ void init( void )
     // remember to set your keyboard handler, so that your functions can be notified of input events
     g_Console.setKeyboardHandler(keyboardHandler);
     //g_Console.setMouseHandler(mouseHandler); // mouse functions redundant in program for now (Jun Ying)
-}
+}*/
+
 
 void setmobmoveinterval(int interval)
 {
@@ -481,8 +487,8 @@ void render()
         break;
     }
     renderFramerate();      // renders debug information, frame rate, elapsed time, etc
-    renderHeartbeat();
-    render30sTimer();
+    //renderHeartbeat();
+    //render30sTimer();
     renderInputEvents();    // renders status of input events
     renderToScreen();    // dump the contents of the buffer to the screen, one frame worth of game
 }
@@ -589,31 +595,7 @@ std::vector<char>mapArray;
 int startX = 12;
 int startY = 2;
 std::vector<char>startArray;
-//char mapArray[] = { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
-//'#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
-//'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',
-//'#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
-//'#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ','#','#','#','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#',' ',' ',' ',' ',' ','#',
-//'#',' ','#','#','#','#','#','#','#','#','#','#','#','#','#',' ','#',' ','#','#',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#',' ',' ',' ',' ',' ',' ',' ','#',
-//'#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#','#','#','#','#','#','#',
-//'#',' ','#','#','#','#','#',' ','#','#','#','#','#',' ','#',' ','#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#',
-//'#',' ',' ',' ',' ',' ','#',' ','#',' ',' ',' ','#',' ',' ','#','#','#','#','#','#',' ','#',' ','#','#','#','#',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#','#','#','#',' ','#','#',
-//'#',' ','#','#',' ','#','#',' ','#','#','#','#','#','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#',' ',' ',' ',' ',' ',' ','#',' ','#',
-//'#',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#','#','#','#',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ',' ','#',' ',' ','#','#','#','#','#','#','#','#','#','#','#',
-//'#',' ','#',' ','#',' ','#',' ','#','#','#','#',' ','#',' ','#',' ','#',' ',' ','#',' ','#',' ','#',' ',' ',' ','#',' ',' ','#',' ',' ',' ',' ','#','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
-//'#','#','#',' ',' ',' ','#',' ','#',' ',' ','#',' ','#',' ',' ',' ',' ','#',' ','#',' ','#','#','#',' ',' ',' ','#',' ','#','#','#','#','#','#','#',' ',' ','#',' ','#','#','#','#','#','#','#','#','#',
-//'#',' ','#',' ','#',' ','#',' ','#','#',' ','#',' ','#',' ','#','#','#','#','#','#',' ','#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ','#','#',' ','#','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
-//'#',' ','#',' ','#',' ','#',' ',' ',' ','#','#',' ','#','#','#','#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#',' ',' ','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
-//'#',' ','#',' ','#',' ','#','#','#',' ','#','#',' ',' ',' ','#','#',' ','#','#','#','#','#',' ',' ',' ',' ','#',' ',' ',' ',' ',' ','#',' ','#','#',' ','#','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
-//'#',' ','#',' ','#',' ','#',' ','#',' ','#',' ','#','#',' ','#','#',' ','#',' ',' ',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ',' ','#',' ','#','#',' ','#','#',' ','#',' ',' ',' ',' ',' ','#',' ','#',
-//'#',' ',' ','#','#',' ','#',' ','#',' ','#',' ',' ','#',' ',' ',' ',' ','#',' ',' ',' ','#',' ',' ',' ',' ','#',' ','#','#','#','#','#',' ','#','#',' ','#','#',' ','#','#','#','#','#','#','#',' ','#',
-//'#',' ',' ',' ','#',' ','#',' ','#',' ','#',' ',' ','#','#',' ','#','#','#','#','#',' ','#','#','#','#','#','#',' ',' ',' ',' ',' ','#',' ','#','#',' ','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
-//'#',' ',' ',' ','#',' ',' ',' ',' ',' ','#',' ',' ',' ','#',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ','#','#',' ','#','#','#','#',' ','#',
-//'#',' ',' ',' ','#','#','#','#','#','#','#',' ',' ',' ','#',' ','#','#','#','#','#',' ','#','#','#',' ','#',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#','#','#',' ',' ',' ',' ',' ','#','#',
-//'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ','#',' ','#',' ','#',' ',' ','#','#','#','#','#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ','#','#',
-//'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#','#','#','#','#','#','#',' ','#',' ','#',' ','#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#',
-//'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'
-//}; 
+
 
 void MapDesign()
 {
@@ -753,8 +735,165 @@ void renderMap2()
         }
     }
 }
+
+
+
+
+
+//choose spawn points (Reagan)
+int spawn_points(int point_x, int point_y, bool active)
+{
+    //to help with mob spawning
+    srand((unsigned)time(0));
+
+    int number_generator = rand() % 10+ 1;
+    switch (number_generator)
+    {
+    case 1:
+        point_x = 25;
+        point_y = 5;
+        active = true;
+    case 2:
+        point_x = 35;
+        point_y = 11;
+        active = true;
+    case 3:
+        point_x = 27;
+        point_y = 20;
+        active = true;
+    case 4:
+        point_x = 47;
+        point_y = 5;
+        active = true;
+    case 5:
+        point_x = 1;
+        point_y = 22;
+        active = true;
+    case 6:
+        point_x = 46;
+        point_y = 18;
+        active = true;
+    case 7:
+        point_x = 18;
+        point_y = 9;
+        active = true;
+    case 8:
+        point_x = 18;
+        point_y = 4;
+        active = true;
+    case 9:
+        point_x = 24;
+        point_y = 16;
+        active = true;
+    case 10:
+        point_x = 31;
+        point_y = 20;
+        active = true;
+    default:
+        break;
+    }
+
+    return point_x;
+    return point_y;
+    return active;
+}
+
+void init(void)
+{
+
     
 
+    //to help with mob spawning
+    srand((unsigned)time(0));
+    
+
+    // Set precision for floating point output
+    g_dElapsedTime = 0.0;
+
+    // sets the initial state for the game
+    g_eGameState = S_SPLASHSCREEN;
+
+
+    g_sChar.m_cLocation.X = 1;
+    g_sChar.m_cLocation.Y = 1;
+    g_sChar.m_bActive = true;
+
+    
+    g_sMob2.m_cLocation.X = 30;
+    g_sMob2.m_cLocation.Y = 30;
+    g_sMob2.m_bActive = true;
+    
+    g_sMob1.m_cLocation.X = 20;
+    g_sMob1.m_cLocation.Y = 20;
+    g_sMob1.m_bActive = true;
+
+
+    g_sMob.m_cLocation.X = rand() % 31 + 17;
+    g_sMob.m_cLocation.Y = 1;
+    g_sMob.m_bActive = true;
+
+   
+    
+    
+
+    g_sMob3.m_cLocation.X = 40;
+    g_sMob3.m_cLocation.Y = 40;
+    g_sMob3.m_bActive = true;
+
+    g_sMob4.m_cLocation.X = 50;
+    g_sMob4.m_cLocation.Y = 50;
+    g_sMob4.m_bActive = true;
+
+
+    //location for weapon
+    g_sWeapon.m_cLocation.X = 5; // Jun Ying spawning WIP (fixed position for now)
+    g_sWeapon.m_cLocation.Y = 4;
+
+    g_sWeapon2.m_cLocation.X = 14; // Jun Ying spawning WIP (fixed position for now)
+    g_sWeapon2.m_cLocation.Y = 15;
+
+    // g_sWeapon's attack position init 
+    g_sSmash.m_cLocation.X = g_sChar.m_cLocation.X + 1; // right
+    g_sSmash.m_cLocation.Y = g_sChar.m_cLocation.Y;
+
+    g_sSmash2.m_cLocation.X = g_sChar.m_cLocation.X + 1; // bottom right
+    g_sSmash2.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
+
+    g_sSmash3.m_cLocation.X = g_sChar.m_cLocation.X; // bottom
+    g_sSmash3.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
+
+    g_sSmash4.m_cLocation.X = g_sChar.m_cLocation.X - 1; // bottom left
+    g_sSmash4.m_cLocation.Y = g_sChar.m_cLocation.Y + 1;
+
+    g_sSmash5.m_cLocation.X = g_sChar.m_cLocation.X - 1; // left
+    g_sSmash5.m_cLocation.Y = g_sChar.m_cLocation.Y;
+
+    g_sSmash6.m_cLocation.X = g_sChar.m_cLocation.X - 1; // top left
+    g_sSmash6.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
+
+    g_sSmash7.m_cLocation.X = g_sChar.m_cLocation.X; // top
+    g_sSmash7.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
+
+    g_sSmash8.m_cLocation.X = g_sChar.m_cLocation.X + 1; // top right
+    g_sSmash8.m_cLocation.Y = g_sChar.m_cLocation.Y - 1;
+
+    //g_sWeapon's attack position init
+    g_sSlash.m_cLocation.X = g_sChar.m_cLocation.X;
+    g_sSlash.m_cLocation.Y = g_sChar.m_cLocation.Y;
+    g_sSlash2.m_cLocation.X = g_sChar.m_cLocation.X;
+    g_sSlash2.m_cLocation.Y = g_sChar.m_cLocation.Y;
+    g_sSlash3.m_cLocation.X = g_sChar.m_cLocation.X;
+    g_sSlash3.m_cLocation.Y = g_sChar.m_cLocation.Y;
+
+    
+
+    // sets the width, height and the font name to use in the console
+    g_Console.setConsoleFont(0, 16, L"Consolas");
+
+    // remember to set your keyboard handler, so that your functions can be notified of input events
+    g_Console.setKeyboardHandler(keyboardHandler);
+    g_Console.setMouseHandler(mouseHandler);
+}
 
 
 
@@ -1729,44 +1868,44 @@ void renderInputEvents()
 
 
 
-    // mouse events    
-    ss.str("");
-    ss << "Mouse position (" << g_mouseEvent.mousePosition.X << ", " << g_mouseEvent.mousePosition.Y << ")";
-    g_Console.writeToBuffer(g_mouseEvent.mousePosition, ss.str(), 0x59);
-    ss.str("");
-    switch (g_mouseEvent.eventFlags)
-    {
-    case 0:
-        if (g_mouseEvent.buttonState == FROM_LEFT_1ST_BUTTON_PRESSED)
-        {
-            ss.str("Left Button Pressed");
-            g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 1, ss.str(), 0x59);
-        }
-        else if (g_mouseEvent.buttonState == RIGHTMOST_BUTTON_PRESSED)
-        {
-            ss.str("Right Button Pressed");
-            g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 2, ss.str(), 0x59);
-        }
-        else
-        {
-            ss.str("Some Button Pressed");
-            g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 3, ss.str(), 0x59);
-        }
-        break;
-    case DOUBLE_CLICK:
-        ss.str("Double Clicked");
-        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 4, ss.str(), 0x59);
-        break;        
-    case MOUSE_WHEELED:
-        if (g_mouseEvent.buttonState & 0xFF000000)
-            ss.str("Mouse wheeled down");
-        else
-            ss.str("Mouse wheeled up");
-        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 5, ss.str(), 0x59);
-        break;
-    default:        
-        break;
-    }
+    //// mouse events    
+    //ss.str("");
+    //ss << "Mouse position (" << g_mouseEvent.mousePosition.X << ", " << g_mouseEvent.mousePosition.Y << ")";
+    //g_Console.writeToBuffer(g_mouseEvent.mousePosition, ss.str(), 0x59);
+    //ss.str("");
+    //switch (g_mouseEvent.eventFlags)
+    //{
+    //case 0:
+    //    if (g_mouseEvent.buttonState == FROM_LEFT_1ST_BUTTON_PRESSED)
+    //    {
+    //        ss.str("Left Button Pressed");
+    //        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 1, ss.str(), 0x59);
+    //    }
+    //    else if (g_mouseEvent.buttonState == RIGHTMOST_BUTTON_PRESSED)
+    //    {
+    //        ss.str("Right Button Pressed");
+    //        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 2, ss.str(), 0x59);
+    //    }
+    //    else
+    //    {
+    //        ss.str("Some Button Pressed");
+    //        g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 3, ss.str(), 0x59);
+    //    }
+    //    break;
+    //case DOUBLE_CLICK:
+    //    ss.str("Double Clicked");
+    //    g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 4, ss.str(), 0x59);
+    //    break;        
+    //case MOUSE_WHEELED:
+    //    if (g_mouseEvent.buttonState & 0xFF000000)
+    //        ss.str("Mouse wheeled down");
+    //    else
+    //        ss.str("Mouse wheeled up");
+    //    g_Console.writeToBuffer(g_mouseEvent.mousePosition.X, g_mouseEvent.mousePosition.Y + 5, ss.str(), 0x59);
+    //    break;
+    //default:        
+    //    break;
+    //}
     
 }
 

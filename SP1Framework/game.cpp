@@ -1712,102 +1712,127 @@ void mobcollide()// working on loops now
     if (mob_exists == true)
     {
         if (g_sMob.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y||
-            g_sMob1.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob1.m_cLocation.Y == g_sChar.m_cLocation.Y||
-            g_sMob2.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob2.m_cLocation.Y == g_sChar.m_cLocation.Y||
-            g_sMob3.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob3.m_cLocation.Y == g_sChar.m_cLocation.Y||
-            g_sMob4.m_cLocation.X == g_sChar.m_cLocation.X
-            && g_sMob4.m_cLocation.Y == g_sChar.m_cLocation.Y
-            )
+            && g_sMob.m_cLocation.Y == g_sChar.m_cLocation.Y)
         {
             char_exists == false;
+        }
+    }
+    if (mob1_exists == true)
+    {
+        if (g_sMob1.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob1.m_cLocation.Y == g_sChar.m_cLocation.Y)
+        {
+            char_exists == false;
+        }
+    }
+    if (mob2_exists == true)
+    {
+        if (g_sMob2.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob2.m_cLocation.Y == g_sChar.m_cLocation.Y)
+        {
+            char_exists == false;
+        }
+    }
+    if (mob3_exists == true)
+    {
+        if (g_sMob3.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob3.m_cLocation.Y == g_sChar.m_cLocation.Y)
+        {
+            char_exists == false;
+        }
+    }
+    if (mob4_exists == true)
+    {
+        if (g_sMob4.m_cLocation.X == g_sChar.m_cLocation.X
+            && g_sMob4.m_cLocation.Y == g_sChar.m_cLocation.Y)
+        {
+            char_exists == false;
+        }
+    }
+    if (char_exists == true)
+    {
+        mob1_exists = false;
+        mob2_exists = false;
+        mob3_exists = false;
+        mob4_exists = false;
 
-            if (char_exists == true)
-            {
-                mob1_exists = false;
-                mob2_exists = false;
-                mob3_exists = false;
-                mob4_exists = false;
+        //game over
+        g_eGameState = S_LOSE;
+        if (g_eGameState == S_LOSE)
+        {
 
-                //game over
-                g_eGameState = S_LOSE;
-                if (g_eGameState == S_LOSE)
-                {
-                    
-                    COORD c;
-                    std::ostringstream ss;
-                    /*
-                    prints you died
-                    */
-                  
-                    ss << " ";
-                    ss << "PRESS ENTER TO RESTART AND SPACE TO QUIT!";
-                    c.X = 20;
-                    c.Y = 16;
-                    g_Console.writeToBuffer(c, ss.str());
-                    
-                    // adding end game and restart func
-                    //g_bQuitGame = true; // ends game
-                    if (g_skKeyEvent[K_RETURN].keyReleased)//this is go back to game(restart)
-                    {   // add in u lose
+            COORD c;
+            std::ostringstream ss;
+            /*
+            prints you died
+            */
 
-                        /*
-  ___    ___ ________  ___  ___          ___       ________  ________  _______
- |\  \  /  /|\   __  \|\  \|\  \        |\  \     |\   __  \|\   ____\|\  ___ \
- \ \  \/  / | \  \|\  \ \  \\\  \       \ \  \    \ \  \|\  \ \  \___|\ \   __/|
-  \ \    / / \ \  \\\  \ \  \\\  \       \ \  \    \ \  \\\  \ \_____  \ \  \_|/__
-   \/  /  /   \ \  \\\  \ \  \\\  \       \ \  \____\ \  \\\  \|____|\  \ \  \_|\ \
- __/  / /      \ \_______\ \_______\       \ \_______\ \_______\____\_\  \ \_______\
+            ss << " ";
+            ss << "PRESS ENTER TO RESTART AND SPACE TO QUIT!";
+            c.X = 20;
+            c.Y = 16;
+            g_Console.writeToBuffer(c, ss.str());
+
+            // adding end game and restart func
+            //g_bQuitGame = true; // ends game
+            if (g_skKeyEvent[K_RETURN].keyReleased)//this is go back to game(restart)
+            {   // add in u lose
+
+                /*
+___    ___ ________  ___  ___          ___       ________  ________  _______
+|\  \  /  /|\   __  \|\  \|\  \        |\  \     |\   __  \|\   ____\|\  ___ \
+\ \  \/  / | \  \|\  \ \  \\\  \       \ \  \    \ \  \|\  \ \  \___|\ \   __/|
+ \ \    / / \ \  \\\  \ \  \\\  \       \ \  \    \ \  \\\  \ \_____  \ \  \_|/__
+  \/  /  /   \ \  \\\  \ \  \\\  \       \ \  \____\ \  \\\  \|____|\  \ \  \_|\ \
+__/  / /      \ \_______\ \_______\       \ \_______\ \_______\____\_\  \ \_______\
 |\___/ /        \|_______|\|_______|        \|_______|\|_______|\_________\|_______|
 \|___|/                                                        \|_________|         */
 
-                        init_firstmap();
+                init_firstmap();
 
-                        weapon2Exist = true;
-                        weaponExist = true;
+                weapon2Exist = true;
+                weaponExist = true;
 
-                        g_dElapsedTime = 0;
+                g_dElapsedTime = 0;
 
-                        //if you die, restart everything(Reagan)
-                        if (cleared == true)
-                        {
-                            cleared = false;
-                        }
-                        
-                        g_eGameState = S_GAME;
-                    }
-                    if (g_skKeyEvent[K_SPACE].keyReleased)//ends programme
-                    {
-                        g_bQuitGame = true;
-                    
-                    
-                    
-                    }
-                       
-
-
-
-                    
-                   
-                    
-
-
-
-
-
-
+                //if you die, restart everything(Reagan)
+                if (cleared == true)
+                {
+                    cleared = false;
                 }
+
+                g_eGameState = S_GAME;
+            }
+            if (g_skKeyEvent[K_SPACE].keyReleased)//ends programme
+            {
+                g_bQuitGame = true;
+
 
 
             }
 
 
 
+
+
+
+
+
+
+
+
+
+
         }
+
+
     }
+
+
+
+
+
+
 }
 
 void endscreen()

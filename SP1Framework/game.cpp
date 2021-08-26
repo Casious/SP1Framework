@@ -1,6 +1,7 @@
 // This is the main file for the game logic and function
 //im pushing this for shuan cuz he sucks and messed up 
 //
+//
 #include "game.h"
 #include "Framework\console.h"
 #include <iostream>
@@ -906,11 +907,15 @@ void endgame()
             c.X = 20;
             c.Y = 16;
             g_Console.writeToBuffer(c, ss.str());
-
+            ss.str("");
+            ss << "Congradulations on clearing the 1st part";
+            c.X = 20;
+            c.Y = 15;
             if (g_skKeyEvent[K_RETURN].keyReleased)
             {
                 g_sChar.m_cLocation.X = 1;
-                g_sChar.m_cLocation.Y = 1;
+                g_sChar.m_cLocation.Y = 2;
+
                 g_eGameState = S_GAME1;
 
 
@@ -937,7 +942,7 @@ void endgame()
 }
 void cheat()
 {
-    /*if (g_eGameState = S_GAME)
+    if (g_eGameState = S_GAME)
     {
         bool cheat = false;
         if (g_skKeyEvent[K_Q].keyReleased)
@@ -949,7 +954,7 @@ void cheat()
 
 
         }
-    }*/
+    }
 }
 
 
@@ -1557,7 +1562,7 @@ void renderWText()
     //text box spawn after a certain time
     if (modeselected == true)
     {
-        if (g_dElapsedTime >= 1 && g_dElapsedTime < 4)
+        if (g_dElapsedTime >= 1 && g_dElapsedTime < 2)
         {
             COORD c;
             std::ostringstream ss;
@@ -1566,7 +1571,7 @@ void renderWText()
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
         }
-        if (g_dElapsedTime >= 4 && g_dElapsedTime < 7)
+        if (g_dElapsedTime >= 2 && g_dElapsedTime < 3)
         {
             COORD c;
             std::ostringstream ss;
@@ -1575,7 +1580,7 @@ void renderWText()
             c.Y = 15;
             g_Console.writeToBuffer(c, ss.str());
         }
-        if (g_dElapsedTime >= 7)
+        if (g_dElapsedTime >= 3)
         {
             after_cutscene = true;
         }

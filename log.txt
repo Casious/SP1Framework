@@ -1,3 +1,5 @@
+Author : Catclysmisnotavailable Commit : final update on ui
+Author : Catclysmisnotavailable Commit : mobs now died correctly and does not leave a ghost
 Author : blaster8524 Commit : Created the git log (update if need be)
 Author : blaster8524 Commit : deleting my log first to try again
 Author : blaster8524 Commit : my git log (i think)

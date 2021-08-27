@@ -576,7 +576,7 @@ void endtext()
     c.X = 2;
     c.Y = 7;
     g_Console.writeToBuffer(c, ss.str());
-
+    ss.str("");
     ss << " You have escaped... for now";
     c.X = 20;
     c.Y = 15;
